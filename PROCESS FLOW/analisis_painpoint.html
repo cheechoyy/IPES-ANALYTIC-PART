@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pain Points & Problem Formulation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .ai-processing-bg { background: linear-gradient(270deg, #1e1b4b, #312e81, #1e1b4b); background-size: 200% 200%; animation: AIProcessing 3s ease infinite; }
+        @keyframes AIProcessing { 0% {background-position: 0% 50%} 50% {background-position: 100% 50%} 100% {background-position: 0% 50%} }
+        .typing-effect::after { content: '|'; animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 p-6 md:p-8 min-h-screen">
+
+    <div class="max-w-[1600px] w-full mx-auto">
+        
+        <div class="relative overflow-hidden bg-gradient-to-br from-rose-900 via-rose-800 to-indigo-900 rounded-2xl px-8 py-7 mb-8 shadow-lg">
+            <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);background-size:24px 24px;"></div>
+            
+            <div class="relative flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="analisis_spaf.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to Blueprint Map">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 bg-rose-500/20 border border-rose-400/30 text-rose-200 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-3">
+                            <i class="fas fa-exclamation-triangle"></i> Pain Points Engine
+                        </div>
+                        <h1 class="text-2xl md:text-3xl font-extrabold text-white leading-tight">Pain Points & Problem Formulation</h1>
+                        <p class="text-white/70 text-sm mt-1">Local LM clustering raw participant struggles into unified Problem Statements.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="bg-indigo-900/50 border border-indigo-400/30 text-indigo-100 text-xs font-bold px-4 py-2.5 rounded-xl backdrop-blur-sm flex items-center">
+                        <i class="fas fa-circle-notch fa-spin text-emerald-400 mr-2"></i> Local LM Active
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-8 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+            <h3 class="text-[10px] font-black text-blue-500 uppercase tracking-widest mb-2"><i class="fas fa-robot mr-1"></i> AI Generated Trigger Prompt</h3>
+            <div class="flex flex-col md:flex-row md:items-center gap-4 justify-between">
+                <p class="text-slate-700 font-medium italic md:text-lg flex-1">"Based on your submitted references regarding EMR integration, what is your <span class="text-rose-600 font-bold underline decoration-rose-300">biggest daily frustration</span> when transferring patient data between departments?"</p>
+                <div class="bg-slate-100 text-slate-500 text-xs px-4 py-2 rounded-lg border border-slate-200 text-center font-bold">
+                    Sent to 300 Participants
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Raw Ideas Submitted</div>
+                <div class="text-3xl font-black text-slate-700">1,245</div>
+                <div class="text-[10px] text-emerald-500 font-bold mt-1"><i class="fas fa-check-circle"></i> Collection Complete</div>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 flex justify-between">Duplicates Merged <i class="fas fa-compress-arrows-alt text-indigo-400"></i></div>
+                <div class="text-3xl font-black text-indigo-600">830</div>
+                <div class="text-[10px] text-slate-500 mt-1">AI Deduplication Process</div>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Unique Pain Points</div>
+                <div class="text-3xl font-black text-rose-600">415</div>
+                <div class="text-[10px] text-rose-400 mt-1 font-bold">Filtered distinct issues</div>
+            </div>
+            <div class="bg-gradient-to-br from-indigo-50 to-blue-50 p-5 rounded-xl shadow-sm border border-indigo-100">
+                <div class="text-indigo-800 text-[10px] font-bold uppercase tracking-widest mb-1">Formulated Statements</div>
+                <div class="text-3xl font-black text-indigo-700">4</div>
+                <div class="text-[10px] text-indigo-500 mt-1 font-bold"><i class="fas fa-layer-group"></i> Master categories created</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+            
+            <div class="lg:col-span-5 flex flex-col gap-6 h-full">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <div class="flex justify-between items-center mb-4 border-b border-slate-100 pb-3">
+                        <h3 class="font-bold text-sm text-slate-800"><i class="fas fa-chart-bar text-rose-500 mr-2"></i> Top Mentioned Pain Points</h3>
+                        <span class="text-[9px] bg-slate-100 text-slate-500 font-bold px-2 py-1 rounded">Post-Deduplication</span>
+                    </div>
+                    <div class="relative h-60 w-full">
+                        <canvas id="grafPainPoints"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 rounded-xl shadow-sm border border-slate-800 overflow-hidden flex-1 flex flex-col">
+                    <div class="bg-slate-950 p-3 flex items-center justify-between border-b border-slate-800">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-terminal text-emerald-500 text-xs"></i>
+                            <span class="text-[10px] text-slate-400 font-mono tracking-widest">Local_LM_Clustering.exe</span>
+                        </div>
+                        <div class="flex gap-1.5">
+                            <div class="w-2.5 h-2.5 rounded-full bg-rose-500"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-amber-500"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+                        </div>
+                    </div>
+                    <div class="p-4 font-mono text-[10px] text-emerald-400 leading-relaxed flex-1 ai-processing-bg opacity-90">
+                        <div class="opacity-70">> Ingesting 1,245 raw feedback entries...</div>
+                        <div class="opacity-70">> Running NLP Deduplication... [830 matched]</div>
+                        <div class="text-blue-300">> Isolating 415 unique semantic vectors...</div>
+                        <div class="mt-2 text-indigo-300">> Applying K-Means Clustering for Pattern Recognition...</div>
+                        <div class="text-indigo-300">> Analyzing Contextual Relationships...</div>
+                        <div class="mt-2 text-amber-300">> Discovered Cluster 1: System Silos (185 nodes)</div>
+                        <div class="text-amber-300">> Discovered Cluster 2: Infrastructure (120 nodes)</div>
+                        <div class="text-amber-300">> Discovered Cluster 3: Human Capital (70 nodes)</div>
+                        <div class="text-amber-300">> Discovered Cluster 4: Data Security (40 nodes)</div>
+                        <div class="mt-2 text-white font-bold typing-effect">> Formulating Master Problem Statements</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-7 bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                <div class="mb-6 border-b border-slate-100 pb-4">
+                    <h3 class="font-black text-xl text-slate-800 flex items-center"><i class="fas fa-layer-group text-indigo-600 mr-2"></i> Synthesized Problem Statements</h3>
+                    <p class="text-xs text-slate-500 mt-1">Local LM has categorized the 415 unique pain points into these master core problems.</p>
+                </div>
+
+                <div class="space-y-5">
+                    
+                    <div class="border-2 border-indigo-100 bg-indigo-50/30 rounded-xl p-5 relative">
+                        <div class="absolute top-4 right-4 bg-rose-100 text-rose-700 text-[9px] font-black px-2 py-1 rounded uppercase tracking-wider">High Priority (45%)</div>
+                        <h4 class="font-black text-indigo-900 text-base mb-3 pr-24">PS-01: Fragmented EMR Ecosystems Lead to Redundant Data Entry and Clinical Fatigue.</h4>
+                        
+                        <div class="bg-white rounded-lg p-3 border border-slate-200 shadow-sm">
+                            <h5 class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-2"><i class="fas fa-compress-arrows-alt text-indigo-400 mr-1"></i> AI Grouped Pain Points (Examples):</h5>
+                            <ul class="space-y-2">
+                                <li class="text-xs text-slate-600 flex items-start gap-2"><i class="fas fa-angle-right text-rose-400 mt-1"></i> "I have to log in to 3 different systems just to discharge one patient." <span class="text-[9px] text-slate-400 ml-auto">(Mentions: 85)</span></li>
+                                <li class="text-xs text-slate-600 flex items-start gap-2"><i class="fas fa-angle-right text-rose-400 mt-1"></i> "Patient history from clinic doesn't sync with hospital pharmacy." <span class="text-[9px] text-slate-400 ml-auto">(Mentions: 62)</span></li>
+                                <li class="text-xs text-slate-600 flex items-start gap-2"><i class="fas fa-angle-right text-rose-400 mt-1"></i> "Manual copy-pasting lab results takes 20 minutes per patient." <span class="text-[9px] text-slate-400 ml-auto">(Mentions: 38)</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="border-2 border-slate-100 bg-slate-50/50 rounded-xl p-5 relative">
+                        <div class="absolute top-4 right-4 bg-amber-100 text-amber-700 text-[9px] font-black px-2 py-1 rounded uppercase tracking-wider">Critical (28%)</div>
+                        <h4 class="font-black text-slate-800 text-base mb-3 pr-24">PS-02: Inadequate Legacy Infrastructure Causes Severe Operational Latency.</h4>
+                        
+                        <div class="bg-white rounded-lg p-3 border border-slate-200 shadow-sm">
+                            <h5 class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-2"><i class="fas fa-compress-arrows-alt text-indigo-400 mr-1"></i> AI Grouped Pain Points (Examples):</h5>
+                            <ul class="space-y-2">
+                                <li class="text-xs text-slate-600 flex items-start gap-2"><i class="fas fa-angle-right text-rose-400 mt-1"></i> "The local server goes down every Friday afternoon." <span class="text-[9px] text-slate-400 ml-auto">(Mentions: 55)</span></li>
+                                <li class="text-xs text-slate-600 flex items-start gap-2"><i class="fas fa-angle-right text-rose-400 mt-1"></i> "Internet bandwidth is too slow to load X-Ray DICOM images." <span class="text-[9px] text-slate-400 ml-auto">(Mentions: 40)</span></li>
+                                <li class="text-xs text-slate-600 flex items-start gap-2"><i class="fas fa-angle-right text-rose-400 mt-1"></i> "Old PCs freeze when opening large medical reports." <span class="text-[9px] text-slate-400 ml-auto">(Mentions: 25)</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="border-2 border-slate-100 bg-slate-50/50 rounded-xl p-5 relative">
+                        <div class="absolute top-4 right-4 bg-slate-200 text-slate-600 text-[9px] font-black px-2 py-1 rounded uppercase tracking-wider">Moderate (17%)</div>
+                        <h4 class="font-black text-slate-800 text-base mb-3 pr-24">PS-03: Resistance to Change and Lack of Continuous IT Training.</h4>
+                        
+                        <div class="bg-white rounded-lg p-3 border border-slate-200 shadow-sm">
+                            <h5 class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-2"><i class="fas fa-compress-arrows-alt text-indigo-400 mr-1"></i> AI Grouped Pain Points (Examples):</h5>
+                            <ul class="space-y-2">
+                                <li class="text-xs text-slate-600 flex items-start gap-2"><i class="fas fa-angle-right text-rose-400 mt-1"></i> "Senior doctors refuse to use the new tablet system." <span class="text-[9px] text-slate-400 ml-auto">(Mentions: 45)</span></li>
+                                <li class="text-xs text-slate-600 flex items-start gap-2"><i class="fas fa-angle-right text-rose-400 mt-1"></i> "Training was only 1 day, no support staff after go-live." <span class="text-[9px] text-slate-400 ml-auto">(Mentions: 25)</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            // Graf Bar Horizontal untuk Top Pain Points
+            const ctxPain = document.getElementById('grafPainPoints').getContext('2d');
+            new Chart(ctxPain, {
+                type: 'bar',
+                data: {
+                    labels: ['Multiple Logins', 'No Pharmacy Sync', 'Server Crashes', 'Senior Staff Resistance', 'Slow Image Loading', 'Manual Copy-Paste'],
+                    datasets: [{
+                        label: 'Frequency of Mention',
+                        data: [85, 62, 55, 45, 40, 38],
+                        backgroundColor: ['#e11d48', '#f43f5e', '#fb7185', '#fbcfe8', '#ffe4e6', '#fff1f2'],
+                        borderRadius: 4,
+                        barThickness: 16
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { display: true, color: '#f1f5f9' }, ticks: { font: { size: 10 } } },
+                        y: { grid: { display: false }, ticks: { font: { size: 10, weight: 'bold' }, color: '#475569' } }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Situational Analysis (As-Is State)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 p-6 md:p-8 min-h-screen">
+
+    <div class="max-w-[1600px] w-full mx-auto">
+        <div class="relative overflow-hidden bg-gradient-to-br from-blue-900 via-cyan-800 to-slate-900 rounded-2xl px-8 py-7 mb-8 shadow-lg">
+            <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);background-size:24px 24px;"></div>
+            
+            <div class="relative flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="analisis_spaf.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to SPAF Hub">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 bg-blue-500/20 border border-blue-400/30 text-cyan-200 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-3">
+                            <i class="fas fa-search-location"></i> Phase 2.3: Situational Mapping
+                        </div>
+                        <h1 class="text-2xl md:text-3xl font-extrabold text-white leading-tight">Situational Analysis (The "As-Is" State)</h1>
+                        <p class="text-white/70 text-sm mt-1">AI contextualizing current landscape using PESTLE & SWOT frameworks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <h3 class="font-black text-lg text-slate-800 mb-1 flex items-center"><i class="fas fa-globe text-cyan-500 mr-2"></i> PESTLE Environmental Scan</h3>
+                <p class="text-xs text-slate-500 mb-6">AI maps pain points against Political, Economic, Social, Tech, Legal, and Environmental factors.</p>
+                <div class="relative h-[400px] w-full">
+                    <canvas id="grafPestle"></canvas>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-slate-900 rounded-xl shadow-sm border border-slate-800 p-6 text-white relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 opacity-10"><i class="fas fa-chess-board text-[150px]"></i></div>
+                    <h3 class="font-black text-lg text-white mb-4 relative z-10"><i class="fas fa-project-diagram text-blue-400 mr-2"></i> Derived "As-Is" Context</h3>
+                    
+                    <div class="space-y-4 relative z-10">
+                        <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+                            <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-2">Strengths (Existing Base)</h4>
+                            <p class="text-sm text-slate-300">High clinical expertise (300+ SMEs) and readiness for digital adoption. Existing network infrastructure is present but heavily fragmented.</p>
+                        </div>
+                        <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+                            <h4 class="text-xs font-bold text-rose-400 uppercase tracking-widest mb-2">Weaknesses (Current Bottlenecks)</h4>
+                            <p class="text-sm text-slate-300">Siloed EMR systems causing 40% operational delay. Lack of unified data standards and low API interoperability between hospital departments.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 shadow-sm">
+                    <h3 class="font-black text-blue-900 text-sm mb-2"><i class="fas fa-robot text-blue-600 mr-2"></i> AI Agent Conclusion</h3>
+                    <p class="text-sm text-blue-800 leading-relaxed font-medium">"The current ecosystem is highly restricted by <strong>Technological (Tech)</strong> and <strong>Operational (Social/Process)</strong> barriers. While funding (Economic) is mentioned, the primary hindrance is the lack of centralized IT policy (Legal/Political)."</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const ctx = document.getElementById('grafPestle').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Political / Policy', 'Economic / Funding', 'Social / Operational', 'Technological', 'Legal / PDPA', 'Environmental'],
+                    datasets: [{
+                        label: 'Intensity of Mentions',
+                        data: [60, 45, 85, 95, 70, 20],
+                        backgroundColor: 'rgba(6, 182, 212, 0.2)', // Cyan
+                        borderColor: '#06b6d4',
+                        pointBackgroundColor: '#0284c7',
+                        pointBorderColor: '#fff',
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { r: { angleLines: { color: 'rgba(0,0,0,0.1)' }, grid: { color: 'rgba(0,0,0,0.1)' }, pointLabels: { font: { size: 11, weight: 'bold' } } } }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 p-6 md:p-8 min-h-screen">
+
+    <div class="max-w-[1600px] w-full mx-auto">
+        <div class="relative overflow-hidden bg-gradient-to-br from-red-900 via-rose-900 to-slate-900 rounded-2xl px-8 py-7 mb-8 shadow-lg">
+            <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);background-size:24px 24px;"></div>
+            
+            <div class="relative flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="analisis_spaf.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to SPAF Hub">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 bg-red-500/20 border border-red-400/30 text-red-200 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-3">
+                            <i class="fas fa-radiation"></i> Phase 2.6: Risk Matrix Generation
+                        </div>
+                        <h1 class="text-2xl md:text-3xl font-extrabold text-white leading-tight">Predictive Risk Analysis</h1>
+                        <p class="text-white/70 text-sm mt-1">AI projections of systemic failure if identified Root Causes are left unmitigated.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <div class="lg:col-span-7 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <h3 class="font-black text-xl text-slate-800 mb-1 flex items-center"><i class="fas fa-braille text-red-500 mr-2"></i> Threat Assessment Matrix</h3>
+                <p class="text-xs text-slate-500 mb-6 border-b border-slate-100 pb-4">Mapping Probability (Likelihood) vs Impact Severity. Bubble size indicates estimated cost/resource loss.</p>
+                <div class="relative h-[400px] w-full">
+                    <canvas id="grafRisk"></canvas>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 space-y-4">
+                <h3 class="font-black text-lg text-slate-800 mb-2"><i class="fas fa-exclamation-triangle text-rose-500 mr-2"></i> Critical Threats Identified</h3>
+                
+                <div class="bg-white border-l-4 border-red-600 rounded-xl p-5 shadow-sm">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-slate-800">Complete System Blackout</h4>
+                        <span class="bg-red-100 text-red-700 text-[9px] font-black px-2 py-0.5 rounded uppercase">Extreme Risk</span>
+                    </div>
+                    <p class="text-[11px] text-slate-500 mb-3">Triggered by: Outdated server hardware facing 30% increase in patient volume data yearly.</p>
+                    <div class="flex items-center justify-between text-[10px] font-bold">
+                        <span class="text-slate-400">Probability: <span class="text-red-500">Very High (90%)</span></span>
+                        <span class="text-slate-400">Impact: <span class="text-red-500">Critical</span></span>
+                    </div>
+                </div>
+
+                <div class="bg-white border-l-4 border-orange-500 rounded-xl p-5 shadow-sm">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-slate-800">Massive PDPA Data Breach</h4>
+                        <span class="bg-orange-100 text-orange-700 text-[9px] font-black px-2 py-0.5 rounded uppercase">High Risk</span>
+                    </div>
+                    <p class="text-[11px] text-slate-500 mb-3">Triggered by: Clinical staff bypassing secure channels via consumer messaging apps.</p>
+                    <div class="flex items-center justify-between text-[10px] font-bold">
+                        <span class="text-slate-400">Probability: <span class="text-orange-500">High (75%)</span></span>
+                        <span class="text-slate-400">Impact: <span class="text-red-500">Critical</span></span>
+                    </div>
+                </div>
+
+                <div class="bg-white border-l-4 border-amber-400 rounded-xl p-5 shadow-sm">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-slate-800">High Clinical Attrition (Burnout)</h4>
+                        <span class="bg-amber-100 text-amber-700 text-[9px] font-black px-2 py-0.5 rounded uppercase">Medium Risk</span>
+                    </div>
+                    <p class="text-[11px] text-slate-500 mb-3">Triggered by: Manual data entry causing 2 hours of unpaid overtime daily per doctor.</p>
+                    <div class="flex items-center justify-between text-[10px] font-bold">
+                        <span class="text-slate-400">Probability: <span class="text-red-500">Very High (95%)</span></span>
+                        <span class="text-slate-400">Impact: <span class="text-amber-500">Moderate</span></span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const ctx = document.getElementById('grafRisk').getContext('2d');
+            new Chart(ctx, {
+                type: 'bubble',
+                data: {
+                    datasets: [
+                        {
+                            label: 'System Blackout',
+                            data: [{ x: 90, y: 95, r: 25 }], // x=Probability, y=Impact, r=Size(Cost)
+                            backgroundColor: 'rgba(220, 38, 38, 0.7)', // Red-600
+                            borderColor: '#dc2626'
+                        },
+                        {
+                            label: 'PDPA Breach',
+                            data: [{ x: 75, y: 90, r: 20 }],
+                            backgroundColor: 'rgba(249, 115, 22, 0.7)', // Orange
+                            borderColor: '#f97316'
+                        },
+                        {
+                            label: 'Staff Burnout',
+                            data: [{ x: 95, y: 60, r: 15 }],
+                            backgroundColor: 'rgba(251, 191, 36, 0.7)', // Amber
+                            borderColor: '#f59e0b'
+                        },
+                        {
+                            label: 'Budget Overrun',
+                            data: [{ x: 50, y: 50, r: 10 }],
+                            backgroundColor: 'rgba(59, 130, 246, 0.7)', // Blue
+                            borderColor: '#3b82f6'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { position: 'top', labels: { boxWidth: 10, font: { size: 10 } } },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: Probability ${context.raw.x}%, Impact ${context.raw.y}/100`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { 
+                            title: { display: true, text: 'Probability (%)', font: { weight: 'bold' } },
+                            min: 0, max: 100,
+                            grid: { color: '#f1f5f9' }
+                        },
+                        y: { 
+                            title: { display: true, text: 'Impact Severity (1-100)', font: { weight: 'bold' } },
+                            min: 0, max: 100,
+                            grid: { color: '#f1f5f9' }
+                        }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

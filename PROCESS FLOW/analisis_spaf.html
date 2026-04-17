@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPAF Central Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Talian laluan asas (Base Track) - Dipanjangkan ke 3rem untuk memadankan gap-x-12 */
+        .step-connector::after {
+            content: ''; 
+            position: absolute; 
+            top: 50%; 
+            right: -3rem; /* Tukar dari -2rem kepada -3rem */
+            width: 3rem;  /* Tukar dari 2rem kepada 3rem */
+            height: 4px; 
+            background-color: #f1f5f9; 
+            border-radius: 2px;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+        
+        /* Kesan Animasi Aliran Data AI (Glowing Data Flow) */
+        .step-connector::before {
+            content: ''; 
+            position: absolute; 
+            top: 50%; 
+            right: 0; 
+            width: 12px; 
+            height: 4px; 
+            background-color: #8b5cf6; 
+            box-shadow: 0 0 10px #8b5cf6, 0 0 4px #8b5cf6; 
+            border-radius: 2px;
+            transform: translateY(-50%);
+            z-index: 1;
+            animation: aiDataFlow 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        /* Pergerakan cahaya dari kiri ke kanan melepasi jarak 3rem */
+        @keyframes aiDataFlow {
+            0% { right: 0; opacity: 0; width: 0; }
+            20% { opacity: 1; width: 16px; }
+            80% { opacity: 1; width: 16px; }
+            100% { right: -3rem; opacity: 0; width: 0; } /* Tukar dari -2rem kepada -3rem */
+        }
+
+        /* Sembunyikan jika di skrin telefon (responsif) */
+        @media (max-width: 1024px) {
+            .step-connector::after, .step-connector::before { display: none; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col p-6 md:p-8">
+
+    <div class="max-w-[1600px] w-full mx-auto flex-1 flex flex-col">
+        
+        <div class="relative overflow-hidden bg-gradient-to-br from-rose-900 via-indigo-900 to-slate-900 rounded-2xl px-8 py-7 mb-8 shadow-lg">
+            <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);background-size:24px 24px;"></div>
+            
+            <div class="relative flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="overview_map.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to Blueprint Map">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 bg-rose-500/20 border border-rose-400/30 text-rose-200 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-3">
+                            <i class="fas fa-microchip"></i> Phase 2: Cognitive Extraction
+                        </div>
+                        <h1 class="text-2xl md:text-3xl font-extrabold text-white leading-tight">Situational Analysis Pipeline (SPAF)</h1>
+                        <p class="text-white/70 text-sm mt-1">Local LM Agent processing sequence before generating Core Themes.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="bg-slate-800/50 border border-slate-600 text-slate-200 text-xs font-bold px-4 py-2.5 rounded-xl backdrop-blur-sm flex items-center shadow-inner">
+                        Overall Pipeline Progress: <span class="text-emerald-400 ml-2">66%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-8 flex-1">
+            <div class="mb-8 text-center max-w-2xl mx-auto">
+                <h2 class="text-xl font-black text-slate-800">SPAF Modular Sequence</h2>
+                <p class="text-xs text-slate-500 mt-2">Please select the modules below in sequence to view the detailed analysis for each AI cognitive phase.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10 relative">
+                
+                <div class="relative step-connector step-arrow group cursor-pointer" onclick="bukaModul('analisis_painpoint.html')">
+                    <div class="bg-white border-2 border-rose-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-rose-400 transition-all duration-300 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center text-xl font-black shadow-inner group-hover:bg-rose-500 group-hover:text-white transition-colors">1</div>
+                            <span class="bg-rose-100 text-rose-700 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider group-hover:animate-pulse">Click to View</span>
+                        </div>
+                        <h3 class="font-black text-lg text-slate-800 mb-2">Pain Points Analytics</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4 flex-1">Collection, deduplication, and clustering of raw complaints from 300 participants.</p>
+                        <button class="w-full bg-rose-50 text-rose-600 text-xs font-bold py-2.5 rounded-xl border border-rose-100 group-hover:bg-rose-500 group-hover:text-white transition-colors">Enter Module <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div class="relative step-connector step-arrow group cursor-pointer" onclick="bukaModul('analisis_problem.html')">
+                    <div class="bg-white border-2 border-purple-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-purple-400 transition-all duration-300 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl font-black shadow-inner group-hover:bg-purple-500 group-hover:text-white transition-colors">2</div>
+                            <span class="bg-purple-100 text-purple-700 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider group-hover:animate-pulse">Click to View</span>
+                        </div>
+                        <h3 class="font-black text-lg text-slate-800 mb-2">Problem Statements</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4 flex-1">Formulation of master problem statements based on combined Pain Point clusters.</p>
+                        <button class="w-full bg-purple-50 text-purple-600 text-xs font-bold py-2.5 rounded-xl border border-purple-100 group-hover:bg-purple-500 group-hover:text-white transition-colors">Enter Module <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div class="relative group cursor-pointer" onclick="bukaModul('analisis_situational.html')">
+                    <div class="bg-white border-2 border-blue-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-blue-400 transition-all duration-300 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl font-black shadow-inner group-hover:bg-blue-500 group-hover:text-white transition-colors">3</div>
+                            <span class="bg-blue-100 text-blue-700 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider group-hover:animate-pulse">Click to View</span>
+                        </div>
+                        <h3 class="font-black text-lg text-slate-800 mb-2">Situational Analysis</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4 flex-1">Environmental scanning (As-Is State) utilizing AI-driven PESTLE/SWOT frameworks.</p>
+                        <button class="w-full bg-blue-50 text-blue-600 text-xs font-bold py-2.5 rounded-xl border border-blue-100 group-hover:bg-blue-500 group-hover:text-white transition-colors">Enter Module <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div class="relative step-connector step-arrow group cursor-pointer" onclick="bukaModul('analisis_rca.html')">
+                    <div class="bg-white border-2 border-amber-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-amber-400 transition-all duration-300 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-xl font-black shadow-inner group-hover:bg-amber-500 group-hover:text-white transition-colors">4</div>
+                            <span class="bg-amber-100 text-amber-700 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider group-hover:animate-pulse">Click to View</span>
+                        </div>
+                        <h3 class="font-black text-lg text-slate-800 mb-2">Root Cause Analysis</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4 flex-1">Identification of root causes (Ishikawa / 5 Whys methodology) for each Problem Statement.</p>
+                        <button class="w-full bg-amber-50 text-amber-600 text-xs font-bold py-2.5 rounded-xl border border-amber-100 group-hover:bg-amber-500 group-hover:text-white transition-colors">Enter Module <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div class="relative step-connector step-arrow group cursor-pointer" onclick="bukaModul('analisis_rca_validation.html')">
+                    <div class="bg-white border-2 border-emerald-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-emerald-400 transition-all duration-300 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-xl font-black shadow-inner group-hover:bg-emerald-500 group-hover:text-white transition-colors">5</div>
+                            <span class="bg-emerald-100 text-emerald-700 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider group-hover:animate-pulse">Click to View</span>
+                        </div>
+                        <h3 class="font-black text-lg text-slate-800 mb-2 leading-tight">Root Cause Validation</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4 flex-1">Validation process of root causes via cross-referencing against the 1.2M word corpus data.</p>
+                        <button class="w-full bg-emerald-50 text-emerald-600 text-xs font-bold py-2.5 rounded-xl border border-emerald-100 group-hover:bg-emerald-500 group-hover:text-white transition-colors">Enter Module <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div class="relative group cursor-pointer" onclick="bukaModul('analisis_risk.html')">
+                    <div class="bg-white border-2 border-red-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-red-400 transition-all duration-300 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xl font-black shadow-inner group-hover:bg-red-500 group-hover:text-white transition-colors">6</div>
+                            <span class="bg-red-100 text-red-700 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider group-hover:animate-pulse">Click to View</span>
+                        </div>
+                        <h3 class="font-black text-lg text-slate-800 mb-2">Risk Analysis</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4 flex-1">Projection of risk matrices if the Problem Statements are left without intervention plans.</p>
+                        <button class="w-full bg-red-50 text-red-600 text-xs font-bold py-2.5 rounded-xl border border-red-100 group-hover:bg-red-500 group-hover:text-white transition-colors">Enter Module <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk menavigasi ke modul terpilih
+        function bukaModul(url) {
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Root Cause Validation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .scan-line { width: 100%; height: 2px; background: #34d399; position: absolute; box-shadow: 0 0 10px #34d399; animation: scan 2s linear infinite; }
+        @keyframes scan { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 p-6 md:p-8 min-h-screen">
+
+    <div class="max-w-[1600px] w-full mx-auto">
+        <div class="relative overflow-hidden bg-gradient-to-br from-emerald-900 via-teal-800 to-slate-900 rounded-2xl px-8 py-7 mb-8 shadow-lg">
+            <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);background-size:24px 24px;"></div>
+            
+            <div class="relative flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="analisis_spaf.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to SPAF Hub">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-3">
+                            <i class="fas fa-check-double"></i> Phase 2.5: AI Validation
+                        </div>
+                        <h1 class="text-2xl md:text-3xl font-extrabold text-white leading-tight">Root Cause Validation</h1>
+                        <p class="text-white/70 text-sm mt-1">Cross-referencing identified root causes with 1.2M corpus data points to ensure factual accuracy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <div class="lg:col-span-5 flex flex-col h-full gap-6">
+                <div class="bg-slate-900 rounded-xl shadow-md border border-slate-700 overflow-hidden flex flex-col relative">
+                    <div class="scan-line z-20"></div>
+                    <div class="bg-slate-950 p-4 border-b border-slate-800 flex justify-between items-center relative z-10">
+                        <h3 class="font-bold text-sm text-emerald-400"><i class="fas fa-search-plus mr-2"></i> Corpus Cross-Referencer</h3>
+                        <span class="bg-emerald-900/50 text-emerald-300 text-[9px] px-2 py-0.5 rounded border border-emerald-700">Scan Rate: 10K words/sec</span>
+                    </div>
+                    
+                    <div class="p-5 space-y-4 relative z-10 flex-1 bg-slate-800/50">
+                        <div class="bg-slate-800 p-4 rounded-lg border border-slate-600">
+                            <h4 class="text-xs font-bold text-slate-300 mb-2">Target RCA: <span class="text-amber-400">Absence of Interoperability Policy</span></h4>
+                            <div class="flex items-start gap-2 text-[11px] text-slate-400 mb-1">
+                                <i class="fas fa-quote-left text-slate-600 mt-1"></i>
+                                <p>"Each hospital procures their own HIS vendors without checking national API compliance." - <span class="text-emerald-400 font-bold">Matched in 42 docs</span></p>
+                            </div>
+                            <div class="flex items-center gap-2 mt-3">
+                                <div class="flex-1 bg-slate-700 h-1.5 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full w-[95%]"></div></div>
+                                <span class="text-[10px] text-emerald-400 font-bold">95% Confidence</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-800 p-4 rounded-lg border border-slate-600">
+                            <h4 class="text-xs font-bold text-slate-300 mb-2">Target RCA: <span class="text-amber-400">Outdated Server Hardware</span></h4>
+                            <div class="flex items-start gap-2 text-[11px] text-slate-400 mb-1">
+                                <i class="fas fa-quote-left text-slate-600 mt-1"></i>
+                                <p>"Servers running on 2012 hardware cannot support new 3D imaging data." - <span class="text-emerald-400 font-bold">Matched in 88 docs</span></p>
+                            </div>
+                            <div class="flex items-center gap-2 mt-3">
+                                <div class="flex-1 bg-slate-700 h-1.5 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full w-[98%]"></div></div>
+                                <span class="text-[10px] text-emerald-400 font-bold">98% Confidence</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <div class="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
+                    <div>
+                        <h3 class="font-black text-xl text-slate-800"><i class="fas fa-balance-scale text-emerald-500 mr-2"></i> Evidence Strength Distribution</h3>
+                        <p class="text-xs text-slate-500 mt-1">Volume of explicit quotes and data points supporting each Root Cause.</p>
+                    </div>
+                    <div class="text-center bg-emerald-50 border border-emerald-100 p-2 rounded-lg">
+                        <div class="text-[9px] font-bold text-emerald-600 uppercase tracking-widest">Total Evidence</div>
+                        <div class="text-xl font-black text-emerald-700">3,420</div>
+                    </div>
+                </div>
+
+                <div class="relative h-[350px] w-full">
+                    <canvas id="grafEvidence"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const ctx = document.getElementById('grafEvidence').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['No Interoperability Policy', 'Outdated Hardware', 'Poor Change Mgt', 'Unsecure Comms (WhatsApp)'],
+                    datasets: [{
+                        label: 'Supporting Mentions in Corpus',
+                        data: [950, 1200, 480, 790],
+                        backgroundColor: ['#10b981', '#059669', '#34d399', '#047857'],
+                        borderRadius: 6,
+                        barThickness: 35
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { display: true, color: '#f1f5f9' }, ticks: { font: { size: 10 } } },
+                        y: { grid: { display: false }, ticks: { font: { size: 11, weight: 'bold' }, color: '#334155' } }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

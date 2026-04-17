@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Blueprint Development Flow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .animated-border { position: relative; }
+        .animated-border::before { content: ''; position: absolute; inset: -2px; border-radius: inherit; background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6); background-size: 300% 100%; animation: gradientMove 3s linear infinite; z-index: -1; }
+        @keyframes gradientMove { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+        
+        .pulse-icon { animation: pulseIcon 2s infinite; }
+        @keyframes pulseIcon { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.7; } 100% { transform: scale(1); opacity: 1; } }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col">
+
+    <div class="bg-gradient-to-r from-slate-900 via-indigo-900 to-slate-900 shadow-lg relative z-20">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.2) 1px,transparent 1px);background-size:20px 20px;"></div>
+        <div class="max-w-[1600px] mx-auto px-6 py-5 relative flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="analisis_SME.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div>
+                    <h1 class="text-2xl font-black text-white tracking-wide">Blueprint Development Process Flow</h1>
+                    <p class="text-indigo-200 text-xs mt-0.5 font-medium uppercase tracking-widest">End-to-End AI-Driven Policy Lifecycle</p>
+                </div>
+            </div>
+            <div class="bg-indigo-800/50 border border-indigo-400/30 text-indigo-100 text-[10px] font-bold px-3 py-1.5 rounded-full backdrop-blur-sm flex items-center shadow-inner">
+                <i class="fas fa-robot text-emerald-400 mr-2"></i> LLM Integrated Flow
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 w-full max-w-[1600px] mx-auto p-6 md:p-10 flex flex-col justify-center">
+        
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-200 p-8 md:p-12 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(#334155 1px, transparent 1px), linear-gradient(90deg, #334155 1px, transparent 1px); background-size: 40px 40px;"></div>
+            
+            <div class="relative z-10 flex flex-col gap-6 md:gap-10">
+
+                <div class="flex flex-col lg:flex-row gap-6 md:gap-8 justify-between w-full">
+                    
+                    <div class="flex-1 relative cursor-pointer group" onclick="klikReference()">
+                        <div class="animated-border rounded-2xl h-full">
+                            <div class="bg-slate-900 h-full rounded-2xl p-6 text-center shadow-lg relative overflow-hidden border border-slate-700 transition transform group-hover:-translate-y-2">
+                                <div class="absolute top-3 right-3 text-[8px] font-black text-blue-300 bg-blue-900/50 px-2 py-0.5 rounded border border-blue-400/30 uppercase tracking-wider animate-pulse">Click to View</div>
+                                <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3 shadow-[0_0_15px_rgba(59,130,246,0.5)]">1</div>
+                                <h3 class="text-white font-black text-lg mb-2">Reference</h3>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">Participants input 1.2M words of references as the foundation for the LLM database.</p>
+                                <div class="mt-4"><i class="fas fa-database text-3xl text-blue-400 opacity-80"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:flex items-center justify-center w-8"><i class="fas fa-arrow-right text-3xl text-slate-300"></i></div>
+
+                    <div class="flex-1 relative cursor-pointer group" onclick="klikSPAF()">
+                        <div class="animated-border rounded-2xl h-full">
+                            <div class="bg-slate-900 h-full rounded-2xl p-6 text-center shadow-lg relative overflow-hidden border border-slate-700 transition transform group-hover:-translate-y-2">
+                                <div class="absolute top-3 right-3 text-[8px] font-black text-rose-300 bg-rose-900/50 px-2 py-0.5 rounded border border-rose-400/30 uppercase tracking-wider animate-pulse">Click to View</div>
+                                <div class="w-12 h-12 bg-rose-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3 shadow-[0_0_15px_rgba(244,63,94,0.5)]">2</div>
+                                <h3 class="text-white font-black text-lg mb-2 leading-tight">Situational Analysis (SPAF)</h3>
+                                <p class="text-[9px] text-rose-200 font-bold mb-1 uppercase tracking-wider">Local LM Agent Analysis</p>
+                                <ul class="text-[9.5px] text-slate-400 text-left list-disc list-inside space-y-0.5 mx-auto inline-block mt-1">
+                                    <li>Pain Points</li>
+                                    <li>Problem Statements</li>
+                                    <li>Situational Analysis</li>
+                                    <li>Root Cause Analysis</li>
+                                    <li>Root Cause Validation</li>
+                                    <li>Risk Analysis</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:flex items-center justify-center w-8"><i class="fas fa-arrow-right text-3xl text-slate-300"></i></div>
+
+                    <div class="flex-1 relative cursor-pointer group hover:-translate-y-2 transition">
+                        <div class="bg-indigo-50 h-full rounded-2xl p-6 text-center shadow-sm border-2 border-indigo-200 relative overflow-hidden">
+                            <div class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3">3</div>
+                            <h3 class="text-indigo-900 font-black text-lg mb-2">Themes</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Emerging issues are grouped and core themes are identified by AI.</p>
+                            <div class="mt-4"><i class="fas fa-tags text-3xl text-indigo-300"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:flex items-center justify-center w-8"><i class="fas fa-arrow-right text-3xl text-slate-300"></i></div>
+
+                    <div class="flex-1 relative cursor-pointer group hover:-translate-y-2 transition">
+                        <div class="bg-emerald-50 h-full rounded-2xl p-6 text-center shadow-sm border-2 border-emerald-200 relative overflow-hidden">
+                            <div class="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3">4</div>
+                            <h3 class="text-emerald-900 font-black text-lg mb-2">Pillars</h3>
+                            <p class="text-[11px] text-slate-600 leading-relaxed">Pillar Development. Participants are given the opportunity to review and endorse.</p>
+                            <div class="mt-4 flex justify-center gap-1">
+                                <div class="w-4 h-8 bg-emerald-300 rounded-sm"></div><div class="w-4 h-8 bg-emerald-400 rounded-sm"></div><div class="w-4 h-8 bg-emerald-500 rounded-sm"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="hidden lg:flex justify-end pr-16 -my-4 relative z-0">
+                    <svg width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 30,0 L 30,50 Q 30,80 0,80" stroke="#cbd5e1" stroke-width="4" stroke-dasharray="8 4" fill="none" />
+                        <polygon points="0,73 0,87 -12,80" fill="#94a3b8" />
+                    </svg>
+                </div>
+
+                <div class="flex flex-col lg:flex-row-reverse gap-6 md:gap-8 justify-between w-full">
+
+                    <div class="flex-1 relative cursor-pointer group hover:-translate-y-2 transition">
+                        <div class="bg-amber-50 h-full rounded-2xl p-6 text-center shadow-sm border-2 border-amber-200 relative overflow-hidden">
+                            <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3">5</div>
+                            <h3 class="text-amber-900 font-black text-lg mb-2">Strategy</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Drafting the Strategy Plan based on the established Pillars.</p>
+                            <div class="mt-4"><i class="fas fa-chess-knight text-3xl text-amber-300"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:flex items-center justify-center w-8"><i class="fas fa-arrow-left text-3xl text-slate-300"></i></div>
+
+                    <div class="flex-1 relative cursor-pointer group hover:-translate-y-2 transition">
+                        <div class="bg-cyan-50 h-full rounded-2xl p-6 text-center shadow-sm border-2 border-cyan-200 relative overflow-hidden">
+                            <div class="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3">6</div>
+                            <h3 class="text-cyan-900 font-black text-lg mb-2 leading-tight">Action Plan</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Drafting a phased Action Plan for execution.</p>
+                            <div class="mt-4"><i class="fas fa-tasks text-3xl text-cyan-300"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:flex items-center justify-center w-8"><i class="fas fa-arrow-left text-3xl text-slate-300"></i></div>
+
+                    <div class="flex-1 relative cursor-pointer group hover:-translate-y-2 transition">
+                        <div class="bg-fuchsia-50 h-full rounded-2xl p-6 text-center shadow-sm border-2 border-fuchsia-200 relative overflow-hidden">
+                            <div class="w-12 h-12 bg-fuchsia-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3">7</div>
+                            <h3 class="text-fuchsia-900 font-black text-lg mb-2">Indicators</h3>
+                            <p class="text-[11px] text-slate-600 leading-relaxed">Implementation of Monitoring & Evaluation (M&E) to track achievements.</p>
+                            <div class="mt-4"><i class="fas fa-chart-line text-3xl text-fuchsia-300"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:flex items-center justify-center w-8"><i class="fas fa-arrow-left text-3xl text-slate-300"></i></div>
+
+                    <div class="flex-1 relative cursor-pointer group hover:-translate-y-2 transition">
+                        <div class="bg-slate-100 h-full rounded-2xl p-6 text-center shadow-sm border-2 border-slate-300 relative overflow-hidden">
+                            <div class="w-12 h-12 bg-slate-600 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3">8</div>
+                            <h3 class="text-slate-800 font-black text-lg mb-2">Resource Allocation</h3>
+                            <p class="text-[11px] text-slate-600 leading-relaxed">Macro-Fiscal Framework & Resource Mapping to fund the initiatives.</p>
+                            <div class="mt-4"><i class="fas fa-coins text-3xl text-slate-300"></i></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi klik Node 1: Ke Analitik Korpus (Reference / Database)
+        function klikReference() {
+            window.location.href = "analisis_korpus.html";
+        }
+
+        // Fungsi klik Node 2: Ke Analitik Pain Point & SPAF
+        function klikSPAF() {
+            window.location.href = "analisis_spaf.html";
+        }
+    </script>
+</body>
+</html>
