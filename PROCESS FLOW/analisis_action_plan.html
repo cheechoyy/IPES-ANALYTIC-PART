@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phased Action Plan Analytics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .radar-bg { background-image: radial-gradient(circle at center, #ecfeff 0%, transparent 70%); }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 p-6 md:p-8 min-h-screen">
+
+    <div class="max-w-[1600px] w-full mx-auto">
+        
+        <div class="relative overflow-hidden bg-gradient-to-br from-cyan-900 via-sky-800 to-slate-900 rounded-2xl px-8 py-7 mb-8 shadow-lg">
+            <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);background-size:24px 24px;"></div>
+            
+            <div class="relative flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="overview_map.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to Blueprint Map">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 bg-cyan-500/20 border border-cyan-400/30 text-cyan-200 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-3">
+                            <i class="fas fa-tasks"></i> Operational Execution
+                        </div>
+                        <h1 class="text-2xl md:text-3xl font-extrabold text-white leading-tight">Phased Action Plan (Year-by-Year)</h1>
+                        <p class="text-white/70 text-sm mt-1">LKB granular breakdown of strategic pillars into actionable yearly tasks over 30 years.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="bg-cyan-500/20 border border-cyan-400/30 text-cyan-100 text-xs font-bold px-4 py-2.5 rounded-xl backdrop-blur-sm flex items-center shadow-inner">
+                        <i class="fas fa-clipboard-list text-cyan-400 mr-2"></i> Action Plan Finalized
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Total Action Items</div>
+                <div class="text-3xl font-black text-cyan-700">124</div>
+                <div class="text-[10px] text-cyan-500 font-bold mt-1">Distributed across 30 years</div>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Phase 1 Readiness</div>
+                <div class="text-3xl font-black text-sky-600">100%</div>
+                <div class="text-[10px] text-slate-500 mt-1 font-medium">Year 1 to 5 Fully Drafted</div>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">LKB Alignment</div>
+                <div class="text-3xl font-black text-emerald-600">96%</div>
+                <div class="text-[10px] text-emerald-500 mt-1 font-bold">Matches Pillar Mandates</div>
+            </div>
+            <div class="bg-gradient-to-br from-cyan-50 to-sky-50 p-5 rounded-xl shadow-sm border border-cyan-100">
+                <div class="text-cyan-800 text-[10px] font-bold uppercase tracking-widest mb-1">Next: Indicators</div>
+                <div class="text-3xl font-black text-cyan-700">M&E</div>
+                <div class="text-[10px] text-cyan-500 mt-1 font-bold"><i class="fas fa-arrow-right"></i> Proceed to KPIs / Indicators</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+            
+            <div class="lg:col-span-5 flex flex-col gap-6 h-full">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 radar-bg">
+                    <div class="flex justify-between items-center mb-2 border-b border-slate-100 pb-3">
+                        <h3 class="font-bold text-sm text-slate-800"><i class="fas fa-chart-bar text-cyan-500 mr-2"></i> Action Item Workload Distribution</h3>
+                        <span class="text-[9px] bg-sky-50 text-sky-600 border border-sky-100 font-bold px-2 py-1 rounded uppercase tracking-wider">30 Years</span>
+                    </div>
+                    <p class="text-[10px] text-slate-400 mb-4 text-center">Volume of actionable tasks assigned to each 5-year phase.</p>
+                    <div class="relative h-64 w-full">
+                        <canvas id="grafActionPlan"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 rounded-xl shadow-sm border border-slate-700 overflow-hidden flex-1 flex flex-col text-white">
+                    <div class="bg-slate-900 p-4 border-b border-slate-700">
+                        <h3 class="font-bold text-sm text-slate-200"><i class="fas fa-cogs text-cyan-400 mr-2"></i> LKB Action Translation Engine</h3>
+                        <p class="text-[10px] text-slate-400 mt-1">How AI translates macro-pillars into micro-tasks.</p>
+                    </div>
+                    <div class="p-5 space-y-4 flex-1">
+                        <div class="border-l-2 border-cyan-400 pl-3">
+                            <h4 class="text-xs font-black text-cyan-300 uppercase tracking-widest mb-1">Yearly Granularity</h4>
+                            <p class="text-[11px] text-slate-300 leading-relaxed">The AI breaks down 5-year macro strategies into step-by-step yearly objectives (Year 1 to Year 5) to prevent project stagnation.</p>
+                        </div>
+                        <div class="border-l-2 border-sky-400 pl-3">
+                            <h4 class="text-xs font-black text-sky-300 uppercase tracking-widest mb-1">Dependency Mapping</h4>
+                            <p class="text-[11px] text-slate-300 leading-relaxed">Tasks are sequenced logically. For example, "Drafting API Guidelines" (Year 1) must precede "Vendor API Integration" (Year 2).</p>
+                        </div>
+                        <div class="border-l-2 border-emerald-400 pl-3">
+                            <h4 class="text-xs font-black text-emerald-300 uppercase tracking-widest mb-1">Resource Realism</h4>
+                            <p class="text-[11px] text-slate-300 leading-relaxed">Action items are paced to ensure human and financial resources are not overwhelmed in any single year.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-7 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <div class="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
+                    <div>
+                        <h3 class="font-black text-xl text-slate-800 flex items-center"><i class="fas fa-calendar-alt text-cyan-600 mr-3"></i> Phase 1: Granular Action Plan (2026 - 2030)</h3>
+                        <p class="text-xs text-slate-500 mt-1">Year-by-year breakdown for immediate implementation based on Endorsed Pillars.</p>
+                    </div>
+                    <div class="bg-cyan-50 px-3 py-1.5 rounded-lg border border-cyan-200 text-cyan-800 text-xs font-bold">
+                        Phase 1 of 6
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:border-cyan-300 transition">
+                        <div class="bg-slate-50 px-4 py-3 border-b border-slate-200 flex justify-between items-center">
+                            <h4 class="font-black text-slate-800"><span class="text-cyan-600 mr-2">Year 1:</span> Policy & Baseline Setup (2026)</h4>
+                            <span class="text-[10px] bg-slate-200 text-slate-600 px-2 py-0.5 rounded font-bold">12 Tasks</span>
+                        </div>
+                        <div class="p-4 space-y-3 bg-white">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-check-square text-emerald-500 mt-1"></i>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-700">Draft National Health API Interoperability Standards</p>
+                                    <p class="text-[11px] text-slate-500 mt-0.5">Establish the legal and technical baseline for all future EMR vendor procurements. (LKB output from Pillar 1)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-check-square text-emerald-500 mt-1"></i>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-700">Conduct Nationwide Digital Literacy Audit</p>
+                                    <p class="text-[11px] text-slate-500 mt-0.5">Assess the current IT proficiency of 150,000 healthcare staff to tailor upcoming training programs. (LKB output from Pillar 2)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:border-cyan-300 transition">
+                        <div class="bg-slate-50 px-4 py-3 border-b border-slate-200 flex justify-between items-center">
+                            <h4 class="font-black text-slate-800"><span class="text-cyan-600 mr-2">Year 2:</span> Procurement & Pilot Testing (2027)</h4>
+                            <span class="text-[10px] bg-slate-200 text-slate-600 px-2 py-0.5 rounded font-bold">18 Tasks</span>
+                        </div>
+                        <div class="p-4 space-y-3 bg-white">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-check-square text-emerald-500 mt-1"></i>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-700">Initiate Tender for Centralized Cloud Infrastructure</p>
+                                    <p class="text-[11px] text-slate-500 mt-0.5">Begin hardware upgrades for 10 tertiary pilot hospitals based on Year 1 standards.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-check-square text-emerald-500 mt-1"></i>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-700">Launch 'Digital Health Champions' Training</p>
+                                    <p class="text-[11px] text-slate-500 mt-0.5">Train 500 key clinical staff to become internal change agents within their respective hospitals.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:border-cyan-300 transition">
+                        <div class="bg-slate-50 px-4 py-3 border-b border-slate-200 flex justify-between items-center">
+                            <h4 class="font-black text-slate-800"><span class="text-cyan-600 mr-2">Year 3:</span> System Integration Rollout (2028)</h4>
+                            <span class="text-[10px] bg-slate-200 text-slate-600 px-2 py-0.5 rounded font-bold">25 Tasks</span>
+                        </div>
+                        <div class="p-4 space-y-3 bg-white">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-spinner fa-spin text-blue-500 mt-1"></i>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-700">Go-Live: Phase 1 EMR Interoperability Gateway</p>
+                                    <p class="text-[11px] text-slate-500 mt-0.5">Connect Pharmacy, Lab, and Clinical systems in the 10 pilot hospitals to eliminate 40% of manual data entry.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-spinner fa-spin text-blue-500 mt-1"></i>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-700">Enforce PDPA & Zero-Trust Network Protocols</p>
+                                    <p class="text-[11px] text-slate-500 mt-0.5">Transition all medical communications from consumer apps to the official secure government messaging platform.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-cyan-50 hover:bg-cyan-100 text-cyan-700 font-bold py-3 rounded-xl border border-cyan-200 transition flex justify-center items-center">
+                        View Year 4 & Year 5 Actions <i class="fas fa-chevron-down ml-2"></i>
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            // Graf Bar untuk Taburan Tugas Mengikut Fasa 30 Tahun
+            const ctxAction = document.getElementById('grafActionPlan').getContext('2d');
+            new Chart(ctxAction, {
+                type: 'bar',
+                data: {
+                    labels: ['Phase 1', 'Phase 2', 'Phase 3', 'Phase 4', 'Phase 5', 'Phase 6'],
+                    datasets: [{
+                        label: 'Total Action Items',
+                        data: [45, 32, 20, 15, 8, 4], // Berkurang kerana perancangan jangka panjang bersifat lebih makro
+                        backgroundColor: [
+                            'rgba(6, 182, 212, 0.8)',   // Cyan
+                            'rgba(14, 165, 233, 0.8)',  // Light Blue
+                            'rgba(56, 188, 248, 0.6)',  
+                            'rgba(56, 188, 248, 0.4)',  
+                            'rgba(56, 188, 248, 0.3)',  
+                            'rgba(56, 188, 248, 0.2)'
+                        ],
+                        borderColor: '#06b6d4',
+                        borderWidth: 1,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#f1f5f9' },
+                            title: { display: true, text: 'Volume of Tasks', font: {size: 9} }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

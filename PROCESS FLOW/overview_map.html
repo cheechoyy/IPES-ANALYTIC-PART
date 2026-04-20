@@ -79,24 +79,30 @@
 
                     <div class="hidden lg:flex items-center justify-center w-8"><i class="fas fa-arrow-right text-3xl text-slate-300"></i></div>
 
-                    <div class="flex-1 relative cursor-pointer group hover:-translate-y-2 transition">
-                        <div class="bg-indigo-50 h-full rounded-2xl p-6 text-center shadow-sm border-2 border-indigo-200 relative overflow-hidden">
-                            <div class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3">3</div>
-                            <h3 class="text-indigo-900 font-black text-lg mb-2">Themes</h3>
-                            <p class="text-xs text-slate-600 leading-relaxed">Emerging issues are grouped and core themes are identified by AI.</p>
-                            <div class="mt-4"><i class="fas fa-tags text-3xl text-indigo-300"></i></div>
+                    <div class="flex-1 relative cursor-pointer group" onclick="klikThemes()">
+                        <div class="animated-border rounded-2xl h-full">
+                            <div class="bg-slate-900 h-full rounded-2xl p-6 text-center shadow-lg relative overflow-hidden border border-slate-700 transition transform group-hover:-translate-y-2">
+                                <div class="absolute top-3 right-3 text-[8px] font-black text-indigo-300 bg-indigo-900/50 px-2 py-0.5 rounded border border-indigo-400/30 uppercase tracking-wider animate-pulse">Click to View</div>
+                                <div class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3 shadow-[0_0_15px_rgba(99,102,241,0.5)]">3</div>
+                                <h3 class="text-white font-black text-lg mb-2">Themes</h3>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">Emerging issues are grouped and core themes are identified by AI.</p>
+                                <div class="mt-4"><i class="fas fa-tags text-3xl text-indigo-400 opacity-80"></i></div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="hidden lg:flex items-center justify-center w-8"><i class="fas fa-arrow-right text-3xl text-slate-300"></i></div>
 
-                    <div class="flex-1 relative cursor-pointer group hover:-translate-y-2 transition">
-                        <div class="bg-emerald-50 h-full rounded-2xl p-6 text-center shadow-sm border-2 border-emerald-200 relative overflow-hidden">
-                            <div class="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3">4</div>
-                            <h3 class="text-emerald-900 font-black text-lg mb-2">Pillars</h3>
-                            <p class="text-[11px] text-slate-600 leading-relaxed">Pillar Development. Participants are given the opportunity to review and endorse.</p>
-                            <div class="mt-4 flex justify-center gap-1">
-                                <div class="w-4 h-8 bg-emerald-300 rounded-sm"></div><div class="w-4 h-8 bg-emerald-400 rounded-sm"></div><div class="w-4 h-8 bg-emerald-500 rounded-sm"></div>
+                    <div class="flex-1 relative cursor-pointer group" onclick="klikPillars()">
+                        <div class="animated-border rounded-2xl h-full">
+                            <div class="bg-slate-900 h-full rounded-2xl p-6 text-center shadow-lg relative overflow-hidden border border-slate-700 transition transform group-hover:-translate-y-2">
+                                <div class="absolute top-3 right-3 text-[8px] font-black text-emerald-300 bg-emerald-900/50 px-2 py-0.5 rounded border border-emerald-400/30 uppercase tracking-wider animate-pulse">Click to View</div>
+                                <div class="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3 shadow-[0_0_15px_rgba(16,185,129,0.5)]">4</div>
+                                <h3 class="text-white font-black text-lg mb-2">Pillars</h3>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">Pillar Development. Participants are given the opportunity to review and endorse.</p>
+                                <div class="mt-4 flex justify-center gap-1">
+                                    <div class="w-4 h-8 bg-emerald-300 rounded-sm opacity-80"></div><div class="w-4 h-8 bg-emerald-400 rounded-sm opacity-80"></div><div class="w-4 h-8 bg-emerald-500 rounded-sm opacity-80"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -112,23 +118,29 @@
 
                 <div class="flex flex-col lg:flex-row-reverse gap-6 md:gap-8 justify-between w-full">
 
-                    <div class="flex-1 relative cursor-pointer group hover:-translate-y-2 transition">
-                        <div class="bg-amber-50 h-full rounded-2xl p-6 text-center shadow-sm border-2 border-amber-200 relative overflow-hidden">
-                            <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3">5</div>
-                            <h3 class="text-amber-900 font-black text-lg mb-2">Strategy</h3>
-                            <p class="text-xs text-slate-600 leading-relaxed">Drafting the Strategy Plan based on the established Pillars.</p>
-                            <div class="mt-4"><i class="fas fa-chess-knight text-3xl text-amber-300"></i></div>
+                    <div class="flex-1 relative cursor-pointer group" onclick="klikStrategy()">
+                        <div class="animated-border rounded-2xl h-full">
+                            <div class="bg-slate-900 h-full rounded-2xl p-6 text-center shadow-lg relative overflow-hidden border border-slate-700 transition transform group-hover:-translate-y-2">
+                                <div class="absolute top-3 right-3 text-[8px] font-black text-amber-300 bg-amber-900/50 px-2 py-0.5 rounded border border-amber-400/30 uppercase tracking-wider animate-pulse">Click to View</div>
+                                <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3 shadow-[0_0_15px_rgba(245,158,11,0.5)]">5</div>
+                                <h3 class="text-white font-black text-lg mb-2">Strategy</h3>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">Drafting the Strategy Plan based on the established Pillars.</p>
+                                <div class="mt-4"><i class="fas fa-chess-knight text-3xl text-amber-400 opacity-80"></i></div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="hidden lg:flex items-center justify-center w-8"><i class="fas fa-arrow-left text-3xl text-slate-300"></i></div>
 
-                    <div class="flex-1 relative cursor-pointer group hover:-translate-y-2 transition">
-                        <div class="bg-cyan-50 h-full rounded-2xl p-6 text-center shadow-sm border-2 border-cyan-200 relative overflow-hidden">
-                            <div class="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3">6</div>
-                            <h3 class="text-cyan-900 font-black text-lg mb-2 leading-tight">Action Plan</h3>
-                            <p class="text-xs text-slate-600 leading-relaxed">Drafting a phased Action Plan for execution.</p>
-                            <div class="mt-4"><i class="fas fa-tasks text-3xl text-cyan-300"></i></div>
+                    <div class="flex-1 relative cursor-pointer group" onclick="klikActionPlan()">
+                        <div class="animated-border rounded-2xl h-full">
+                            <div class="bg-slate-900 h-full rounded-2xl p-6 text-center shadow-lg relative overflow-hidden border border-slate-700 transition transform group-hover:-translate-y-2">
+                                <div class="absolute top-3 right-3 text-[8px] font-black text-cyan-300 bg-cyan-900/50 px-2 py-0.5 rounded border border-cyan-400/30 uppercase tracking-wider animate-pulse">Click to View</div>
+                                <div class="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3 shadow-[0_0_15px_rgba(6,182,212,0.5)]">6</div>
+                                <h3 class="text-white font-black text-lg mb-2 leading-tight">Action Plan</h3>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">Drafting a phased Action Plan for execution.</p>
+                                <div class="mt-4"><i class="fas fa-tasks text-3xl text-cyan-400 opacity-80"></i></div>
+                            </div>
                         </div>
                     </div>
 
@@ -169,6 +181,26 @@
         // Fungsi klik Node 2: Ke Analitik Pain Point & SPAF
         function klikSPAF() {
             window.location.href = "analisis_spaf.html";
+        }
+
+        // Fungsi klik Node 3: Ke Analitik Tema (Themes)
+        function klikThemes() {
+            window.location.href = "analisis_tema.html";
+        }
+
+        // Fungsi klik Node 4: Ke Analitik Pillars
+        function klikPillars() {
+            window.location.href = "analisis_pillar.html";
+        }
+
+        // Fungsi klik Node 5: Ke Analitik Strategy
+        function klikStrategy() {
+            window.location.href = "analisis_strategi.html";
+        }
+
+        // Fungsi klik Node 6: Ke Analitik Action Plan
+        function klikActionPlan() {
+            window.location.href = "analisis_action_plan.html";
         }
     </script>
 </body>

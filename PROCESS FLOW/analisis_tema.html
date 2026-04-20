@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Themes Generation & Endorsement Analytics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .radar-bg { background-image: radial-gradient(circle at center, #eff6ff 0%, transparent 70%); }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 p-6 md:p-8 min-h-screen">
+
+    <div class="max-w-[1600px] w-full mx-auto">
+        
+        <div class="relative overflow-hidden bg-gradient-to-br from-blue-900 via-indigo-800 to-cyan-900 rounded-2xl px-8 py-7 mb-8 shadow-lg">
+            <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);background-size:24px 24px;"></div>
+            
+            <div class="relative flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="overview_map.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to Blueprint Map">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 bg-blue-500/20 border border-blue-400/30 text-blue-200 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-3">
+                            <i class="fas fa-tags"></i> Synthesis & Formulation
+                        </div>
+                        <h1 class="text-2xl md:text-3xl font-extrabold text-white leading-tight">Master Themes & Participant Endorsement</h1>
+                        <p class="text-white/70 text-sm mt-1">AI-driven themes refined through continuous Human-in-the-Loop (HITL) learning and voting.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="bg-emerald-500/20 border border-emerald-400/30 text-emerald-100 text-xs font-bold px-4 py-2.5 rounded-xl backdrop-blur-sm flex items-center shadow-inner">
+                        <i class="fas fa-check-double text-emerald-400 mr-2"></i> Endorsement Phase Complete
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Generated Themes</div>
+                <div class="text-3xl font-black text-blue-700">3</div>
+                <div class="text-[10px] text-blue-500 font-bold mt-1">Refined from initial LLM draft</div>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Participant Ideas Added</div>
+                <div class="text-3xl font-black text-indigo-600">84</div>
+                <div class="text-[10px] text-slate-500 mt-1 font-medium">Re-learned by LLM Base</div>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Total Votes Cast</div>
+                <div class="text-3xl font-black text-emerald-600">295</div>
+                <div class="text-[10px] text-emerald-500 mt-1 font-bold">High SME Engagement (98%)</div>
+            </div>
+            <div class="bg-gradient-to-br from-cyan-50 to-blue-50 p-5 rounded-xl shadow-sm border border-cyan-100">
+                <div class="text-blue-800 text-[10px] font-bold uppercase tracking-widest mb-1">Ready for Pillar Conversion</div>
+                <div class="text-3xl font-black text-blue-700">Top 3</div>
+                <div class="text-[10px] text-blue-500 mt-1 font-bold"><i class="fas fa-arrow-right"></i> Proceed to Pillar Generation</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+            
+            <div class="lg:col-span-5 flex flex-col gap-6 h-full">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 radar-bg">
+                    <div class="flex justify-between items-center mb-2 border-b border-slate-100 pb-3">
+                        <h3 class="font-bold text-sm text-slate-800"><i class="fas fa-vote-yea text-blue-500 mr-2"></i> Theme Endorsement Results (Voting)</h3>
+                        <span class="text-[9px] bg-emerald-50 text-emerald-600 border border-emerald-100 font-bold px-2 py-1 rounded uppercase tracking-wider">Live</span>
+                    </div>
+                    <p class="text-[10px] text-slate-400 mb-4 text-center">Volume of votes cast by participants for each refined theme.</p>
+                    <div class="relative h-64 w-full">
+                        <canvas id="grafVoting"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 rounded-xl shadow-sm border border-slate-700 overflow-hidden flex-1 flex flex-col text-white">
+                    <div class="bg-slate-900 p-4 border-b border-slate-700">
+                        <h3 class="font-bold text-sm text-slate-200"><i class="fas fa-sync-alt text-emerald-400 mr-2"></i> LLM Continuous Learning Matrix</h3>
+                        <p class="text-[10px] text-slate-400 mt-1">How AI integrated participant feedback to refine themes.</p>
+                    </div>
+                    <div class="p-5 space-y-4 flex-1">
+                        <div class="border-l-2 border-blue-400 pl-3">
+                            <h4 class="text-xs font-black text-blue-300 uppercase tracking-widest mb-1">Human-In-The-Loop (HITL)</h4>
+                            <p class="text-[11px] text-slate-300 leading-relaxed">AI processed 84 new ideas submitted by SMEs, adapting the language knowledge base (LKB) to match field realities.</p>
+                        </div>
+                        <div class="border-l-2 border-indigo-400 pl-3">
+                            <h4 class="text-xs font-black text-indigo-300 uppercase tracking-widest mb-1">Theme Improvization</h4>
+                            <p class="text-[11px] text-slate-300 leading-relaxed">Original AI theme "Fixing Slow IT Systems" was elevated by user input to a strategic level: "Integrated and Resilient Infrastructure".</p>
+                        </div>
+                        <div class="border-l-2 border-emerald-400 pl-3">
+                            <h4 class="text-xs font-black text-emerald-300 uppercase tracking-widest mb-1">Consensus Building</h4>
+                            <p class="text-[11px] text-slate-300 leading-relaxed">Voting mechanism established a 98% consensus among diverse agency representatives, verifying the themes as national pillars.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-7 space-y-5">
+                
+                <h3 class="font-black text-xl text-slate-800 flex items-center mb-2"><i class="fas fa-tags text-blue-600 mr-2"></i> The 3 Endorsed Core Themes</h3>
+                
+                <div class="bg-white rounded-xl shadow-sm border-l-4 border-blue-500 p-5 hover:shadow-md transition">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="bg-blue-100 text-blue-700 font-black px-2 py-1 rounded text-xs">THEME-01</span>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-bold text-slate-400"><i class="fas fa-link mr-1"></i> From PS-01 & PS-02</span>
+                            <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full"><i class="fas fa-arrow-up mr-1"></i> 145 Votes</span>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-lg leading-tight mb-2">Integrated and Resilient Digital Health Infrastructure</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">Focuses on building a robust, scalable, and interconnected foundational architecture. This involves modernizing legacy systems and creating a unified national interoperability framework.</p>
+                    
+                    <div class="bg-blue-50 p-3 rounded-lg border border-blue-100 text-[11px] mt-2">
+                        <strong class="text-blue-800 block mb-2 uppercase tracking-widest text-[9px]"><i class="fas fa-comment-dots mr-1"></i> Participant Improvizations Re-learned by AI:</strong>
+                        <ul class="list-disc pl-4 space-y-1 text-blue-700">
+                            <li>"Must include Cloud-first policy to avoid hardware decay." <span class="text-slate-400 italic">(Added by SME: Ts. Rahman)</span></li>
+                            <li>"Interoperability must cover both private and public clinics." <span class="text-slate-400 italic">(Added by SME: Dr. Alina)</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border-l-4 border-indigo-500 p-5 hover:shadow-md transition">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="bg-indigo-100 text-indigo-700 font-black px-2 py-1 rounded text-xs">THEME-02</span>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-bold text-slate-400"><i class="fas fa-link mr-1"></i> From PS-03</span>
+                            <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full"><i class="fas fa-arrow-up mr-1"></i> 90 Votes</span>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-lg leading-tight mb-2">Empowering Human Capital and Fostering Digital Literacy</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">Prioritizes the human element in digital transformation. It aims to overcome resistance to change through comprehensive change management programs and continuous IT training.</p>
+                    
+                    <div class="bg-indigo-50 p-3 rounded-lg border border-indigo-100 text-[11px] mt-2">
+                        <strong class="text-indigo-800 block mb-2 uppercase tracking-widest text-[9px]"><i class="fas fa-comment-dots mr-1"></i> Participant Improvizations Re-learned by AI:</strong>
+                        <ul class="list-disc pl-4 space-y-1 text-indigo-700">
+                            <li>"Training should be module-based and gamified for nurses." <span class="text-slate-400 italic">(Added by SME: Matron Siti)</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border-l-4 border-cyan-500 p-5 hover:shadow-md transition">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="bg-cyan-100 text-cyan-700 font-black px-2 py-1 rounded text-xs">THEME-03</span>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-bold text-slate-400"><i class="fas fa-link mr-1"></i> From PS-04</span>
+                            <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full"><i class="fas fa-arrow-up mr-1"></i> 60 Votes</span>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-lg leading-tight mb-2">Strengthening Data Privacy and Cybersecurity Governance</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">Focuses on establishing stringent protocols and secure environments for patient data handling. This includes enforcing PDPA compliance and implementing robust access control mechanisms.</p>
+                    
+                    <div class="bg-cyan-50 p-3 rounded-lg border border-cyan-100 text-[11px] mt-2">
+                        <strong class="text-cyan-800 block mb-2 uppercase tracking-widest text-[9px]"><i class="fas fa-comment-dots mr-1"></i> Participant Improvizations Re-learned by AI:</strong>
+                        <ul class="list-disc pl-4 space-y-1 text-cyan-700">
+                            <li>"Need an official secure messaging app to replace WhatsApp." <span class="text-slate-400 italic">(Added by SME: Prof Azizi)</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            // Graf Bar untuk Keputusan Voting
+            const ctxVoting = document.getElementById('grafVoting').getContext('2d');
+            new Chart(ctxVoting, {
+                type: 'bar',
+                data: {
+                    labels: ['THEME-01 (Infra)', 'THEME-02 (Human)', 'THEME-03 (Security)'],
+                    datasets: [{
+                        label: 'Total Votes Cast',
+                        data: [145, 90, 60],
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.8)', // Blue
+                            'rgba(99, 102, 241, 0.8)', // Indigo
+                            'rgba(6, 182, 212, 0.8)'   // Cyan
+                        ],
+                        borderRadius: 8,
+                        barThickness: 40
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#f1f5f9' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>
