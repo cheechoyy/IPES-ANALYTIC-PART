@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Allocation Analytics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .radar-bg { background-image: radial-gradient(circle at center, #f8fafc 0%, transparent 70%); }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 p-6 md:p-8 min-h-screen">
+
+    <div class="max-w-[1600px] w-full mx-auto">
+        
+        <div class="relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 rounded-2xl px-8 py-7 mb-8 shadow-lg">
+            <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);background-size:24px 24px;"></div>
+            
+            <div class="relative flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="overview_map.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to Blueprint Map">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 bg-slate-500/20 border border-slate-400/30 text-slate-200 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-3">
+                            <i class="fas fa-wallet"></i> Execution Readiness
+                        </div>
+                        <h1 class="text-2xl md:text-3xl font-extrabold text-white leading-tight">Resource Allocation & Macro-Fiscal</h1>
+                        <p class="text-white/70 text-sm mt-1">AI-driven cost estimation and resource mapping to fund the 30-year initiatives.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="bg-emerald-500/20 border border-emerald-400/30 text-emerald-100 text-xs font-bold px-4 py-2.5 rounded-xl backdrop-blur-sm flex items-center shadow-inner">
+                        <i class="fas fa-flag-checkered text-emerald-400 mr-2"></i> Blueprint Cycle Complete
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Estimated Total Cost</div>
+                <div class="text-3xl font-black text-slate-700">RM 2.5B</div>
+                <div class="text-[10px] text-slate-500 font-bold mt-1">Spanning 30 Years (6 Phases)</div>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Immediate Fund Request</div>
+                <div class="text-3xl font-black text-blue-600">RM 350M</div>
+                <div class="text-[10px] text-slate-500 mt-1 font-medium">For Phase 1 (2026 - 2030)</div>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">AI Cost Optimization</div>
+                <div class="text-3xl font-black text-emerald-600">18%</div>
+                <div class="text-[10px] text-emerald-500 mt-1 font-bold">Savings via tech deduplication</div>
+            </div>
+            <div class="bg-gradient-to-br from-emerald-50 to-teal-50 p-5 rounded-xl shadow-sm border border-emerald-100">
+                <div class="text-emerald-800 text-[10px] font-bold uppercase tracking-widest mb-1">Ready for Print</div>
+                <div class="text-3xl font-black text-emerald-700">100%</div>
+                <div class="text-[10px] text-emerald-600 mt-1 font-bold"><i class="fas fa-book mr-1"></i> Generate Final Blueprint Document</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+            
+            <div class="lg:col-span-5 flex flex-col gap-6 h-full">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 radar-bg">
+                    <div class="flex justify-between items-center mb-2 border-b border-slate-100 pb-3">
+                        <h3 class="font-bold text-sm text-slate-800"><i class="fas fa-chart-pie text-slate-500 mr-2"></i> Budget Distribution by Pillar</h3>
+                        <span class="text-[9px] bg-slate-100 text-slate-600 border border-slate-200 font-bold px-2 py-1 rounded uppercase tracking-wider">30-Year View</span>
+                    </div>
+                    <p class="text-[10px] text-slate-400 mb-4 text-center">How funds are divided among the endorsed master pillars.</p>
+                    <div class="relative h-64 w-full">
+                        <canvas id="grafCost"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 rounded-xl shadow-sm border border-slate-700 overflow-hidden flex-1 flex flex-col text-white">
+                    <div class="bg-slate-900 p-4 border-b border-slate-700">
+                        <h3 class="font-bold text-sm text-slate-200"><i class="fas fa-coins text-amber-400 mr-2"></i> LKB Cost Projection Engine</h3>
+                        <p class="text-[10px] text-slate-400 mt-1">How AI formulated the macro-fiscal requirements.</p>
+                    </div>
+                    <div class="p-5 space-y-4 flex-1">
+                        <div class="border-l-2 border-slate-400 pl-3">
+                            <h4 class="text-xs font-black text-slate-300 uppercase tracking-widest mb-1">Historical Indexing</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">AI estimated infrastructure costs by analyzing historical MOH expenditure data mapped against the new API integration goals.</p>
+                        </div>
+                        <div class="border-l-2 border-emerald-400 pl-3">
+                            <h4 class="text-xs font-black text-emerald-300 uppercase tracking-widest mb-1">Redundancy Elimination</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">Generated an 18% cost saving by advising a centralized Cloud Procurement instead of allowing 15+ independent legacy system renewals.</p>
+                        </div>
+                        <div class="border-l-2 border-blue-400 pl-3">
+                            <h4 class="text-xs font-black text-blue-300 uppercase tracking-widest mb-1">Inflation Adjustments</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">Long-term phase estimates (Phases 4-6) include an automated 3.5% compounding buffer for technological inflation.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-7 space-y-6">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="font-black text-xl text-slate-800 flex items-center mb-6 pb-4 border-b border-slate-100"><i class="fas fa-chart-line text-slate-600 mr-3"></i> Phased Capital Expenditure (CAPEX & OPEX)</h3>
+                    <div class="relative h-[220px] w-full mb-6">
+                        <canvas id="grafPhases"></canvas>
+                    </div>
+
+                    <h4 class="font-bold text-sm text-slate-700 mb-3 uppercase tracking-widest">Phase 1 & 2 Immediate Allocations</h4>
+                    <div class="space-y-4">
+                        
+                        <div class="flex items-center justify-between p-4 bg-slate-50 border border-slate-100 rounded-xl">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-black"><i class="fas fa-server"></i></div>
+                                <div>
+                                    <div class="font-bold text-slate-800 text-sm">National Health API Gateway (Phase 1)</div>
+                                    <div class="text-[11px] text-slate-500">CAPEX for centralized cloud infrastructure setup.</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-black text-slate-700 text-base">RM 180M</div>
+                                <div class="text-[9px] font-bold text-emerald-500 uppercase tracking-widest">Approved</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 bg-slate-50 border border-slate-100 rounded-xl">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-black"><i class="fas fa-users"></i></div>
+                                <div>
+                                    <div class="font-bold text-slate-800 text-sm">Digital Literacy Training Rollout (Phase 1)</div>
+                                    <div class="text-[11px] text-slate-500">OPEX for change management across 150k staff.</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-black text-slate-700 text-base">RM 50M</div>
+                                <div class="text-[9px] font-bold text-emerald-500 uppercase tracking-widest">Approved</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 bg-slate-50 border border-slate-100 rounded-xl">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center font-black"><i class="fas fa-shield-alt"></i></div>
+                                <div>
+                                    <div class="font-bold text-slate-800 text-sm">Cybersecurity & Zero-Trust Grid (Phase 1-2)</div>
+                                    <div class="text-[11px] text-slate-500">System-wide encryption and PDPA compliance tools.</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-black text-slate-700 text-base">RM 120M</div>
+                                <div class="text-[9px] font-bold text-amber-500 uppercase tracking-widest">Pending MoF</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            // Graf Doughnut untuk Budget by Pillar
+            const ctxCost = document.getElementById('grafCost').getContext('2d');
+            new Chart(ctxCost, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Pillar 1: Tech & Governance', 'Pillar 2: Human Capital', 'Contingency / Reserves'],
+                    datasets: [{
+                        data: [65, 25, 10],
+                        backgroundColor: [
+                            'rgba(71, 85, 105, 0.8)', // Slate 600
+                            'rgba(148, 163, 184, 0.8)', // Slate 400
+                            'rgba(226, 232, 240, 0.9)' // Slate 200
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff',
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } }
+                    },
+                    cutout: '60%'
+                }
+            });
+
+            // Graf Bar/Line (Combo) untuk Allocation by Phase
+            const ctxPhases = document.getElementById('grafPhases').getContext('2d');
+            new Chart(ctxPhases, {
+                type: 'bar',
+                data: {
+                    labels: ['P1 (26-30)', 'P2 (31-35)', 'P3 (36-40)', 'P4 (41-45)', 'P5 (46-50)', 'P6 (51-55)'],
+                    datasets: [
+                        {
+                            label: 'CAPEX (Infrastructure)',
+                            data: [250, 350, 400, 300, 200, 100],
+                            backgroundColor: 'rgba(51, 65, 85, 0.9)' // Slate 700
+                        },
+                        {
+                            label: 'OPEX (Training & Maint.)',
+                            data: [100, 150, 200, 150, 150, 150],
+                            backgroundColor: 'rgba(148, 163, 184, 0.7)' // Slate 400
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            stacked: true,
+                            grid: { color: '#f1f5f9' },
+                            title: { display: true, text: 'Allocation (RM Million)', font: {size: 9} }
+                        },
+                        x: {
+                            stacked: true,
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'top', labels: { boxWidth: 10, font: { size: 10 } } }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

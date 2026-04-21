@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indicators & M&E Analytics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .radar-bg { background-image: radial-gradient(circle at center, #fdf4ff 0%, transparent 70%); }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 p-6 md:p-8 min-h-screen">
+
+    <div class="max-w-[1600px] w-full mx-auto">
+        
+        <div class="relative overflow-hidden bg-gradient-to-br from-fuchsia-900 via-purple-900 to-slate-900 rounded-2xl px-8 py-7 mb-8 shadow-lg">
+            <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);background-size:24px 24px;"></div>
+            
+            <div class="relative flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="overview_map.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to Blueprint Map">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 bg-fuchsia-500/20 border border-fuchsia-400/30 text-fuchsia-200 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-3">
+                            <i class="fas fa-chart-line"></i> Monitoring & Evaluation
+                        </div>
+                        <h1 class="text-2xl md:text-3xl font-extrabold text-white leading-tight">Key Performance Indicators (M&E)</h1>
+                        <p class="text-white/70 text-sm mt-1">Implementation of Monitoring & Evaluation to track system achievements and compliance.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="bg-fuchsia-500/20 border border-fuchsia-400/30 text-fuchsia-100 text-xs font-bold px-4 py-2.5 rounded-xl backdrop-blur-sm flex items-center shadow-inner">
+                        <i class="fas fa-satellite-dish text-fuchsia-400 mr-2"></i> M&E Tracking Active
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Approved AI Tools</div>
+                <div class="text-3xl font-black text-fuchsia-600">18</div>
+                <div class="text-[10px] text-fuchsia-500 font-bold mt-1">Under National Framework</div>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Provider Compliance</div>
+                <div class="text-3xl font-black text-purple-600">86%</div>
+                <div class="text-[10px] text-slate-500 mt-1 font-medium">Healthcare Data Standards</div>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Active KPIs Tracked</div>
+                <div class="text-3xl font-black text-indigo-600">45</div>
+                <div class="text-[10px] text-indigo-500 mt-1 font-bold">Phase 1 Execution</div>
+            </div>
+            <div class="bg-gradient-to-br from-fuchsia-50 to-purple-50 p-5 rounded-xl shadow-sm border border-fuchsia-100">
+                <div class="text-fuchsia-800 text-[10px] font-bold uppercase tracking-widest mb-1">Next: Resource Mapping</div>
+                <div class="text-3xl font-black text-fuchsia-700">100%</div>
+                <div class="text-[10px] text-fuchsia-500 mt-1 font-bold"><i class="fas fa-arrow-right"></i> Proceed to Allocation</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+            
+            <div class="lg:col-span-5 flex flex-col gap-6 h-full">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 radar-bg">
+                    <div class="flex justify-between items-center mb-2 border-b border-slate-100 pb-3">
+                        <h3 class="font-bold text-sm text-slate-800"><i class="fas fa-clipboard-check text-fuchsia-500 mr-2"></i> Healthcare Provider Compliance</h3>
+                        <span class="text-[9px] bg-fuchsia-50 text-fuchsia-600 border border-fuchsia-100 font-bold px-2 py-1 rounded uppercase tracking-wider">Live Data</span>
+                    </div>
+                    <p class="text-[10px] text-slate-400 mb-4 text-center">API standard compliance rate among hospitals and clinics.</p>
+                    <div class="relative h-64 w-full">
+                        <canvas id="grafCompliance"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 rounded-xl shadow-sm border border-slate-700 overflow-hidden flex-1 flex flex-col text-white">
+                    <div class="bg-slate-900 p-4 border-b border-slate-700">
+                        <h3 class="font-bold text-sm text-slate-200"><i class="fas fa-satellite text-fuchsia-400 mr-2"></i> LKB Automated M&E Engine</h3>
+                        <p class="text-[10px] text-slate-400 mt-1">How AI tracks achievements without manual auditing.</p>
+                    </div>
+                    <div class="p-5 space-y-4 flex-1">
+                        <div class="border-l-2 border-fuchsia-400 pl-3">
+                            <h4 class="text-xs font-black text-fuchsia-300 uppercase tracking-widest mb-1">API Telemetry Scanning</h4>
+                            <p class="text-[11px] text-slate-300 leading-relaxed">The engine continuously pings connected EMR systems to verify PDPA encryption compliance in real-time.</p>
+                        </div>
+                        <div class="border-l-2 border-purple-400 pl-3">
+                            <h4 class="text-xs font-black text-purple-300 uppercase tracking-widest mb-1">AI Tool Sandbox Validations</h4>
+                            <p class="text-[11px] text-slate-300 leading-relaxed">External AI tools (like diagnostic imaging software) are tested in an isolated sandbox before gaining the "National Framework Approval" badge.</p>
+                        </div>
+                        <div class="border-l-2 border-pink-400 pl-3">
+                            <h4 class="text-xs font-black text-pink-300 uppercase tracking-widest mb-1">Anomaly Flagging</h4>
+                            <p class="text-[11px] text-slate-300 leading-relaxed">Automatically sends alerts to the dashboard if a specific hospital's digital literacy training drops below the 80% threshold.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-7 space-y-6">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="font-black text-xl text-slate-800 flex items-center mb-6 pb-4 border-b border-slate-100"><i class="fas fa-tachometer-alt text-fuchsia-600 mr-3"></i> AI Tools Approval Pipeline</h3>
+                    <div class="relative h-[220px] w-full">
+                        <canvas id="grafAITools"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="font-black text-xl text-slate-800 flex items-center mb-2"><i class="fas fa-list-ul text-fuchsia-600 mr-3"></i> Top Tracked Indicators (Phase 1)</h3>
+                    <p class="text-xs text-slate-500 mb-5">Progress of macro-indicators derived from Action Plans.</p>
+                    
+                    <div class="space-y-5">
+                        
+                        <div>
+                            <div class="flex justify-between items-end mb-1">
+                                <span class="text-sm font-bold text-slate-700">National Health API Gateway Integration</span>
+                                <span class="text-xs font-black text-emerald-600">85%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-emerald-500 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                            <p class="text-[10px] text-slate-400 mt-1 flex justify-between">
+                                <span>Target: 100% of Pilot Hospitals</span>
+                                <span class="text-emerald-500">On Track</span>
+                            </p>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-end mb-1">
+                                <span class="text-sm font-bold text-slate-700">Digital Literacy Audit Completion</span>
+                                <span class="text-xs font-black text-fuchsia-600">60%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-fuchsia-500 h-2 rounded-full" style="width: 60%"></div>
+                            </div>
+                            <p class="text-[10px] text-slate-400 mt-1 flex justify-between">
+                                <span>Target: 150,000 Healthcare Staff</span>
+                                <span class="text-fuchsia-500">In Progress</span>
+                            </p>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-end mb-1">
+                                <span class="text-sm font-bold text-slate-700">Transition to Secure Communication App</span>
+                                <span class="text-xs font-black text-amber-500">30%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-amber-400 h-2 rounded-full" style="width: 30%"></div>
+                            </div>
+                            <p class="text-[10px] text-slate-400 mt-1 flex justify-between">
+                                <span>Target: Eradicate WhatsApp for Patient Data</span>
+                                <span class="text-amber-600">At Risk - Delayed Adoption</span>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            // Graf Doughnut untuk Compliance
+            const ctxCompliance = document.getElementById('grafCompliance').getContext('2d');
+            new Chart(ctxCompliance, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Fully Compliant', 'Partial (Pending Upgrades)', 'Non-Compliant'],
+                    datasets: [{
+                        data: [86, 10, 4],
+                        backgroundColor: [
+                            'rgba(192, 38, 211, 0.8)', // Fuchsia
+                            'rgba(147, 51, 234, 0.6)', // Purple
+                            'rgba(226, 232, 240, 0.9)' // Slate 200
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff',
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } }
+                    },
+                    cutout: '65%'
+                }
+            });
+
+            // Graf Bar untuk AI Tools
+            const ctxAITools = document.getElementById('grafAITools').getContext('2d');
+            new Chart(ctxAITools, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [
+                        {
+                            label: 'Submitted for Review',
+                            data: [12, 19, 15, 22, 30, 25],
+                            backgroundColor: 'rgba(203, 213, 225, 0.6)' // Slate 300
+                        },
+                        {
+                            label: 'Approved Under Framework',
+                            data: [2, 5, 8, 11, 15, 18],
+                            backgroundColor: 'rgba(217, 70, 239, 0.8)' // Fuchsia 400
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#f1f5f9' },
+                            stacked: false
+                        },
+                        x: {
+                            grid: { display: false },
+                            stacked: false
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'top', labels: { boxWidth: 10, font: { size: 10 } } }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

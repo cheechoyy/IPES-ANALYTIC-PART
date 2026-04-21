@@ -146,23 +146,29 @@
 
                     <div class="hidden lg:flex items-center justify-center w-8"><i class="fas fa-arrow-left text-3xl text-slate-300"></i></div>
 
-                    <div class="flex-1 relative cursor-pointer group hover:-translate-y-2 transition">
-                        <div class="bg-fuchsia-50 h-full rounded-2xl p-6 text-center shadow-sm border-2 border-fuchsia-200 relative overflow-hidden">
-                            <div class="w-12 h-12 bg-fuchsia-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3">7</div>
-                            <h3 class="text-fuchsia-900 font-black text-lg mb-2">Indicators</h3>
-                            <p class="text-[11px] text-slate-600 leading-relaxed">Implementation of Monitoring & Evaluation (M&E) to track achievements.</p>
-                            <div class="mt-4"><i class="fas fa-chart-line text-3xl text-fuchsia-300"></i></div>
+                    <div class="flex-1 relative cursor-pointer group" onclick="klikIndicators()">
+                        <div class="animated-border rounded-2xl h-full">
+                            <div class="bg-slate-900 h-full rounded-2xl p-6 text-center shadow-lg relative overflow-hidden border border-slate-700 transition transform group-hover:-translate-y-2">
+                                <div class="absolute top-3 right-3 text-[8px] font-black text-fuchsia-300 bg-fuchsia-900/50 px-2 py-0.5 rounded border border-fuchsia-400/30 uppercase tracking-wider animate-pulse">Click to View</div>
+                                <div class="w-12 h-12 bg-fuchsia-500 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3 shadow-[0_0_15px_rgba(217,70,239,0.5)]">7</div>
+                                <h3 class="text-white font-black text-lg mb-2">Indicators</h3>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">Implementation of Monitoring & Evaluation (M&E) to track achievements.</p>
+                                <div class="mt-4"><i class="fas fa-chart-line text-3xl text-fuchsia-400 opacity-80"></i></div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="hidden lg:flex items-center justify-center w-8"><i class="fas fa-arrow-left text-3xl text-slate-300"></i></div>
 
-                    <div class="flex-1 relative cursor-pointer group hover:-translate-y-2 transition">
-                        <div class="bg-slate-100 h-full rounded-2xl p-6 text-center shadow-sm border-2 border-slate-300 relative overflow-hidden">
-                            <div class="w-12 h-12 bg-slate-600 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3">8</div>
-                            <h3 class="text-slate-800 font-black text-lg mb-2">Resource Allocation</h3>
-                            <p class="text-[11px] text-slate-600 leading-relaxed">Macro-Fiscal Framework & Resource Mapping to fund the initiatives.</p>
-                            <div class="mt-4"><i class="fas fa-coins text-3xl text-slate-300"></i></div>
+                    <div class="flex-1 relative cursor-pointer group" onclick="klikAllocation()">
+                        <div class="animated-border rounded-2xl h-full">
+                            <div class="bg-slate-900 h-full rounded-2xl p-6 text-center shadow-lg relative overflow-hidden border border-slate-700 transition transform group-hover:-translate-y-2">
+                                <div class="absolute top-3 right-3 text-[8px] font-black text-slate-300 bg-slate-800/50 px-2 py-0.5 rounded border border-slate-500/30 uppercase tracking-wider animate-pulse">Click to View</div>
+                                <div class="w-12 h-12 bg-slate-600 rounded-full flex items-center justify-center text-white text-xl font-black mx-auto mb-3 shadow-[0_0_15px_rgba(71,85,105,0.5)]">8</div>
+                                <h3 class="text-white font-black text-lg mb-2">Resource Allocation</h3>
+                                <p class="text-[11px] text-slate-400 leading-relaxed">Macro-Fiscal Framework & Resource Mapping to fund the initiatives.</p>
+                                <div class="mt-4"><i class="fas fa-coins text-3xl text-slate-400 opacity-80"></i></div>
+                            </div>
                         </div>
                     </div>
 
@@ -201,6 +207,16 @@
         // Fungsi klik Node 6: Ke Analitik Action Plan
         function klikActionPlan() {
             window.location.href = "analisis_action_plan.html";
+        }
+
+        // Fungsi klik Node 7: Ke Analitik Indicators
+        function klikIndicators() {
+            window.location.href = "analisis_indikator.html";
+        }
+
+        // Fungsi klik Node 8: Ke Analitik Allocation
+        function klikAllocation() {
+            window.location.href = "analisis_peruntukan.html";
         }
     </script>
 </body>

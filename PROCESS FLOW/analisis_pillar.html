@@ -40,21 +40,37 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Generated Pillars</div>
-                <div class="text-3xl font-black text-emerald-700">2</div>
-                <div class="text-[10px] text-emerald-500 font-bold mt-1">Umbrella for 3 Endorsed Themes</div>
+            
+            <div onclick="bukaModalInsight('modal-pillars')" class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 cursor-pointer hover:border-emerald-400 hover:shadow-md transition group relative overflow-hidden">
+                <div class="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition"><i class="fas fa-columns text-8xl text-emerald-500"></i></div>
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 flex justify-between items-center relative z-10">
+                    Generated Pillars
+                    <span class="text-[8px] bg-emerald-50 text-emerald-600 px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition">View Logic</span>
+                </div>
+                <div class="text-3xl font-black text-emerald-700 relative z-10">2</div>
+                <div class="text-[10px] text-emerald-500 font-bold mt-1 relative z-10">Umbrella for 3 Endorsed Themes</div>
             </div>
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Pillar Improvizations</div>
-                <div class="text-3xl font-black text-teal-600">56</div>
-                <div class="text-[10px] text-slate-500 mt-1 font-medium">Re-learned by LLM Base</div>
+            
+            <div onclick="bukaModalInsight('modal-improvizations')" class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 cursor-pointer hover:border-teal-400 hover:shadow-md transition group relative overflow-hidden">
+                <div class="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition"><i class="fas fa-lightbulb text-8xl text-teal-500"></i></div>
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 flex justify-between items-center relative z-10">
+                    Pillar Improvizations
+                    <span class="text-[8px] bg-teal-50 text-teal-600 px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition">View Log</span>
+                </div>
+                <div class="text-3xl font-black text-teal-600 relative z-10">56</div>
+                <div class="text-[10px] text-slate-500 mt-1 font-medium relative z-10">Re-learned by LLM Base</div>
             </div>
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Total Votes Cast</div>
-                <div class="text-3xl font-black text-cyan-600">310</div>
-                <div class="text-[10px] text-cyan-500 mt-1 font-bold">100% Consensus Reached</div>
+            
+            <div onclick="bukaModalInsight('modal-pillar-votes')" class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 cursor-pointer hover:border-cyan-400 hover:shadow-md transition group relative overflow-hidden">
+                <div class="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition"><i class="fas fa-poll text-8xl text-cyan-500"></i></div>
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 flex justify-between items-center relative z-10">
+                    Total Votes Cast
+                    <span class="text-[8px] bg-cyan-50 text-cyan-600 px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition">View Audit</span>
+                </div>
+                <div class="text-3xl font-black text-cyan-600 relative z-10">310</div>
+                <div class="text-[10px] text-cyan-500 mt-1 font-bold relative z-10">100% Consensus Reached</div>
             </div>
+            
             <div class="bg-gradient-to-br from-emerald-50 to-teal-50 p-5 rounded-xl shadow-sm border border-emerald-100">
                 <div class="text-emerald-800 text-[10px] font-bold uppercase tracking-widest mb-1">Ready for Strategy</div>
                 <div class="text-3xl font-black text-emerald-700">100%</div>
@@ -161,7 +177,146 @@
         </div>
     </div>
 
+    <div id="modal-pillars" class="fixed inset-0 bg-slate-900 bg-opacity-80 z-[1100] flex justify-center items-center backdrop-blur-sm p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="modal-box bg-slate-50 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden transform scale-95 transition-transform duration-300">
+            <div class="bg-gradient-to-r from-emerald-900 to-emerald-700 p-5 flex justify-between items-center text-white border-b-4 border-emerald-500">
+                <div>
+                    <h2 class="text-xl font-black flex items-center"><i class="fas fa-columns mr-2 text-emerald-300"></i> Pillar Formation Logic</h2>
+                    <p class="text-emerald-200 text-xs mt-0.5">How the AI grouped 3 Themes into 2 Master Pillars.</p>
+                </div>
+                <button onclick="tutupModalInsight('modal-pillars')" class="bg-white/10 hover:bg-red-500 w-8 h-8 rounded-full transition flex items-center justify-center"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1">
+                <div class="space-y-6">
+                    <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-black">1</div>
+                            <h3 class="font-black text-lg text-emerald-800">Technology, Data & Security Governance</h3>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 pl-14">
+                            <div class="bg-blue-50 border border-blue-200 p-3 rounded-lg"><span class="text-[9px] font-bold text-blue-600 uppercase tracking-widest">THEME-01</span><p class="text-xs font-semibold text-slate-700 mt-1">Integrated Digital Health Infrastructure</p></div>
+                            <div class="bg-cyan-50 border border-cyan-200 p-3 rounded-lg"><span class="text-[9px] font-bold text-cyan-600 uppercase tracking-widest">THEME-03</span><p class="text-xs font-semibold text-slate-700 mt-1">Data Privacy & Cybersecurity</p></div>
+                        </div>
+                        <div class="pl-14 mt-3 text-xs text-slate-500 italic"><i class="fas fa-robot mr-1"></i> AI grouped these as they both require heavy IT infrastructure and macro-policy alignment to execute.</div>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 font-black">2</div>
+                            <h3 class="font-black text-lg text-teal-800">Human Capital Empowerment</h3>
+                        </div>
+                        <div class="grid grid-cols-1 gap-4 pl-14">
+                            <div class="bg-indigo-50 border border-indigo-200 p-3 rounded-lg"><span class="text-[9px] font-bold text-indigo-600 uppercase tracking-widest">THEME-02</span><p class="text-xs font-semibold text-slate-700 mt-1">Empowering Human Capital and Fostering Digital Literacy</p></div>
+                        </div>
+                        <div class="pl-14 mt-3 text-xs text-slate-500 italic"><i class="fas fa-robot mr-1"></i> Remained a standalone pillar due to its distinct focus on psychological, training, and cultural change.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-improvizations" class="fixed inset-0 bg-slate-900 bg-opacity-80 z-[1100] flex justify-center items-center backdrop-blur-sm p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="modal-box bg-slate-50 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden transform scale-95 transition-transform duration-300">
+            <div class="bg-gradient-to-r from-teal-900 to-teal-700 p-5 flex justify-between items-center text-white border-b-4 border-teal-500">
+                <div>
+                    <h2 class="text-xl font-black flex items-center"><i class="fas fa-lightbulb text-teal-300 mr-2"></i> LKB Learning Log (Pillar Improvizations)</h2>
+                    <p class="text-teal-200 text-xs mt-0.5">Audit trail of 56 new macro-level ideas ingested by the AI.</p>
+                </div>
+                <button onclick="tutupModalInsight('modal-improvizations')" class="bg-white/10 hover:bg-red-500 w-8 h-8 rounded-full transition flex items-center justify-center"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1 bg-white">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead class="bg-slate-100 text-slate-500 uppercase font-black tracking-widest text-[9px]">
+                        <tr>
+                            <th class="p-3 border-b border-slate-200">Timestamp</th>
+                            <th class="p-3 border-b border-slate-200">Participant / SME</th>
+                            <th class="p-3 border-b border-slate-200">Idea Ingested (Raw Text)</th>
+                            <th class="p-3 border-b border-slate-200 text-center">Pillar Assigned</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-slate-100 hover:bg-teal-50 transition">
+                            <td class="p-3 text-slate-400">Oct 14, 09:15 AM</td>
+                            <td class="p-3 font-bold text-slate-700">Ts. Rahman (MAMPU)</td>
+                            <td class="p-3 italic text-slate-600">"Governance must include a National Health API Gateway."</td>
+                            <td class="p-3 text-center"><span class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-bold text-[8px]">PILLAR 1</span></td>
+                        </tr>
+                        <tr class="border-b border-slate-100 hover:bg-teal-50 transition">
+                            <td class="p-3 text-slate-400">Oct 14, 10:20 AM</td>
+                            <td class="p-3 font-bold text-slate-700">Pn. Zulaikha (JPA)</td>
+                            <td class="p-3 italic text-slate-600">"Introduce Digital Health KPI as part of annual staff appraisals."</td>
+                            <td class="p-3 text-center"><span class="bg-teal-100 text-teal-700 px-2 py-0.5 rounded-full font-bold text-[8px]">PILLAR 2</span></td>
+                        </tr>
+                        <tr class="border-b border-slate-100 hover:bg-teal-50 transition">
+                            <td class="p-3 text-slate-400">Oct 14, 11:05 AM</td>
+                            <td class="p-3 font-bold text-slate-700">Dr. Faizah (KKM)</td>
+                            <td class="p-3 italic text-slate-600">"Adopt Zero-Trust Architecture across all MoH facilities."</td>
+                            <td class="p-3 text-center"><span class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-bold text-[8px]">PILLAR 1</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-pillar-votes" class="fixed inset-0 bg-slate-900 bg-opacity-80 z-[1100] flex justify-center items-center backdrop-blur-sm p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="modal-box bg-slate-50 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden transform scale-95 transition-transform duration-300">
+            <div class="bg-gradient-to-r from-cyan-900 to-cyan-700 p-5 flex justify-between items-center text-white border-b-4 border-cyan-500">
+                <div>
+                    <h2 class="text-xl font-black flex items-center"><i class="fas fa-poll text-cyan-300 mr-2"></i> Consensus & Voting Audit (Pillars)</h2>
+                    <p class="text-cyan-200 text-xs mt-0.5">Demographic breakdown of the 310 votes cast for Pillars.</p>
+                </div>
+                <button onclick="tutupModalInsight('modal-pillar-votes')" class="bg-white/10 hover:bg-red-500 w-8 h-8 rounded-full transition flex items-center justify-center"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="p-8 overflow-y-auto flex-1">
+                <div class="flex gap-8">
+                    <div class="flex-1 bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                        <h3 class="font-bold text-sm text-slate-800 border-b border-slate-100 pb-2 mb-4">Votes by Agency Level</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-600">Top Management / Policy Makers</span><span class="text-cyan-600">140 Votes</span></div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="bg-cyan-500 h-full" style="width: 45%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-600">Clinical Heads / Specialists</span><span class="text-cyan-600">100 Votes</span></div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="bg-cyan-400 h-full" style="width: 32%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-600">IT & Operations</span><span class="text-cyan-600">70 Votes</span></div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="bg-cyan-300 h-full" style="width: 23%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-1/3 bg-cyan-50 p-5 rounded-xl border border-cyan-100 flex flex-col justify-center text-center">
+                        <i class="fas fa-check-double text-4xl text-cyan-500 mb-3"></i>
+                        <h4 class="font-black text-cyan-900 text-lg mb-2">100% Consensus</h4>
+                        <p class="text-xs text-cyan-700 leading-relaxed">Both pillars received unanimous agreement from voting participants, confirming absolute strategic alignment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // FUNGSI MODAL INSIGHTS
+        window.bukaModalInsight = function(modalId) {
+            const modal = document.getElementById(modalId);
+            if(modal) {
+                const box = modal.querySelector('.modal-box');
+                modal.classList.remove('pointer-events-none', 'opacity-0');
+                box.classList.remove('scale-95');
+            }
+        };
+
+        window.tutupModalInsight = function(modalId) {
+            const modal = document.getElementById(modalId);
+            if(modal) {
+                const box = modal.querySelector('.modal-box');
+                modal.classList.add('opacity-0');
+                box.classList.add('scale-95');
+                setTimeout(() => { modal.classList.add('pointer-events-none'); }, 300);
+            }
+        };
+
         window.onload = () => {
             // Graf Bar Horizontal untuk Keputusan Voting Pillars
             const ctxPillar = document.getElementById('grafPillar').getContext('2d');
