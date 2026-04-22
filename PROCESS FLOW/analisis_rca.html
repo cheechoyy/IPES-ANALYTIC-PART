@@ -36,66 +36,156 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            <div class="lg:col-span-4 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                <h3 class="font-black text-lg text-slate-800 mb-1 flex items-center"><i class="fas fa-fish text-amber-500 mr-2"></i> Ishikawa Categories</h3>
-                <p class="text-xs text-slate-500 mb-6">Distribution of Root Causes.</p>
-                <div class="relative h-[250px] w-full">
-                    <canvas id="grafIshikawa"></canvas>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+            <div onclick="showRCA('ishikawa')" class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center cursor-pointer hover:border-amber-400 transition group" id="card-ishikawa">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 group-hover:text-amber-500">Ishikawa</div>
+                <div class="text-3xl font-black text-amber-600">110</div>
+                <div class="text-[9px] text-slate-500 mt-1">Participants</div>
+            </div>
+            <div onclick="showRCA('5whys')" class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center cursor-pointer hover:border-orange-400 transition group shadow-md border-orange-400" id="card-5whys">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 group-hover:text-orange-500">5-Whys</div>
+                <div class="text-3xl font-black text-orange-600">165</div>
+                <div class="text-[9px] text-slate-500 mt-1">Participants</div>
+            </div>
+            <div onclick="showRCA('fmea')" class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center cursor-pointer hover:border-indigo-400 transition group" id="card-fmea">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 group-hover:text-indigo-500">FMEA</div>
+                <div class="text-3xl font-black text-indigo-600">45</div>
+                <div class="text-[9px] text-slate-500 mt-1">Participants</div>
+            </div>
+            <div onclick="showRCA('fta')" class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center cursor-pointer hover:border-teal-400 transition group" id="card-fta">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 group-hover:text-teal-500">FTA</div>
+                <div class="text-3xl font-black text-teal-600">30</div>
+                <div class="text-[9px] text-slate-500 mt-1">Participants</div>
+            </div>
+            <div class="bg-rose-50 p-4 rounded-xl shadow-sm border border-rose-200 text-center cursor-pointer hover:border-rose-400 transition group relative overflow-hidden">
+                <div class="absolute -right-2 -bottom-2 opacity-10"><i class="fas fa-user-times text-5xl text-rose-500"></i></div>
+                <div class="text-rose-400 text-[10px] font-bold uppercase tracking-widest mb-1 group-hover:text-rose-600 relative z-10">No Contribution</div>
+                <div class="text-3xl font-black text-rose-600 relative z-10">10%</div>
+                <div class="text-[9px] text-rose-500 mt-1 font-bold relative z-10">Affects Profile Score</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 items-start">
+            <div class="lg:col-span-4 bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-full flex flex-col">
+                <h3 class="font-black text-sm text-slate-800 mb-1 flex items-center"><i class="fas fa-chart-pie text-amber-500 mr-2"></i> RCA Tool Preference</h3>
+                <p class="text-[10px] text-slate-500 mb-4">Participant selections across the 4 RCA frameworks.</p>
+                <div class="relative flex-1 min-h-[250px] w-full flex items-center justify-center">
+                    <canvas id="grafToolsRCA"></canvas>
                 </div>
             </div>
 
-            <div class="lg:col-span-8 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                <h3 class="font-black text-xl text-slate-800 mb-1"><i class="fas fa-question-circle text-orange-500 mr-2"></i> AI "5-Whys" Trace Logic</h3>
-                <p class="text-xs text-slate-500 mb-6 border-b border-slate-100 pb-4">Tracing Problem Statement (PS-01) down to its absolute root.</p>
-
-                <div class="ml-6 space-y-4">
-                    <div class="bg-rose-50 border border-rose-200 rounded-lg p-4 shadow-sm z-10 relative">
-                        <span class="bg-rose-500 text-white text-[9px] font-bold px-2 py-0.5 rounded absolute -top-2 -left-2">Symptom</span>
-                        <h4 class="font-bold text-rose-900 text-sm">"Doctors suffer clinical fatigue due to redundant data entry."</h4>
-                    </div>
-
-                    <div class="tree-line tree-node relative ml-6">
-                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-3">
-                            <h4 class="font-bold text-slate-700 text-sm"><span class="text-amber-500 mr-2">Why 1:</span> Because patient data doesn't transfer between departments.</h4>
+            <div class="lg:col-span-8 bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-full flex flex-col relative overflow-hidden" id="view-container">
+                
+                <div id="view-ishikawa" class="flex-1 flex-col hidden">
+                    <div class="flex justify-between items-end mb-6 border-b border-slate-100 pb-4">
+                        <div>
+                            <h3 class="font-black text-xl text-slate-800"><i class="fas fa-fish text-amber-500 mr-2"></i> Ishikawa (Fishbone) Analytics</h3>
+                            <p class="text-xs text-slate-500 mt-1">Aggregated distribution of macro categories and top specific root causes.</p>
                         </div>
                     </div>
-
-                    <div class="tree-line tree-node relative ml-12">
-                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-3">
-                            <h4 class="font-bold text-slate-700 text-sm"><span class="text-amber-500 mr-2">Why 2:</span> Because Pharmacy, Labs, and Clinics use different EMR systems.</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="w-full">
+                            <h4 class="font-bold text-xs text-slate-400 uppercase tracking-widest mb-4 text-center">Macro Category Distribution</h4>
+                            <div class="relative h-56 w-full"><canvas id="grafIshikawaPolar"></canvas></div>
                         </div>
-                    </div>
-
-                    <div class="tree-line tree-node relative ml-18">
-                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-3">
-                            <h4 class="font-bold text-slate-700 text-sm"><span class="text-amber-500 mr-2">Why 3:</span> Because systems were procured independently by different directors.</h4>
-                        </div>
-                    </div>
-
-                    <div class="tree-node relative ml-24">
-                        <div class="bg-amber-100 border-2 border-amber-400 rounded-lg p-4 shadow-md ring-4 ring-amber-50">
-                            <span class="bg-amber-500 text-white text-[9px] font-bold px-2 py-0.5 rounded absolute -top-2 -left-2 shadow-sm uppercase tracking-wider">True Root Cause</span>
-                            <h4 class="font-black text-amber-900 text-base"><span class="text-orange-600 mr-2">Why 4:</span> Absence of a centralized National EMR Procurement & Interoperability Policy.</h4>
+                        <div class="w-full">
+                            <h4 class="font-bold text-xs text-slate-400 uppercase tracking-widest mb-4">Top Specific Root Causes</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-700">Lack of API Standards (Tech)</span><span class="text-amber-600">45%</span></div>
+                                    <div class="w-full bg-slate-100 h-2 rounded-full"><div class="bg-amber-500 h-full rounded-full" style="width: 45%"></div></div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-700">No Central Procurement (Policy)</span><span class="text-indigo-500">30%</span></div>
+                                    <div class="w-full bg-slate-100 h-2 rounded-full"><div class="bg-indigo-400 h-full rounded-full" style="width: 30%"></div></div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-700">Staff Resistance to IT (People)</span><span class="text-emerald-500">20%</span></div>
+                                    <div class="w-full bg-slate-100 h-2 rounded-full"><div class="bg-emerald-400 h-full rounded-full" style="width: 20%"></div></div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-700">Poor Server Room Setup (Env)</span><span class="text-slate-500">5%</span></div>
+                                    <div class="w-full bg-slate-100 h-2 rounded-full"><div class="bg-slate-400 h-full rounded-full" style="width: 5%"></div></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+                <div id="view-5whys" class="flex-1 flex-col flex">
+                    <div class="flex justify-between items-end mb-6 border-b border-slate-100 pb-4">
+                        <div>
+                            <h3 class="font-black text-xl text-slate-800"><i class="fas fa-question-circle text-orange-500 mr-2"></i> 5-Whys Convergence Analytics</h3>
+                            <p class="text-xs text-slate-500 mt-1">Where do participants' deduction chains finally converge? (The Absolute Root)</p>
+                        </div>
+                    </div>
+                    <div class="relative h-60 w-full mb-6">
+                        <canvas id="graf5Whys"></canvas>
+                    </div>
+                    <div class="bg-orange-50 p-4 rounded-xl border border-orange-100 flex items-center justify-between">
+                        <div>
+                            <div class="text-orange-800 font-bold text-sm">Average Chain Depth</div>
+                            <div class="text-orange-600 text-xs mt-1">Most participants reach the true root cause at the <strong>4th "Why"</strong>.</div>
+                        </div>
+                        <div class="text-4xl font-black text-orange-600">4.2</div>
+                    </div>
+                </div>
+
+                <div id="view-fmea" class="flex-1 flex-col hidden">
+                    <div class="flex justify-between items-end mb-6 border-b border-slate-100 pb-4">
+                        <div>
+                            <h3 class="font-black text-xl text-slate-800"><i class="fas fa-clipboard-list text-indigo-500 mr-2"></i> FMEA Risk Priority Analytics</h3>
+                            <p class="text-xs text-slate-500 mt-1">Aggregated Risk Priority Numbers (RPN) for identified failure modes.</p>
+                        </div>
+                    </div>
+                    <div class="relative h-64 w-full mb-4">
+                        <canvas id="grafFMEA"></canvas>
+                    </div>
+                    <p class="text-[11px] text-slate-400 text-center italic"><span class="font-bold text-rose-500">Red zone (RPN > 300)</span> indicates critical failure modes requiring immediate architectural redesign.</p>
+                </div>
+
+                <div id="view-fta" class="flex-1 flex-col hidden">
+                    <div class="flex justify-between items-end mb-6 border-b border-slate-100 pb-4">
+                        <div>
+                            <h3 class="font-black text-xl text-slate-800"><i class="fas fa-project-diagram text-teal-500 mr-2"></i> Fault Tree Analysis (FTA) Analytics</h3>
+                            <p class="text-xs text-slate-500 mt-1">Probability distribution of "Basic Events" causing the Top Event (System Downtime).</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="relative h-56 w-full">
+                            <canvas id="grafFTA"></canvas>
+                        </div>
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-sm text-slate-700">Critical Cut Sets (Vulnerabilities)</h4>
+                            <div class="bg-teal-50 border border-teal-100 p-4 rounded-xl shadow-sm">
+                                <div class="text-xs font-bold text-teal-800 mb-1">1. Network Failure <span class="bg-teal-200 px-1 rounded mx-1">OR</span> Server Crash</div>
+                                <div class="text-[10px] text-teal-600">Accounts for 60% of all modeled system downtimes. Single point of failure detected.</div>
+                            </div>
+                            <div class="bg-teal-50 border border-teal-100 p-4 rounded-xl shadow-sm">
+                                <div class="text-xs font-bold text-teal-800 mb-1">2. Human Error <span class="bg-teal-200 px-1 rounded mx-1">AND</span> No Backup</div>
+                                <div class="text-[10px] text-teal-600">Accounts for 25% of data loss scenarios. Requires dual-factor mitigation.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
     <script>
+        let chartIshikawa, chart5Whys, chartFMEA, chartFTA;
+
         window.onload = () => {
-            const ctx = document.getElementById('grafIshikawa').getContext('2d');
-            new Chart(ctx, {
+            // 1. Tool Preference Doughnut Chart (Left Panel)
+            const ctxTools = document.getElementById('grafToolsRCA').getContext('2d');
+            new Chart(ctxTools, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Process / Policy', 'Technology / System', 'People / Culture', 'Environment'],
+                    labels: ['Ishikawa', '5-Whys', 'FMEA', 'FTA', 'No Contribution'],
                     datasets: [{
-                        data: [45, 30, 20, 5],
-                        backgroundColor: ['#f59e0b', '#8b5cf6', '#10b981', '#64748b'],
+                        data: [110, 165, 45, 30, 35],
+                        backgroundColor: ['#f59e0b', '#f97316', '#6366f1', '#14b8a6', '#f43f5e'],
                         borderWidth: 2,
                         borderColor: '#ffffff',
                         cutout: '65%'
@@ -104,10 +194,159 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } } }
+                    plugins: { 
+                        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
+                    }
                 }
             });
+
+            // Initialize all analytic charts
+            initCharts();
         };
+
+        function initCharts() {
+            // Ishikawa Polar Area
+            const ctxIshikawa = document.getElementById('grafIshikawaPolar').getContext('2d');
+            chartIshikawa = new Chart(ctxIshikawa, {
+                type: 'polarArea',
+                data: {
+                    labels: ['Process / Policy', 'Technology / System', 'People / Culture', 'Environment'],
+                    datasets: [{
+                        data: [45, 30, 20, 5],
+                        backgroundColor: [
+                            'rgba(245, 158, 11, 0.7)', // Amber
+                            'rgba(99, 102, 241, 0.7)', // Indigo
+                            'rgba(16, 185, 129, 0.7)', // Emerald
+                            'rgba(100, 116, 139, 0.7)' // Slate
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { r: { display: false } },
+                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } }
+                }
+            });
+
+            // 5-Whys Horizontal Bar
+            const ctx5Whys = document.getElementById('graf5Whys').getContext('2d');
+            chart5Whys = new Chart(ctx5Whys, {
+                type: 'bar',
+                data: {
+                    labels: ['No Central Interoperability Policy', 'Outdated Procurement Guidelines', 'Lack of API Standards', 'Siloed Dept Budgets'],
+                    datasets: [{
+                        label: 'Convergence Frequency',
+                        data: [85, 45, 25, 10],
+                        backgroundColor: '#f97316', // Orange
+                        borderRadius: 4,
+                        barThickness: 20
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { display: true, color: '#f1f5f9' } },
+                        y: { grid: { display: false }, ticks: { font: { size: 11, weight: 'bold' }, color: '#334155' } }
+                    }
+                }
+            });
+
+            // FMEA Bar Chart (RPN)
+            const ctxFMEA = document.getElementById('grafFMEA').getContext('2d');
+            chartFMEA = new Chart(ctxFMEA, {
+                type: 'bar',
+                data: {
+                    labels: ['Manual Data Re-entry', 'API Timeout', 'Unencrypted Transfer', 'Server Hardware Failure', 'Unauthorized Access'],
+                    datasets: [{
+                        label: 'Average Risk Priority Number (RPN)',
+                        data: [320, 280, 210, 190, 150],
+                        backgroundColor: (context) => {
+                            const value = context.raw;
+                            if (value > 300) return '#e11d48'; // Rose
+                            if (value > 200) return '#f59e0b'; // Amber
+                            return '#6366f1'; // Indigo
+                        },
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { 
+                            beginAtZero: true, 
+                            grid: { color: '#f1f5f9' },
+                            title: { display: true, text: 'Risk Priority Number (RPN)', font: { size: 10, weight: 'bold' } }
+                        },
+                        x: { grid: { display: false }, ticks: { font: { size: 10, weight: 'bold' } } }
+                    }
+                }
+            });
+
+            // FTA Doughnut Chart
+            const ctxFTA = document.getElementById('grafFTA').getContext('2d');
+            chartFTA = new Chart(ctxFTA, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Network Failure', 'Server Crash', 'Human Error', 'Power Outage', 'Software Bug'],
+                    datasets: [{
+                        data: [40, 25, 20, 10, 5],
+                        backgroundColor: ['#0f766e', '#14b8a6', '#2dd4bf', '#5eead4', '#ccfbf1'], // Teal shades
+                        borderWidth: 2,
+                        borderColor: '#ffffff',
+                        cutout: '60%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'right', labels: { boxWidth: 10, font: { size: 11 } } } }
+                }
+            });
+        }
+
+        function showRCA(type) {
+            // Reset semua kad kepada unselected state
+            document.querySelectorAll('[id^="card-"]').forEach(card => {
+                card.classList.remove('border-amber-400', 'border-orange-400', 'border-indigo-400', 'border-teal-400', 'shadow-md');
+                card.classList.add('border-slate-200');
+            });
+            
+            // Sembunyikan semua view dalam panel kanan
+            document.querySelectorAll('[id^="view-"]').forEach(view => {
+                if(view.id !== 'view-container') {
+                    view.classList.add('hidden');
+                    view.classList.remove('flex');
+                }
+            });
+            
+            // Aktifkan kad dan papar view berdasarkan pilihan
+            document.getElementById(`card-${type}`).classList.remove('border-slate-200');
+            document.getElementById(`view-${type}`).classList.remove('hidden');
+            document.getElementById(`view-${type}`).classList.add('flex');
+            
+            switch (type) {
+                case 'ishikawa':
+                    document.getElementById('card-ishikawa').classList.add('border-amber-400', 'shadow-md');
+                    break;
+                case '5whys':
+                    document.getElementById('card-5whys').classList.add('border-orange-400', 'shadow-md');
+                    break;
+                case 'fmea':
+                    document.getElementById('card-fmea').classList.add('border-indigo-400', 'shadow-md');
+                    break;
+                case 'fta':
+                    document.getElementById('card-fta').classList.add('border-teal-400', 'shadow-md');
+                    break;
+            }
+        }
     </script>
 </body>
 </html>

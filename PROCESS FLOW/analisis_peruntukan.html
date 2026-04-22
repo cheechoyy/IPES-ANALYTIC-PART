@@ -40,21 +40,37 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Estimated Total Cost</div>
-                <div class="text-3xl font-black text-slate-700">RM 2.5B</div>
-                <div class="text-[10px] text-slate-500 font-bold mt-1">Spanning 30 Years (6 Phases)</div>
+            
+            <div onclick="bukaModalInsight('modal-estimated-cost')" class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 cursor-pointer hover:border-slate-400 hover:shadow-md transition group relative overflow-hidden">
+                <div class="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition"><i class="fas fa-money-bill-wave text-8xl text-slate-500"></i></div>
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 flex justify-between items-center relative z-10">
+                    Estimated Total Cost
+                    <span class="text-[8px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition">View Details</span>
+                </div>
+                <div class="text-3xl font-black text-slate-700 relative z-10">RM 2.5B</div>
+                <div class="text-[10px] text-slate-500 font-bold mt-1 relative z-10">Spanning 30 Years (6 Phases)</div>
             </div>
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Immediate Fund Request</div>
-                <div class="text-3xl font-black text-blue-600">RM 350M</div>
-                <div class="text-[10px] text-slate-500 mt-1 font-medium">For Phase 1 (2026 - 2030)</div>
+            
+            <div onclick="bukaModalInsight('modal-immediate-fund')" class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 cursor-pointer hover:border-blue-400 hover:shadow-md transition group relative overflow-hidden">
+                <div class="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition"><i class="fas fa-hand-holding-usd text-8xl text-blue-500"></i></div>
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 flex justify-between items-center relative z-10">
+                    Immediate Fund Request
+                    <span class="text-[8px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition">View Details</span>
+                </div>
+                <div class="text-3xl font-black text-blue-600 relative z-10">RM 350M</div>
+                <div class="text-[10px] text-slate-500 mt-1 font-medium relative z-10">For Phase 1 (2026 - 2030)</div>
             </div>
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">AI Cost Optimization</div>
-                <div class="text-3xl font-black text-emerald-600">18%</div>
-                <div class="text-[10px] text-emerald-500 mt-1 font-bold">Savings via tech deduplication</div>
+            
+            <div onclick="bukaModalInsight('modal-ai-optimization')" class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 cursor-pointer hover:border-emerald-400 hover:shadow-md transition group relative overflow-hidden">
+                <div class="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition"><i class="fas fa-piggy-bank text-8xl text-emerald-500"></i></div>
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 flex justify-between items-center relative z-10">
+                    AI Cost Optimization
+                    <span class="text-[8px] bg-emerald-50 text-emerald-600 px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition">View Details</span>
+                </div>
+                <div class="text-3xl font-black text-emerald-600 relative z-10">18%</div>
+                <div class="text-[10px] text-emerald-500 mt-1 font-bold relative z-10">Savings via tech deduplication</div>
             </div>
+            
             <div class="bg-gradient-to-br from-emerald-50 to-teal-50 p-5 rounded-xl shadow-sm border border-emerald-100">
                 <div class="text-emerald-800 text-[10px] font-bold uppercase tracking-widest mb-1">Ready for Print</div>
                 <div class="text-3xl font-black text-emerald-700">100%</div>
@@ -161,7 +177,129 @@
         </div>
     </div>
 
+    <div id="modal-estimated-cost" class="fixed inset-0 bg-slate-900 bg-opacity-80 z-[1100] flex justify-center items-center backdrop-blur-sm p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="modal-box bg-slate-50 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden transform scale-95 transition-transform duration-300">
+            <div class="bg-gradient-to-r from-slate-700 to-slate-600 p-5 flex justify-between items-center text-white border-b-4 border-slate-500">
+                <div>
+                    <h2 class="text-xl font-black flex items-center"><i class="fas fa-money-bill-wave mr-2 text-slate-300"></i> Estimated Total Cost Breakdown</h2>
+                    <p class="text-slate-200 text-xs mt-0.5">30-year projection (RM 2.5B) distributed by macro categories.</p>
+                </div>
+                <button onclick="tutupModalInsight('modal-estimated-cost')" class="bg-white/10 hover:bg-red-500 w-8 h-8 rounded-full transition flex items-center justify-center"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                        <h4 class="font-black text-slate-800 text-sm mb-3 border-b border-slate-100 pb-2">By Expenditure Type</h4>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-600">CAPEX (Infrastructure & Hardware)</span><span class="text-blue-600">RM 1.6B (64%)</span></div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="bg-blue-500 h-full" style="width: 64%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-600">OPEX (Maintenance & Subscriptions)</span><span class="text-amber-600">RM 650M (26%)</span></div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="bg-amber-500 h-full" style="width: 26%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1"><span class="text-slate-600">Human Capital (Training & Change Mgt)</span><span class="text-emerald-600">RM 250M (10%)</span></div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full" style="width: 10%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-center items-center text-center">
+                        <i class="fas fa-chart-line text-4xl text-slate-300 mb-3"></i>
+                        <h4 class="font-bold text-slate-700 text-sm mb-2">Cost Distribution Curve</h4>
+                        <p class="text-xs text-slate-500">Expenditure is heavily front-loaded in Phases 1-3 (2026-2040) for foundational infrastructure, dropping significantly in Phases 4-6 as the system enters maturity and maintenance mode.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-immediate-fund" class="fixed inset-0 bg-slate-900 bg-opacity-80 z-[1100] flex justify-center items-center backdrop-blur-sm p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="modal-box bg-slate-50 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden transform scale-95 transition-transform duration-300">
+            <div class="bg-gradient-to-r from-blue-700 to-blue-600 p-5 flex justify-between items-center text-white border-b-4 border-blue-500">
+                <div>
+                    <h2 class="text-xl font-black flex items-center"><i class="fas fa-hand-holding-usd mr-2 text-blue-200"></i> Immediate Fund Request (Phase 1)</h2>
+                    <p class="text-blue-100 text-xs mt-0.5">RM 350M requirement for 2026 - 2030 execution.</p>
+                </div>
+                <button onclick="tutupModalInsight('modal-immediate-fund')" class="bg-white/10 hover:bg-red-500 w-8 h-8 rounded-full transition flex items-center justify-center"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1">
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm text-center mb-6">
+                   <h3 class="text-4xl font-black text-blue-600 mb-2">RM 350 Million</h3>
+                   <p class="text-sm text-slate-500">Seed funding required to initiate the National Digital Healthcare Blueprint.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <div class="text-lg font-bold text-slate-700 mb-1">RM 180M</div>
+                        <div class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2">National API Gateway</div>
+                        <p class="text-[10px] text-slate-500">Centralized infrastructure setup and initial EMR integrations.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <div class="text-lg font-bold text-slate-700 mb-1">RM 120M</div>
+                        <div class="text-xs font-bold text-emerald-600 uppercase tracking-widest mb-2">Zero-Trust Security</div>
+                        <p class="text-[10px] text-slate-500">PDPA compliance tools, encrypted communications, and cybersecurity audits.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <div class="text-lg font-bold text-slate-700 mb-1">RM 50M</div>
+                        <div class="text-xs font-bold text-amber-600 uppercase tracking-widest mb-2">Change Management</div>
+                        <p class="text-[10px] text-slate-500">Nationwide digital literacy training for 150k healthcare staff.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-ai-optimization" class="fixed inset-0 bg-slate-900 bg-opacity-80 z-[1100] flex justify-center items-center backdrop-blur-sm p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="modal-box bg-slate-50 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden transform scale-95 transition-transform duration-300">
+            <div class="bg-gradient-to-r from-emerald-700 to-emerald-600 p-5 flex justify-between items-center text-white border-b-4 border-emerald-500">
+                <div>
+                    <h2 class="text-xl font-black flex items-center"><i class="fas fa-piggy-bank mr-2 text-emerald-200"></i> AI Cost Optimization</h2>
+                    <p class="text-emerald-100 text-xs mt-0.5">How the AI engine identified 18% in cost savings.</p>
+                </div>
+                <button onclick="tutupModalInsight('modal-ai-optimization')" class="bg-white/10 hover:bg-red-500 w-8 h-8 rounded-full transition flex items-center justify-center"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1">
+                <div class="flex gap-6 flex-col md:flex-row items-start">
+                    <div class="w-full md:w-1/3 bg-white p-5 rounded-xl border border-slate-200 shadow-sm text-center">
+                        <div class="text-4xl font-black text-emerald-600 mb-2">18%</div>
+                        <div class="text-xs font-bold text-slate-500 uppercase tracking-widest">Projected Savings</div>
+                        <p class="text-[10px] text-slate-400 mt-2">Equates to ~RM 540M saved over the 30-year lifecycle.</p>
+                    </div>
+                    <div class="w-full md:w-2/3 bg-emerald-50 p-5 rounded-xl border border-emerald-200 shadow-sm">
+                        <h3 class="font-bold text-emerald-800 text-sm mb-2"><i class="fas fa-magic mr-1"></i> Optimization Strategies Detected</h3>
+                        <ul class="text-[11px] text-slate-700 space-y-3 list-none">
+                            <li class="flex gap-2 items-start"><i class="fas fa-check-circle text-emerald-500 mt-0.5"></i> <span><strong>Centralized Cloud Procurement:</strong> Consolidating 15+ independent hospital server renewals into a single national cloud contract reduces CAPEX by 22%.</span></li>
+                            <li class="flex gap-2 items-start"><i class="fas fa-check-circle text-emerald-500 mt-0.5"></i> <span><strong>Open API Standards:</strong> Mandating vendor-neutral APIs eliminates costly custom integration fees for future software acquisitions.</span></li>
+                            <li class="flex gap-2 items-start"><i class="fas fa-check-circle text-emerald-500 mt-0.5"></i> <span><strong>Train-the-Trainer Model:</strong> Utilizing internal 'Digital Health Champions' instead of external consultants for Phase 3-6 training reduces OPEX.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // FUNGSI MODAL INSIGHTS
+        window.bukaModalInsight = function(modalId) {
+            const modal = document.getElementById(modalId);
+            if(modal) {
+                const box = modal.querySelector('.modal-box');
+                modal.classList.remove('pointer-events-none', 'opacity-0');
+                box.classList.remove('scale-95');
+            }
+        };
+
+        window.tutupModalInsight = function(modalId) {
+            const modal = document.getElementById(modalId);
+            if(modal) {
+                const box = modal.querySelector('.modal-box');
+                modal.classList.add('opacity-0');
+                box.classList.add('scale-95');
+                setTimeout(() => { modal.classList.add('pointer-events-none'); }, 300);
+            }
+        };
+
         window.onload = () => {
             // Graf Doughnut untuk Budget by Pillar
             const ctxCost = document.getElementById('grafCost').getContext('2d');

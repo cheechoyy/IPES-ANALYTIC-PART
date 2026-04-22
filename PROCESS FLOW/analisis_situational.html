@@ -30,35 +30,74 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                <h3 class="font-black text-lg text-slate-800 mb-1 flex items-center"><i class="fas fa-globe text-cyan-500 mr-2"></i> PESTLE Environmental Scan</h3>
-                <p class="text-xs text-slate-500 mb-6">AI maps pain points against Political, Economic, Social, Tech, Legal, and Environmental factors.</p>
-                <div class="relative h-[400px] w-full">
-                    <canvas id="grafPestle"></canvas>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+            <div onclick="showAnalysis('swot')" class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center cursor-pointer hover:border-blue-400 transition group" id="card-swot">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 group-hover:text-blue-500">SWOT Analysis</div>
+                <div class="text-3xl font-black text-blue-600">145</div>
+                <div class="text-[9px] text-slate-500 mt-1">Participants</div>
+            </div>
+            <div onclick="showAnalysis('pestel')" class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center cursor-pointer hover:border-emerald-400 transition group" id="card-pestel">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 group-hover:text-emerald-500">PESTEL Analysis</div>
+                <div class="text-3xl font-black text-emerald-600">88</div>
+                <div class="text-[9px] text-slate-500 mt-1">Participants</div>
+            </div>
+            <div onclick="showAnalysis('soar')" class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center cursor-pointer hover:border-cyan-400 transition group" id="card-soar">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 group-hover:text-cyan-500">SOAR Analysis</div>
+                <div class="text-3xl font-black text-cyan-600">42</div>
+                <div class="text-[9px] text-slate-500 mt-1">Participants</div>
+            </div>
+            <div onclick="showAnalysis('fivec')" class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center cursor-pointer hover:border-amber-400 transition group" id="card-fivec">
+                <div class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1 group-hover:text-amber-500">5C Analysis</div>
+                <div class="text-3xl font-black text-amber-600">25</div>
+                <div class="text-[9px] text-slate-500 mt-1">Participants</div>
+            </div>
+            <div class="bg-rose-50 p-4 rounded-xl shadow-sm border border-rose-200 text-center cursor-pointer hover:border-rose-400 transition group relative overflow-hidden">
+                <div class="absolute -right-2 -bottom-2 opacity-10"><i class="fas fa-user-times text-5xl text-rose-500"></i></div>
+                <div class="text-rose-400 text-[10px] font-bold uppercase tracking-widest mb-1 group-hover:text-rose-600 relative z-10">No Contribution</div>
+                <div class="text-3xl font-black text-rose-600 relative z-10">12%</div>
+                <div class="text-[9px] text-rose-500 mt-1 font-bold relative z-10">Affects Profile Score</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 items-start">
+            <div class="lg:col-span-4 bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-full flex flex-col">
+                <h3 class="font-black text-sm text-slate-800 mb-1 flex items-center"><i class="fas fa-chart-pie text-indigo-500 mr-2"></i> Tool Preference Overview</h3>
+                <p class="text-[10px] text-slate-500 mb-4">Participant selections across the 4 situational frameworks.</p>
+                <div class="relative flex-1 min-h-[250px] w-full flex items-center justify-center">
+                    <canvas id="grafTools"></canvas>
                 </div>
             </div>
 
-            <div class="space-y-6">
-                <div class="bg-slate-900 rounded-xl shadow-sm border border-slate-800 p-6 text-white relative overflow-hidden">
-                    <div class="absolute -right-10 -bottom-10 opacity-10"><i class="fas fa-chess-board text-[150px]"></i></div>
-                    <h3 class="font-black text-lg text-white mb-4 relative z-10"><i class="fas fa-project-diagram text-blue-400 mr-2"></i> Derived "As-Is" Context</h3>
-                    
-                    <div class="space-y-4 relative z-10">
-                        <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
-                            <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-2">Strengths (Existing Base)</h4>
-                            <p class="text-sm text-slate-300">High clinical expertise (300+ SMEs) and readiness for digital adoption. Existing network infrastructure is present but heavily fragmented.</p>
-                        </div>
-                        <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
-                            <h4 class="text-xs font-bold text-rose-400 uppercase tracking-widest mb-2">Weaknesses (Current Bottlenecks)</h4>
-                            <p class="text-sm text-slate-300">Siloed EMR systems causing 40% operational delay. Lack of unified data standards and low API interoperability between hospital departments.</p>
-                        </div>
+            <div class="lg:col-span-8 bg-white p-6 rounded-xl shadow-sm border border-slate-200 h-full flex flex-col" id="chart-container">
+                <h3 id="chart-title" class="font-black text-sm text-slate-800 mb-1 flex items-center"><i class="fas fa-globe text-emerald-500 mr-2"></i> PESTEL Environmental Scan</h3>
+                <p id="chart-desc" class="text-[10px] text-slate-500 mb-6">AI maps pain points against Political, Economic, Social, Tech, Legal, and Environmental factors.</p>
+                <div class="relative flex-1 min-h-[250px] w-full">
+                    <canvas id="grafAnalysis"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8 items-stretch">
+            
+            <div class="bg-slate-900 rounded-xl shadow-sm border border-slate-800 p-6 text-white relative overflow-hidden flex flex-col h-full">
+                <div class="absolute -right-10 -bottom-10 opacity-10"><i class="fas fa-chess-board text-[150px]"></i></div>
+                <h3 class="font-black text-lg text-white mb-4 relative z-10"><i class="fas fa-project-diagram text-blue-400 mr-2"></i> Derived "As-Is" Context</h3>
+                
+                <div class="space-y-4 relative z-10 flex-1">
+                    <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+                        <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-2">Strengths (Existing Base)</h4>
+                        <p class="text-sm text-slate-300">High clinical expertise (300+ SMEs) and readiness for digital adoption. Existing network infrastructure is present but heavily fragmented.</p>
+                    </div>
+                    <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+                        <h4 class="text-xs font-bold text-rose-400 uppercase tracking-widest mb-2">Weaknesses (Current Bottlenecks)</h4>
+                        <p class="text-sm text-slate-300">Siloed EMR systems causing 40% operational delay. Lack of unified data standards and low API interoperability between hospital departments.</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 shadow-sm">
-                    <h3 class="font-black text-blue-900 text-sm mb-2"><i class="fas fa-robot text-blue-600 mr-2"></i> AI Agent Conclusion</h3>
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 shadow-sm flex flex-col h-full">
+                <h3 class="font-black text-blue-900 text-sm mb-4"><i class="fas fa-robot text-blue-600 mr-2"></i> AI Agent Conclusion</h3>
+                <div class="bg-white p-5 rounded-lg border border-blue-100 flex-1 flex items-center">
                     <p class="text-sm text-blue-800 leading-relaxed font-medium">"The current ecosystem is highly restricted by <strong>Technological (Tech)</strong> and <strong>Operational (Social/Process)</strong> barriers. While funding (Economic) is mentioned, the primary hindrance is the lack of centralized IT policy (Legal/Political)."</p>
                 </div>
             </div>
@@ -68,17 +107,41 @@
 
     <script>
         window.onload = () => {
-            const ctx = document.getElementById('grafPestle').getContext('2d');
-            new Chart(ctx, {
+            // 1. Tool Preference Doughnut Chart
+            const ctxTools = document.getElementById('grafTools').getContext('2d');
+            new Chart(ctxTools, {
+                type: 'doughnut',
+                data: {
+                    labels: ['SWOT', 'PESTEL', 'SOAR', '5C', 'No Contribution'],
+                    datasets: [{
+                        data: [145, 88, 42, 25, 36], // 36 is roughly 12% of 300
+                        backgroundColor: ['#2563eb', '#10b981', '#06b6d4', '#f59e0b', '#f43f5e'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff',
+                        cutout: '65%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
+                    }
+                }
+            });
+
+            // 2. Aggregated Analysis Chart
+            const ctx = document.getElementById('grafAnalysis').getContext('2d');
+            window.analysisChart = new Chart(ctx, {
                 type: 'radar',
                 data: {
                     labels: ['Political / Policy', 'Economic / Funding', 'Social / Operational', 'Technological', 'Legal / PDPA', 'Environmental'],
                     datasets: [{
                         label: 'Intensity of Mentions',
                         data: [60, 45, 85, 95, 70, 20],
-                        backgroundColor: 'rgba(6, 182, 212, 0.2)', // Cyan
-                        borderColor: '#06b6d4',
-                        pointBackgroundColor: '#0284c7',
+                        backgroundColor: 'rgba(16, 185, 129, 0.2)', // Emerald
+                        borderColor: '#10b981',
+                        pointBackgroundColor: '#059669',
                         pointBorderColor: '#fff',
                         borderWidth: 3
                     }]
@@ -90,6 +153,73 @@
                 }
             });
         };
+
+        function showAnalysis(type) {
+            const chartTitle = document.getElementById('chart-title');
+            const chartDesc = document.getElementById('chart-desc');
+            const chartData = window.analysisChart.data.datasets[0];
+            
+            // Reset kad aktif
+            document.querySelectorAll('[id^="card-"]').forEach(card => {
+                card.classList.remove('border-blue-400', 'border-emerald-400', 'border-cyan-400', 'border-amber-400', 'shadow-md');
+                card.classList.add('border-slate-200');
+            });
+            
+            // Set kad aktif berdasarkan klik
+            document.getElementById(`card-${type}`).classList.remove('border-slate-200');
+            
+            switch (type) {
+                case 'swot':
+                    document.getElementById('card-swot').classList.add('border-blue-400', 'shadow-md');
+                    chartTitle.innerHTML = '<i class="fas fa-chart-bar text-blue-500 mr-2"></i> SWOT Analysis';
+                    chartDesc.innerText = 'Strengths, Weaknesses, Opportunities, and Threats mapping.';
+                    window.analysisChart.data.labels = ['Strengths', 'Weaknesses', 'Opportunities', 'Threats'];
+                    chartData.data = [80, 55, 70, 40];
+                    chartData.backgroundColor = 'rgba(59, 130, 246, 0.2)'; // Blue
+                    chartData.borderColor = '#3b82f6';
+                    chartData.pointBackgroundColor = '#2563eb';
+                    window.analysisChart.config.type = 'bar'; // Switch to bar chart for SWOT
+                    break;
+                case 'pestel':
+                    document.getElementById('card-pestel').classList.add('border-emerald-400', 'shadow-md');
+                    chartTitle.innerHTML = '<i class="fas fa-globe text-emerald-500 mr-2"></i> PESTEL Environmental Scan';
+                    chartDesc.innerText = 'AI maps pain points against Political, Economic, Social, Tech, Legal, and Environmental factors.';
+                    window.analysisChart.data.labels = ['Political / Policy', 'Economic / Funding', 'Social / Operational', 'Technological', 'Legal / PDPA', 'Environmental'];
+                    chartData.data = [60, 45, 85, 95, 70, 20];
+                    chartData.backgroundColor = 'rgba(16, 185, 129, 0.2)'; // Emerald
+                    chartData.borderColor = '#10b981';
+                    chartData.pointBackgroundColor = '#059669';
+                    window.analysisChart.config.type = 'radar';
+                    break;
+                case 'soar':
+                    document.getElementById('card-soar').classList.add('border-cyan-400', 'shadow-md');
+                    chartTitle.innerHTML = '<i class="fas fa-rocket text-cyan-500 mr-2"></i> SOAR Analysis';
+                    chartDesc.innerText = 'Strengths, Opportunities, Aspirations, and Results mapping.';
+                    window.analysisChart.data.labels = ['Strengths', 'Opportunities', 'Aspirations', 'Results'];
+                    chartData.data = [75, 85, 90, 60];
+                    chartData.backgroundColor = 'rgba(6, 182, 212, 0.2)'; // Cyan
+                    chartData.borderColor = '#06b6d4';
+                    chartData.pointBackgroundColor = '#0891b2';
+                    window.analysisChart.config.type = 'bar'; // Switch to bar chart for SOAR
+                    break;
+                case 'fivec':
+                    document.getElementById('card-fivec').classList.add('border-amber-400', 'shadow-md');
+                    chartTitle.innerHTML = '<i class="fas fa-handshake text-amber-500 mr-2"></i> 5C Analysis';
+                    chartDesc.innerText = 'Company, Customers, Competitors, Collaborators, and Climate mapping.';
+                    window.analysisChart.data.labels = ['Company', 'Customers', 'Competitors', 'Collaborators', 'Climate'];
+                    chartData.data = [80, 95, 40, 65, 85];
+                    chartData.backgroundColor = 'rgba(245, 158, 11, 0.2)'; // Amber
+                    chartData.borderColor = '#f59e0b';
+                    chartData.pointBackgroundColor = '#d97706';
+                    window.analysisChart.config.type = 'radar';
+                    break;
+            }
+            window.analysisChart.update();
+        }
+
+        // Initialize active state on load
+        document.getElementById('card-pestel').classList.remove('border-slate-200');
+        document.getElementById('card-pestel').classList.add('border-emerald-400', 'shadow-md');
     </script>
 </body>
 </html>
