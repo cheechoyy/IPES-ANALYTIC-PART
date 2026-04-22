@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPAF Task Hub - SME Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Talian laluan asas (Base Track) */
+        .step-connector::after {
+            content: ''; 
+            position: absolute; 
+            top: 50%; 
+            right: -3rem; 
+            width: 3rem;  
+            height: 4px; 
+            background-color: #e2e8f0; 
+            border-radius: 2px;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+        
+        /* Sembunyikan jika di skrin telefon (responsif) */
+        @media (max-width: 1024px) {
+            .step-connector::after, .step-connector::before { display: none; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col">
+
+    <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 shadow-lg relative z-20">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.2) 1px,transparent 1px);background-size:20px 20px;"></div>
+        <div class="max-w-[1600px] mx-auto px-6 py-4 relative flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="peserta_overview.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to Journey Map">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="border-l border-white/20 pl-4 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white text-blue-900 flex items-center justify-center font-black text-lg shadow-md border-2 border-blue-300">AH</div>
+                    <div>
+                        <h1 class="text-lg font-black text-white tracking-wide">Dr. Alina Harun</h1>
+                        <p class="text-indigo-200 text-[10px] font-medium uppercase tracking-widest">Hospital Kuala Lumpur (KKM)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-right">
+                    <div class="text-[10px] text-emerald-300 font-bold uppercase tracking-widest mb-0.5">Contribution Score</div>
+                    <div class="text-2xl font-black text-emerald-400 leading-none">120 <span class="text-sm text-white/50">pts</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-[1600px] w-full mx-auto flex-1 flex flex-col p-6 md:p-8">
+        
+        <div class="relative overflow-hidden bg-white border border-slate-200 rounded-2xl px-8 py-7 mb-8 shadow-sm">
+            <div class="relative flex flex-wrap justify-between items-center gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-1.5 bg-rose-50 border border-rose-200 text-rose-600 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-3">
+                        <i class="fas fa-exclamation-triangle"></i> Node 2: Analytical Framework
+                    </div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold text-slate-800 leading-tight">SPAF Task Hub</h1>
+                    <p class="text-slate-500 text-sm mt-1">Provide your operational inputs here. The AI will process your data sequentially to formulate the core strategies.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="bg-slate-50 border border-slate-200 text-slate-600 text-xs font-bold px-4 py-2.5 rounded-xl flex items-center">
+                        Your Completion Rate: <span class="text-emerald-600 ml-2">0 / 3 Tasks</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-transparent flex-1">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10 relative">
+                
+                <div class="relative step-connector group cursor-pointer" onclick="bukaTugasan('peserta_painpoint.html')">
+                    <div class="bg-white border-2 border-rose-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-rose-400 transition-all duration-300 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center text-xl font-black shadow-inner group-hover:bg-rose-500 group-hover:text-white transition-colors">1</div>
+                            <span class="bg-emerald-100 text-emerald-700 border border-emerald-200 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider animate-pulse"><i class="fas fa-edit mr-1"></i> Active Task</span>
+                        </div>
+                        <h3 class="font-black text-lg text-slate-800 mb-2">Pain Points Input</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4 flex-1">Log your daily operational frustrations and workflow bottlenecks here.</p>
+                        <button class="w-full bg-rose-600 text-white text-xs font-bold py-2.5 rounded-xl shadow-sm hover:bg-rose-700 transition-colors">Start Task <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div class="relative step-connector group cursor-pointer" onclick="bukaTugasan('peserta_problem.html')">
+                    <div class="bg-white border-2 border-purple-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-purple-400 transition-all duration-300 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl font-black shadow-inner group-hover:bg-purple-500 group-hover:text-white transition-colors">2</div>
+                            <span class="bg-emerald-100 text-emerald-700 border border-emerald-200 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider animate-pulse"><i class="fas fa-edit mr-1"></i> Active Task</span>
+                        </div>
+                        <h3 class="font-black text-lg text-slate-800 mb-2">Problem Statements</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4 flex-1">Review and endorse the master problem statements formulated by the AI.</p>
+                        <button class="w-full bg-purple-600 text-white text-xs font-bold py-2.5 rounded-xl shadow-sm hover:bg-purple-700 transition-colors">Start Task <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div class="relative step-connector group cursor-pointer" onclick="bukaTugasan('peserta_situational.html')">
+                    <div class="bg-white border-2 border-blue-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-blue-400 transition-all duration-300 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl font-black shadow-inner group-hover:bg-blue-500 group-hover:text-white transition-colors">3</div>
+                            <span class="bg-emerald-100 text-emerald-700 border border-emerald-200 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider animate-pulse"><i class="fas fa-edit mr-1"></i> Active Task</span>
+                        </div>
+                        <h3 class="font-black text-lg text-slate-800 mb-2">Situational Analysis</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4 flex-1">Conduct an environmental scan using PESTLE or SWOT frameworks for your agency.</p>
+                        <button class="w-full bg-blue-600 text-white text-xs font-bold py-2.5 rounded-xl shadow-sm hover:bg-blue-700 transition-colors">Start Task <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div class="relative step-connector group cursor-pointer" onclick="bukaTugasan('peserta_rca.html')">
+                    <div class="bg-white border-2 border-amber-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-amber-400 transition-all duration-300 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-xl font-black shadow-inner group-hover:bg-amber-500 group-hover:text-white transition-colors">4</div>
+                            <span class="bg-emerald-100 text-emerald-700 border border-emerald-200 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider animate-pulse"><i class="fas fa-edit mr-1"></i> Active Task</span>
+                        </div>
+                        <h3 class="font-black text-lg text-slate-800 mb-2">Root Cause Analysis</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4 flex-1">Use the 5-Whys or Ishikawa method to trace the root causes of identified problems.</p>
+                        <button class="w-full bg-amber-600 text-white text-xs font-bold py-2.5 rounded-xl shadow-sm hover:bg-amber-700 transition-colors">Start Task <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div class="relative step-connector group cursor-pointer" onclick="bukaTugasan('peserta_rca_validation.html')">
+                    <div class="bg-white border-2 border-emerald-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-emerald-400 transition-all duration-300 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-xl font-black shadow-inner group-hover:bg-emerald-500 group-hover:text-white transition-colors">5</div>
+                            <span class="bg-emerald-100 text-emerald-700 border border-emerald-200 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider animate-pulse"><i class="fas fa-edit mr-1"></i> Active Task</span>
+                        </div>
+                        <h3 class="font-black text-lg text-slate-800 mb-2 leading-tight">Root Cause Validation</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4 flex-1">Review the AI's cross-referencing results and verify the factual accuracy based on your agency's reality.</p>
+                        <button class="w-full bg-emerald-600 text-white text-xs font-bold py-2.5 rounded-xl shadow-sm hover:bg-emerald-700 transition-colors">Start Task <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div class="relative group cursor-pointer" onclick="bukaTugasan('peserta_risk.html')">
+                    <div class="bg-white border-2 border-red-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-red-400 transition-all duration-300 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xl font-black shadow-inner group-hover:bg-red-500 group-hover:text-white transition-colors">6</div>
+                            <span class="bg-emerald-100 text-emerald-700 border border-emerald-200 text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider animate-pulse"><i class="fas fa-edit mr-1"></i> Active Task</span>
+                        </div>
+                        <h3 class="font-black text-lg text-slate-800 mb-2">Risk Assessment</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4 flex-1">Evaluate the AI-projected risks and suggest mitigation strategies based on your operational reality.</p>
+                        <button class="w-full bg-red-600 text-white text-xs font-bold py-2.5 rounded-xl shadow-sm hover:bg-red-700 transition-colors">Start Task <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk menavigasi ke modul tugasan
+        function bukaTugasan(url) {
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>

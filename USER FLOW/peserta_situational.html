@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Situational Analysis Input - SME Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .ai-processing-bg { background: linear-gradient(270deg, #eff6ff, #dbeafe, #eff6ff); background-size: 200% 200%; animation: AIProcessing 3s ease infinite; }
+        @keyframes AIProcessing { 0% {background-position: 0% 50%} 50% {background-position: 100% 50%} 100% {background-position: 0% 50%} }
+        
+        /* Animasi Transisi Borang */
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col">
+
+    <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 shadow-lg relative z-20">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.2) 1px,transparent 1px);background-size:20px 20px;"></div>
+        <div class="max-w-[1200px] mx-auto px-6 py-4 relative flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="peserta_spaf.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to SPAF Hub">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="border-l border-white/20 pl-4 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white text-blue-900 flex items-center justify-center font-black text-lg shadow-md border-2 border-blue-300">AH</div>
+                    <div>
+                        <h1 class="text-lg font-black text-white tracking-wide">Dr. Alina Harun</h1>
+                        <p class="text-indigo-200 text-[10px] font-medium uppercase tracking-widest">Hospital Kuala Lumpur (KKM)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-right">
+                    <div class="text-[10px] text-emerald-300 font-bold uppercase tracking-widest mb-0.5">Contribution Score</div>
+                    <div class="text-2xl font-black text-emerald-400 leading-none transition-all duration-500" id="skor-peserta">145 <span class="text-sm text-white/50">pts</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 w-full max-w-[1200px] mx-auto p-6 flex flex-col gap-6">
+        
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+            
+            <div class="inline-flex items-center gap-1.5 bg-blue-50 border border-blue-200 text-blue-600 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4">
+                <i class="fas fa-globe"></i> Node 3: Situational Mapping
+            </div>
+            
+            <h2 class="text-xl md:text-2xl font-black text-slate-800 mb-2">Conduct Environmental Scan (As-Is State)</h2>
+            <p class="text-sm text-slate-500 max-w-3xl">Analyze your current organizational environment. Select a strategic framework that best fits your expertise and provide the context. The AI will aggregate this to build the "As-Is" baseline.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <div class="lg:col-span-7 bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                
+                <div class="flex justify-between items-center mb-5 border-b border-slate-100 pb-4">
+                    <h3 class="font-bold text-sm text-slate-800 flex items-center"><i class="fas fa-tasks text-blue-500 mr-2"></i> Select Framework</h3>
+                    <span class="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Required Step</span>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                    <label class="cursor-pointer group">
+                        <input type="radio" name="framework" value="swot" class="peer sr-only" onchange="tukarBorang('swot')" checked>
+                        <div class="text-center p-3 rounded-xl border-2 border-slate-200 peer-checked:bg-blue-50 peer-checked:border-blue-500 transition-all hover:bg-slate-50">
+                            <i class="fas fa-chart-bar text-xl mb-1 text-slate-400 peer-checked:text-blue-500"></i>
+                            <div class="text-xs font-black text-slate-600 peer-checked:text-blue-700">SWOT</div>
+                        </div>
+                    </label>
+                    <label class="cursor-pointer group">
+                        <input type="radio" name="framework" value="pestel" class="peer sr-only" onchange="tukarBorang('pestel')">
+                        <div class="text-center p-3 rounded-xl border-2 border-slate-200 peer-checked:bg-emerald-50 peer-checked:border-emerald-500 transition-all hover:bg-slate-50">
+                            <i class="fas fa-globe text-xl mb-1 text-slate-400 peer-checked:text-emerald-500"></i>
+                            <div class="text-xs font-black text-slate-600 peer-checked:text-emerald-700">PESTEL</div>
+                        </div>
+                    </label>
+                    <label class="cursor-pointer group">
+                        <input type="radio" name="framework" value="soar" class="peer sr-only" onchange="tukarBorang('soar')">
+                        <div class="text-center p-3 rounded-xl border-2 border-slate-200 peer-checked:bg-cyan-50 peer-checked:border-cyan-500 transition-all hover:bg-slate-50">
+                            <i class="fas fa-rocket text-xl mb-1 text-slate-400 peer-checked:text-cyan-500"></i>
+                            <div class="text-xs font-black text-slate-600 peer-checked:text-cyan-700">SOAR</div>
+                        </div>
+                    </label>
+                    <label class="cursor-pointer group">
+                        <input type="radio" name="framework" value="5c" class="peer sr-only" onchange="tukarBorang('5c')">
+                        <div class="text-center p-3 rounded-xl border-2 border-slate-200 peer-checked:bg-amber-50 peer-checked:border-amber-500 transition-all hover:bg-slate-50">
+                            <i class="fas fa-handshake text-xl mb-1 text-slate-400 peer-checked:text-amber-500"></i>
+                            <div class="text-xs font-black text-slate-600 peer-checked:text-amber-700">5C</div>
+                        </div>
+                    </label>
+                </div>
+
+                <form id="form-situational" onsubmit="hantarAnalisis(event)">
+                    
+                    <div id="ruang-input-dinamik" class="space-y-4 mb-6">
+                        </div>
+
+                    <button type="submit" id="btn-submit" class="w-full bg-blue-600 text-white text-sm font-bold py-3 rounded-xl shadow-sm hover:bg-blue-700 transition flex items-center justify-center">
+                        <i class="fas fa-paper-plane mr-2"></i> Submit Scan to AI Engine
+                    </button>
+                </form>
+            </div>
+
+            <div class="lg:col-span-5 bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col h-full overflow-hidden">
+                <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                    <h3 class="font-bold text-sm text-slate-800 flex items-center"><i class="fas fa-history text-blue-500 mr-2"></i> My Environmental Scans</h3>
+                    <span class="text-[10px] bg-slate-200 text-slate-600 px-2 py-1 rounded font-bold uppercase tracking-wider"><span id="kiraan-scan">1</span> Submitted</span>
+                </div>
+                
+                <div class="flex-1 overflow-y-auto p-6 space-y-4" id="senarai-scan">
+                    
+                    <div class="border border-slate-200 rounded-xl p-4 hover:border-slate-300 transition relative">
+                        <div class="absolute top-4 right-4 text-[9px] font-black uppercase px-2 py-0.5 rounded bg-emerald-50 text-emerald-600 border border-emerald-100">PESTEL</div>
+                        
+                        <h4 class="font-bold text-sm text-slate-700 mb-2 pr-16">Healthcare Policy Environment</h4>
+                        
+                        <div class="space-y-2 mt-3">
+                            <div class="text-xs">
+                                <span class="font-bold text-slate-800">Political:</span> <span class="text-slate-600">Lack of centralized mandate for data sharing between public and private sectors.</span>
+                            </div>
+                            <div class="text-xs">
+                                <span class="font-bold text-slate-800">Technological:</span> <span class="text-slate-600">API fragmentation causes severe delays in lab result syncing.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center gap-2">
+                            <i class="fas fa-check-circle text-emerald-500 text-xs"></i>
+                            <span class="text-[10px] text-emerald-600 font-bold">Successfully mapped by AI</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let scanCount = 1;
+        let skorSekarang = 145;
+
+        // Konfigurasi Rangka Kerja (Frameworks)
+        const frameworkConfig = {
+            'swot': {
+                color: 'blue',
+                fields: [
+                    { id: 'S', name: 'Strengths', desc: 'Internal positive factors (e.g., Highly trained staff)' },
+                    { id: 'W', name: 'Weaknesses', desc: 'Internal negative factors (e.g., Outdated software)' },
+                    { id: 'O', name: 'Opportunities', desc: 'External positive factors (e.g., New government grants)' },
+                    { id: 'T', name: 'Threats', desc: 'External negative factors (e.g., Rising cyber attacks)' }
+                ]
+            },
+            'pestel': {
+                color: 'emerald',
+                fields: [
+                    { id: 'P', name: 'Political', desc: 'Government policies, leadership changes' },
+                    { id: 'E', name: 'Economic', desc: 'Funding, inflation, budget cuts' },
+                    { id: 'S', name: 'Social', desc: 'Cultural trends, staff demographics' },
+                    { id: 'T', name: 'Technological', desc: 'Innovation, infrastructure, automation' },
+                    { id: 'L', name: 'Legal', desc: 'PDPA, health regulations, compliance' },
+                    { id: 'En', name: 'Environmental', desc: 'Physical space, sustainability' }
+                ]
+            },
+            'soar': {
+                color: 'cyan',
+                fields: [
+                    { id: 'S', name: 'Strengths', desc: 'What are our greatest assets?' },
+                    { id: 'O', name: 'Opportunities', desc: 'What are the best possible market opportunities?' },
+                    { id: 'A', name: 'Aspirations', desc: 'What is our preferred future?' },
+                    { id: 'R', name: 'Results', desc: 'What are the measurable results?' }
+                ]
+            },
+            '5c': {
+                color: 'amber',
+                fields: [
+                    { id: 'C1', name: 'Company', desc: 'Internal resources, capabilities' },
+                    { id: 'C2', name: 'Collaborators', desc: 'Partners, vendors, suppliers' },
+                    { id: 'C3', name: 'Customers', desc: 'Patients, end-users of the system' },
+                    { id: 'C4', name: 'Competitors', desc: 'Alternative solutions, private sectors' },
+                    { id: 'C5', name: 'Climate', desc: 'Regulatory and technological environment' }
+                ]
+            }
+        };
+
+        // Fungsi menukar borang berdasarkan pilihan
+        function tukarBorang(jenis) {
+            const container = document.getElementById('ruang-input-dinamik');
+            const config = frameworkConfig[jenis];
+            let html = '';
+
+            config.fields.forEach(field => {
+                html += `
+                    <div class="fade-in">
+                        <label class="block text-xs font-bold text-slate-700 mb-1 flex justify-between">
+                            <span>${field.name}</span>
+                            <span class="text-[9px] font-normal text-slate-400">${field.desc}</span>
+                        </label>
+                        <textarea required rows="2" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-${config.color}-500 focus:ring-1 focus:ring-${config.color}-500 text-slate-700 resize-none input-nilai" data-label="${field.name}"></textarea>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Fungsi Hantar (Simulasi ke AI)
+        function hantarAnalisis(event) {
+            event.preventDefault();
+
+            const btn = document.getElementById('btn-submit');
+            const frameworkTerpilih = document.querySelector('input[name="framework"]:checked').value.toUpperCase();
+            const configT = frameworkConfig[frameworkTerpilih.toLowerCase()];
+            const warna = configT.color;
+
+            // Ambil data dari textarea
+            const inputs = document.querySelectorAll('.input-nilai');
+            let dataHtml = '';
+            // Ambil 2 yang pertama untuk dipaparkan di ringkasan
+            for(let i=0; i<Math.min(2, inputs.length); i++) {
+                if(inputs[i].value.trim() !== '') {
+                    dataHtml += `
+                        <div class="text-xs">
+                            <span class="font-bold text-slate-800">${inputs[i].getAttribute('data-label')}:</span> <span class="text-slate-600">${inputs[i].value}</span>
+                        </div>
+                    `;
+                }
+            }
+
+            // 1. Tunjuk State Processing
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Mapping to Knowledge Base...';
+            btn.disabled = true;
+            btn.classList.replace('bg-blue-600', 'bg-slate-400');
+            btn.classList.replace('hover:bg-blue-700', 'hover:bg-slate-400');
+
+            setTimeout(() => {
+                scanCount++;
+                
+                // 2. Bina Kad Input Baharu di sebelah kanan
+                const senarai = document.getElementById('senarai-scan');
+                const kadBaru = document.createElement('div');
+                kadBaru.className = "border border-blue-200 rounded-xl p-4 relative ai-processing-bg transition-colors duration-1000";
+                
+                kadBaru.innerHTML = `
+                    <div class="absolute top-4 right-4 text-[9px] font-black uppercase px-2 py-0.5 rounded bg-${warna}-50 text-${warna}-600 border border-${warna}-100">${frameworkTerpilih}</div>
+                    <h4 class="font-bold text-sm text-slate-700 mb-2 pr-16">Situational Scan #${scanCount}</h4>
+                    
+                    <div class="space-y-2 mt-3">
+                        ${dataHtml}
+                        <div class="text-[10px] text-slate-400 italic">+ more points mapped</div>
+                    </div>
+                    
+                    <div class="mt-4 pt-3 border-t border-slate-200 flex items-center gap-2" id="ai-status-${scanCount}">
+                        <i class="fas fa-spinner fa-spin text-blue-500 text-xs"></i>
+                        <span class="text-[10px] text-blue-600 font-bold">AI is cross-referencing this data...</span>
+                    </div>
+                `;
+                
+                senarai.insertBefore(kadBaru, senarai.firstChild);
+                document.getElementById('kiraan-scan').innerText = scanCount;
+
+                // Kosongkan form textarea sahaja (kekalkan radio button)
+                inputs.forEach(input => input.value = '');
+
+                // 3. Kembalikan Butang ke Asal
+                btn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Submit Scan to AI Engine';
+                btn.disabled = false;
+                btn.classList.replace('bg-slate-400', 'bg-blue-600');
+                btn.classList.replace('hover:bg-slate-400', 'hover:bg-blue-700');
+
+                // 4. Simulasi Gamifikasi (Naik Skor)
+                const elemenSkor = document.getElementById('skor-peserta');
+                elemenSkor.classList.add('text-yellow-400', 'scale-125');
+                
+                let skorTarget = skorSekarang + 20; // Situational Analysis dapat 20 mata sebab panjang
+                let interval = setInterval(() => {
+                    skorSekarang++;
+                    elemenSkor.innerHTML = skorSekarang + ' <span class="text-sm text-white/50">pts</span>';
+                    if(skorSekarang >= skorTarget) {
+                        clearInterval(interval);
+                        setTimeout(() => { elemenSkor.classList.remove('text-yellow-400', 'scale-125'); }, 500);
+                    }
+                }, 40);
+
+                // 5. Simulasi AI Selesai Menganalisis
+                setTimeout(() => {
+                    kadBaru.classList.remove('ai-processing-bg', 'border-blue-200');
+                    kadBaru.classList.add('bg-white', 'border-slate-200', 'hover:border-slate-300');
+                    
+                    document.getElementById(`ai-status-${scanCount}`).innerHTML = `
+                        <i class="fas fa-check-circle text-emerald-500 text-xs"></i>
+                        <span class="text-[10px] text-emerald-600 font-bold">Successfully mapped by AI</span>
+                    `;
+                }, 3000);
+
+            }, 1200);
+        }
+
+        // Init borang pertama kali load
+        window.onload = () => {
+            tukarBorang('swot');
+        };
+    </script>
+</body>
+</html>

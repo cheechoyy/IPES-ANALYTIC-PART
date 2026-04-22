@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Root Cause Analysis Input - SME Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .ai-processing-bg { background: linear-gradient(270deg, #fffbeb, #fef3c7, #fffbeb); background-size: 200% 200%; animation: AIProcessing 3s ease infinite; }
+        @keyframes AIProcessing { 0% {background-position: 0% 50%} 50% {background-position: 100% 50%} 100% {background-position: 0% 50%} }
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col">
+
+    <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 shadow-lg relative z-20">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.2) 1px,transparent 1px);background-size:20px 20px;"></div>
+        <div class="max-w-[1200px] mx-auto px-6 py-4 relative flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="peserta_spaf.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to SPAF Hub">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="border-l border-white/20 pl-4 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white text-blue-900 flex items-center justify-center font-black text-lg shadow-md border-2 border-blue-300">AH</div>
+                    <div>
+                        <h1 class="text-lg font-black text-white tracking-wide">Dr. Alina Harun</h1>
+                        <p class="text-indigo-200 text-[10px] font-medium uppercase tracking-widest">Hospital Kuala Lumpur (KKM)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-right">
+                    <div class="text-[10px] text-emerald-300 font-bold uppercase tracking-widest mb-0.5">Contribution Score</div>
+                    <div class="text-2xl font-black text-emerald-400 leading-none transition-all duration-500" id="skor-peserta">145 <span class="text-sm text-white/50">pts</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 w-full max-w-[1200px] mx-auto p-6 flex flex-col gap-6">
+        
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
+            
+            <div class="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-600 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4">
+                <i class="fas fa-sitemap"></i> Node 4: Root Cause Analytics
+            </div>
+            
+            <h2 class="text-xl md:text-2xl font-black text-slate-800 mb-2">Perform Root Cause Analysis (RCA)</h2>
+            <p class="text-sm text-slate-500 max-w-3xl">Select one of the AI-formulated Master Problem Statements. Choose your preferred RCA framework to dig deep and identify the true underlying causes of the problem.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <div class="lg:col-span-7 bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                
+                <form id="form-rca" onsubmit="hantarRCA(event)">
+                    
+                    <div class="mb-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <label class="block text-xs font-bold text-slate-700 mb-2"><i class="fas fa-bullseye text-rose-500 mr-1"></i> Target Problem Statement <span class="text-rose-500">*</span></label>
+                        <select id="input-ps" required class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2.5 text-sm font-medium focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 text-slate-700">
+                            <option value="" disabled selected>Select a Master Problem Statement to analyze...</option>
+                            <option value="PS-01">PS-01: Fragmented EMR Ecosystems Lead to Redundant Data Entry</option>
+                            <option value="PS-02">PS-02: Inadequate Legacy Infrastructure Causes Latency</option>
+                            <option value="PS-03">PS-03: Resistance to Change and Lack of IT Training</option>
+                            <option value="PS-04">PS-04: Vulnerabilities in Patient Data Privacy</option>
+                        </select>
+                    </div>
+
+                    <div class="flex justify-between items-center mb-4 border-b border-slate-100 pb-3">
+                        <h3 class="font-bold text-sm text-slate-800 flex items-center"><i class="fas fa-tools text-amber-500 mr-2"></i> Select RCA Framework</h3>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="framework_rca" value="ishikawa" class="peer sr-only" onchange="tukarBorangRCA('ishikawa')" checked>
+                            <div class="text-center p-3 rounded-xl border-2 border-slate-200 peer-checked:bg-amber-50 peer-checked:border-amber-500 transition-all hover:bg-slate-50">
+                                <i class="fas fa-fish text-xl mb-1 text-slate-400 peer-checked:text-amber-500"></i>
+                                <div class="text-xs font-black text-slate-600 peer-checked:text-amber-700">Ishikawa</div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="framework_rca" value="5whys" class="peer sr-only" onchange="tukarBorangRCA('5whys')">
+                            <div class="text-center p-3 rounded-xl border-2 border-slate-200 peer-checked:bg-orange-50 peer-checked:border-orange-500 transition-all hover:bg-slate-50">
+                                <i class="fas fa-question-circle text-xl mb-1 text-slate-400 peer-checked:text-orange-500"></i>
+                                <div class="text-xs font-black text-slate-600 peer-checked:text-orange-700">5-Whys</div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="framework_rca" value="fmea" class="peer sr-only" onchange="tukarBorangRCA('fmea')">
+                            <div class="text-center p-3 rounded-xl border-2 border-slate-200 peer-checked:bg-indigo-50 peer-checked:border-indigo-500 transition-all hover:bg-slate-50">
+                                <i class="fas fa-clipboard-list text-xl mb-1 text-slate-400 peer-checked:text-indigo-500"></i>
+                                <div class="text-xs font-black text-slate-600 peer-checked:text-indigo-700">FMEA</div>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="framework_rca" value="fta" class="peer sr-only" onchange="tukarBorangRCA('fta')">
+                            <div class="text-center p-3 rounded-xl border-2 border-slate-200 peer-checked:bg-teal-50 peer-checked:border-teal-500 transition-all hover:bg-slate-50">
+                                <i class="fas fa-project-diagram text-xl mb-1 text-slate-400 peer-checked:text-teal-500"></i>
+                                <div class="text-xs font-black text-slate-600 peer-checked:text-teal-700">FTA</div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div id="ruang-input-rca" class="space-y-4 mb-6">
+                        </div>
+
+                    <button type="submit" id="btn-submit-rca" class="w-full bg-amber-500 text-white text-sm font-bold py-3 rounded-xl shadow-sm hover:bg-amber-600 transition flex items-center justify-center">
+                        <i class="fas fa-paper-plane mr-2"></i> Submit RCA to AI Engine
+                    </button>
+                </form>
+            </div>
+
+            <div class="lg:col-span-5 bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col h-full overflow-hidden">
+                <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                    <h3 class="font-bold text-sm text-slate-800 flex items-center"><i class="fas fa-history text-amber-500 mr-2"></i> My RCA Logs</h3>
+                    <span class="text-[10px] bg-slate-200 text-slate-600 px-2 py-1 rounded font-bold uppercase tracking-wider"><span id="kiraan-rca">0</span> Submitted</span>
+                </div>
+                
+                <div class="flex-1 overflow-y-auto p-6 space-y-4" id="senarai-rca">
+                    
+                    <div id="rca-kosong" class="text-center py-10">
+                        <i class="fas fa-inbox text-4xl text-slate-300 mb-3"></i>
+                        <p class="text-xs text-slate-400">You haven't submitted any RCA yet.<br>Select a problem and start analyzing.</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let rcaCount = 0;
+        let skorSekarang = 145;
+
+        // Konfigurasi Input Dinamik RCA
+        const rcaConfig = {
+            'ishikawa': {
+                color: 'amber',
+                icon: 'fa-fish',
+                fields: [
+                    { name: 'Technology / System', desc: 'Hardware limitations, software bugs, API issues' },
+                    { name: 'Process / Policy', desc: 'Outdated SOPs, procurement rules, workflow gaps' },
+                    { name: 'People / Culture', desc: 'Lack of training, resistance to change, human error' },
+                    { name: 'Environment', desc: 'Physical infrastructure, server room conditions' }
+                ]
+            },
+            '5whys': {
+                color: 'orange',
+                icon: 'fa-question-circle',
+                fields: [
+                    { name: 'Why #1?', desc: 'Why did the problem occur?' },
+                    { name: 'Why #2?', desc: 'Why did the answer in #1 happen?' },
+                    { name: 'Why #3?', desc: 'Why did the answer in #2 happen?' },
+                    { name: 'Why #4?', desc: 'Keep drilling down...' },
+                    { name: 'Why #5? (Root Cause)', desc: 'The fundamental systemic cause.' }
+                ]
+            },
+            'fmea': {
+                color: 'indigo',
+                icon: 'fa-clipboard-list',
+                fields: [
+                    { name: 'Failure Mode', desc: 'How could the system or process fail?' },
+                    { name: 'Potential Effects', desc: 'What is the impact on the patient or agency?' },
+                    { name: 'Current Controls', desc: 'How are we detecting or preventing this now?' }
+                ]
+            },
+            'fta': {
+                color: 'teal',
+                icon: 'fa-project-diagram',
+                fields: [
+                    { name: 'Top Event', desc: 'Define the critical failure (e.g., System Downtime)' },
+                    { name: 'Basic Event 1', desc: 'First condition required for failure' },
+                    { name: 'Basic Event 2', desc: 'Second condition required (AND/OR logic)' }
+                ]
+            }
+        };
+
+        // Fungsi menukar borang RCA
+        function tukarBorangRCA(jenis) {
+            const container = document.getElementById('ruang-input-rca');
+            const config = rcaConfig[jenis];
+            let html = '';
+
+            config.fields.forEach((field, index) => {
+                // Untuk 5-whys, buat input wajib (required) berurutan
+                let isRequired = (jenis === '5whys' && index < 3) ? 'required' : (jenis !== '5whys' ? 'required' : '');
+                
+                html += `
+                    <div class="fade-in">
+                        <label class="block text-xs font-bold text-slate-700 mb-1 flex justify-between items-end">
+                            <span>${field.name} ${isRequired ? '<span class="text-rose-500">*</span>' : ''}</span>
+                            <span class="text-[9px] font-normal text-slate-400">${field.desc}</span>
+                        </label>
+                        <input type="text" ${isRequired} class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-${config.color}-500 focus:ring-1 focus:ring-${config.color}-500 text-slate-700 input-rca" data-label="${field.name}" placeholder="...">
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Fungsi Hantar RCA
+        function hantarRCA(event) {
+            event.preventDefault();
+
+            const targetPS = document.getElementById('input-ps').value;
+            const btn = document.getElementById('btn-submit-rca');
+            const rcaTerpilih = document.querySelector('input[name="framework_rca"]:checked').value;
+            const configT = rcaConfig[rcaTerpilih];
+            const warna = configT.color;
+
+            // Kumpul data input
+            const inputs = document.querySelectorAll('.input-rca');
+            let dataHtml = '';
+            let validInputsCount = 0;
+            
+            inputs.forEach(input => {
+                if(input.value.trim() !== '') {
+                    validInputsCount++;
+                    // Tunjuk max 2 input dalam log card supaya tak terlalu panjang
+                    if(validInputsCount <= 2) {
+                        dataHtml += `
+                            <div class="text-xs mb-1">
+                                <span class="font-bold text-slate-800">${input.getAttribute('data-label')}:</span> <span class="text-slate-600">${input.value}</span>
+                            </div>
+                        `;
+                    }
+                }
+            });
+
+            // Simulasi Processing AI
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Analyzing Root Cause...';
+            btn.disabled = true;
+            btn.classList.replace('bg-amber-500', 'bg-slate-400');
+            btn.classList.replace('hover:bg-amber-600', 'hover:bg-slate-400');
+
+            setTimeout(() => {
+                rcaCount++;
+                document.getElementById('rca-kosong')?.remove(); // Buang mesej kosong
+                
+                // Bina Kad Log
+                const senarai = document.getElementById('senarai-rca');
+                const kadBaru = document.createElement('div');
+                kadBaru.className = `border border-${warna}-200 rounded-xl p-4 relative ai-processing-bg transition-colors duration-1000`;
+                
+                kadBaru.innerHTML = `
+                    <div class="absolute top-4 right-4 text-[9px] font-black uppercase px-2 py-0.5 rounded bg-${warna}-50 text-${warna}-600 border border-${warna}-100"><i class="fas ${configT.icon} mr-1"></i> ${rcaTerpilih}</div>
+                    <div class="inline-block bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[9px] font-bold mb-2 border border-slate-200">Target: ${targetPS}</div>
+                    
+                    <div class="mt-2 bg-white/50 p-2 rounded border border-${warna}-100">
+                        ${dataHtml}
+                        ${validInputsCount > 2 ? `<div class="text-[9px] text-slate-400 italic mt-1">+ ${validInputsCount - 2} more parameters mapped</div>` : ''}
+                    </div>
+                    
+                    <div class="mt-3 pt-3 border-t border-slate-200 flex items-center gap-2" id="ai-status-rca-${rcaCount}">
+                        <i class="fas fa-spinner fa-spin text-${warna}-500 text-xs"></i>
+                        <span class="text-[10px] text-${warna}-600 font-bold">AI validating against 1.2M Corpus...</span>
+                    </div>
+                `;
+                
+                senarai.insertBefore(kadBaru, senarai.firstChild);
+                document.getElementById('kiraan-rca').innerText = rcaCount;
+
+                // Reset form
+                document.getElementById('input-ps').value = '';
+                inputs.forEach(input => input.value = '');
+
+                // Restore Button
+                btn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Submit RCA to AI Engine';
+                btn.disabled = false;
+                btn.classList.replace('bg-slate-400', 'bg-amber-500');
+                btn.classList.replace('hover:bg-slate-400', 'hover:bg-amber-600');
+
+                // Gamification Score
+                const elemenSkor = document.getElementById('skor-peserta');
+                elemenSkor.classList.add('text-yellow-400', 'scale-125');
+                
+                let skorTarget = skorSekarang + 15; 
+                let interval = setInterval(() => {
+                    skorSekarang++;
+                    elemenSkor.innerHTML = skorSekarang + ' <span class="text-sm text-white/50">pts</span>';
+                    if(skorSekarang >= skorTarget) {
+                        clearInterval(interval);
+                        setTimeout(() => { elemenSkor.classList.remove('text-yellow-400', 'scale-125'); }, 500);
+                    }
+                }, 40);
+
+                // AI Validation Complete
+                setTimeout(() => {
+                    kadBaru.classList.remove('ai-processing-bg', `border-${warna}-200`);
+                    kadBaru.classList.add('bg-white', 'border-slate-200', 'hover:border-slate-300');
+                    
+                    document.getElementById(`ai-status-rca-${rcaCount}`).innerHTML = `
+                        <i class="fas fa-check-circle text-emerald-500 text-xs"></i>
+                        <span class="text-[10px] text-emerald-600 font-bold">Root Cause Validated & Registered</span>
+                    `;
+                }, 3500);
+
+            }, 1200);
+        }
+
+        // Initialize first form
+        window.onload = () => {
+            tukarBorangRCA('ishikawa');
+        };
+    </script>
+</body>
+</html>

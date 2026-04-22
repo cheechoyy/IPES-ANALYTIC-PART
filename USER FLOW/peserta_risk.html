@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Assessment - SME Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .evaluated-card { border-color: #10b981 !important; background-color: #ecfdf5 !important; }
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px; width: 20px; border-radius: 50%; background: #ef4444; cursor: pointer; margin-top: -8px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #e2e8f0; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col">
+
+    <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 shadow-lg relative z-20">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.2) 1px,transparent 1px);background-size:20px 20px;"></div>
+        <div class="max-w-[1200px] mx-auto px-6 py-4 relative flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="peserta_spaf.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to SPAF Hub">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="border-l border-white/20 pl-4 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white text-blue-900 flex items-center justify-center font-black text-lg shadow-md border-2 border-blue-300">AH</div>
+                    <div>
+                        <h1 class="text-lg font-black text-white tracking-wide">Dr. Alina Harun</h1>
+                        <p class="text-indigo-200 text-[10px] font-medium uppercase tracking-widest">Hospital Kuala Lumpur (KKM)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-right">
+                    <div class="text-[10px] text-emerald-300 font-bold uppercase tracking-widest mb-0.5">Contribution Score</div>
+                    <div class="text-2xl font-black text-emerald-400 leading-none transition-all duration-500" id="skor-peserta">155 <span class="text-sm text-white/50">pts</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 w-full max-w-[1200px] mx-auto p-6 flex flex-col gap-6">
+        
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-red-500"></div>
+            <div class="absolute -right-10 -bottom-10 opacity-5"><i class="fas fa-radiation text-9xl text-red-500"></i></div>
+            
+            <div class="inline-flex items-center gap-1.5 bg-red-50 border border-red-200 text-red-600 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4 relative z-10">
+                <i class="fas fa-shield-alt"></i> Node 6: Predictive Risk Analysis
+            </div>
+            
+            <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 relative z-10">
+                <div class="flex-1">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-800 mb-2">Evaluate AI Risk Projections</h2>
+                    <p class="text-sm text-slate-500 max-w-3xl leading-relaxed">The AI has projected several critical risks based on the root causes identified. Please evaluate the <strong>Probability</strong> and <strong>Impact</strong> of these risks occurring at your agency, and propose mitigation strategies.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center min-w-[180px]">
+                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Pending Evaluation</div>
+                    <div class="text-3xl font-black text-red-600"><span id="kiraan-semakan">3</span></div>
+                    <div class="text-[10px] text-slate-500 mt-1">Risks Need Assessment</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <div class="lg:col-span-5 flex flex-col gap-4">
+                
+                <div class="bg-white rounded-xl shadow-sm border-2 border-slate-200 overflow-hidden transition-all duration-300 cursor-pointer hover:border-red-400" id="kad-risk-1" onclick="pilihRisk(1, 'Complete System Blackout')">
+                    <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                        <span class="bg-red-100 text-red-700 font-black px-2 py-0.5 rounded text-[10px] uppercase">Extreme Risk</span>
+                        <i class="fas fa-server text-slate-400"></i>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-black text-sm text-slate-800 mb-2">Complete System Blackout</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-3">Triggered by outdated server hardware unable to handle the 30% yearly increase in patient data volume.</p>
+                        
+                        <div class="flex items-center justify-between" id="status-bar-1">
+                            <span class="text-[10px] font-bold text-amber-500 uppercase tracking-widest animate-pulse"><i class="fas fa-exclamation-circle"></i> Requires Evaluation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border-2 border-slate-200 overflow-hidden transition-all duration-300 cursor-pointer hover:border-red-400" id="kad-risk-2" onclick="pilihRisk(2, 'Massive PDPA Data Breach')">
+                    <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                        <span class="bg-orange-100 text-orange-700 font-black px-2 py-0.5 rounded text-[10px] uppercase">High Risk</span>
+                        <i class="fas fa-user-secret text-slate-400"></i>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-black text-sm text-slate-800 mb-2">Massive PDPA Data Breach</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-3">Triggered by clinical staff bypassing unintegrated systems using consumer messaging apps (e.g., WhatsApp) to share patient data.</p>
+                        
+                        <div class="flex items-center justify-between" id="status-bar-2">
+                            <span class="text-[10px] font-bold text-amber-500 uppercase tracking-widest animate-pulse"><i class="fas fa-exclamation-circle"></i> Requires Evaluation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border-2 border-slate-200 overflow-hidden transition-all duration-300 cursor-pointer hover:border-red-400" id="kad-risk-3" onclick="pilihRisk(3, 'High Clinical Attrition (Burnout)')">
+                    <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                        <span class="bg-amber-100 text-amber-700 font-black px-2 py-0.5 rounded text-[10px] uppercase">Medium Risk</span>
+                        <i class="fas fa-user-md text-slate-400"></i>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-black text-sm text-slate-800 mb-2">High Clinical Attrition (Burnout)</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-3">Triggered by fragmented EMR ecosystems causing 2 hours of unpaid manual data entry overtime daily per doctor.</p>
+                        
+                        <div class="flex items-center justify-between" id="status-bar-3">
+                            <span class="text-[10px] font-bold text-amber-500 uppercase tracking-widest animate-pulse"><i class="fas fa-exclamation-circle"></i> Requires Evaluation</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-7">
+                
+                <div id="ruang-kosong" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-10 flex flex-col items-center justify-center text-center h-full min-h-[400px]">
+                    <i class="fas fa-hand-pointer text-5xl text-slate-200 mb-4"></i>
+                    <h3 class="font-bold text-slate-400">Select a Projected Risk</h3>
+                    <p class="text-xs text-slate-400 mt-2 max-w-xs">Click on any card on the left to evaluate its likelihood and impact for your specific agency.</p>
+                </div>
+
+                <div id="ruang-penilaian" class="bg-white rounded-2xl shadow-sm border border-red-200 p-6 hidden flex flex-col h-full relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-red-50 rounded-bl-full z-0"></div>
+                    
+                    <h3 class="font-black text-lg text-slate-800 mb-1 relative z-10">Risk Evaluation Panel</h3>
+                    <p class="text-xs text-slate-500 mb-6 border-b border-slate-100 pb-4 relative z-10">Evaluating: <span id="risk-title-label" class="font-bold text-red-600">Complete System Blackout</span></p>
+
+                    <form id="form-risk" onsubmit="hantarPenilaian(event)" class="flex-1 flex flex-col relative z-10">
+                        <input type="hidden" id="current-risk-id" value="">
+
+                        <div class="mb-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <div class="flex justify-between items-end mb-2">
+                                <label class="block text-xs font-bold text-slate-700">Probability (Likelihood)</label>
+                                <span class="text-sm font-black text-red-600"><span id="val-prob">50</span>%</span>
+                            </div>
+                            <p class="text-[9px] text-slate-500 mb-3">How likely is this to happen at your agency within the next 12 months?</p>
+                            <input type="range" id="slider-prob" min="0" max="100" value="50" oninput="updateSlider('prob', this.value)">
+                            <div class="flex justify-between text-[9px] text-slate-400 font-bold mt-2 uppercase">
+                                <span>Unlikely (0)</span>
+                                <span>Certain (100)</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <div class="flex justify-between items-end mb-2">
+                                <label class="block text-xs font-bold text-slate-700">Impact Severity</label>
+                                <span class="text-sm font-black text-red-600"><span id="val-impact">50</span>/100</span>
+                            </div>
+                            <p class="text-[9px] text-slate-500 mb-3">If this happens, how severe would the disruption be to operations or patient safety?</p>
+                            <input type="range" id="slider-impact" min="0" max="100" value="50" oninput="updateSlider('impact', this.value)">
+                            <div class="flex justify-between text-[9px] text-slate-400 font-bold mt-2 uppercase">
+                                <span>Minor (0)</span>
+                                <span>Catastrophic (100)</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-6 flex-1">
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">Proposed Mitigation / Current Control <span class="text-red-500">*</span></label>
+                            <textarea id="input-mitigasi" required rows="3" placeholder="What should be done, or what is currently being done to prevent this?..." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 text-slate-700 resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" id="btn-submit-risk" class="w-full bg-red-600 text-white text-sm font-bold py-3 rounded-xl shadow-sm hover:bg-red-700 transition flex items-center justify-center mt-auto">
+                            <i class="fas fa-save mr-2"></i> Submit Evaluation to Matrix
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let skorSekarang = 155;
+        let pendingCount = 3;
+
+        // Fungsi Update Nombor Slider secara Live
+        function updateSlider(type, value) {
+            document.getElementById(`val-${type}`).innerText = value;
+        }
+
+        function pilihRisk(id, title) {
+            // Highlight kad terpilih
+            document.querySelectorAll('[id^="kad-risk-"]').forEach(kad => {
+                if(!kad.classList.contains('evaluated-card')) {
+                    kad.classList.remove('border-red-500', 'shadow-md');
+                    kad.classList.add('border-slate-200');
+                }
+            });
+            
+            const kadPilih = document.getElementById(`kad-risk-${id}`);
+            if(!kadPilih.classList.contains('evaluated-card')) {
+                kadPilih.classList.remove('border-slate-200');
+                kadPilih.classList.add('border-red-500', 'shadow-md');
+            }
+
+            // Tunjuk panel borang
+            document.getElementById('ruang-kosong').classList.add('hidden');
+            document.getElementById('ruang-penilaian').classList.remove('hidden');
+            
+            // Set ID dan Tajuk dalam borang
+            document.getElementById('risk-title-label').innerText = title;
+            document.getElementById('current-risk-id').value = id;
+
+            // Reset form ke nilai default (50/50)
+            document.getElementById('form-risk').reset();
+            document.getElementById('slider-prob').value = 50;
+            document.getElementById('slider-impact').value = 50;
+            updateSlider('prob', 50);
+            updateSlider('impact', 50);
+        }
+
+        function hantarPenilaian(event) {
+            event.preventDefault();
+
+            const btn = document.getElementById('btn-submit-risk');
+            const riskId = document.getElementById('current-risk-id').value;
+            const probVal = document.getElementById('slider-prob').value;
+            const impactVal = document.getElementById('slider-impact').value;
+            
+            // Simulasi Processing
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Updating Risk Matrix...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75');
+
+            setTimeout(() => {
+                // Kemaskini Kad Risk di sebelah kiri
+                const kad = document.getElementById(`kad-risk-${riskId}`);
+                const statusBar = document.getElementById(`status-bar-${riskId}`);
+                
+                kad.classList.remove('border-red-500', 'border-slate-200', 'shadow-md', 'hover:border-red-400');
+                kad.classList.add('evaluated-card');
+                
+                statusBar.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <span class="bg-emerald-100 text-emerald-700 font-bold px-2 py-0.5 rounded text-[9px] uppercase"><i class="fas fa-check mr-1"></i> Evaluated</span>
+                        <span class="text-[10px] text-slate-500 font-medium">Prob: ${probVal}% | Imp: ${impactVal}</span>
+                    </div>
+                    <button onclick="pilihRisk(${riskId}, document.getElementById('risk-title-label').innerText)" class="text-[9px] text-slate-400 hover:text-emerald-600 underline">Edit</button>
+                `;
+
+                // Tolak kiraan pending (hanya jika belum pernah dinilai)
+                if(!kad.dataset.evaluated) {
+                    pendingCount--;
+                    document.getElementById('kiraan-semakan').innerText = pendingCount;
+                    kad.dataset.evaluated = "true";
+                    
+                    // Tambah Skor (Gamifikasi)
+                    const elemenSkor = document.getElementById('skor-peserta');
+                    elemenSkor.classList.add('text-yellow-400', 'scale-125');
+                    
+                    let skorTarget = skorSekarang + 10; 
+                    let interval = setInterval(() => {
+                        skorSekarang++;
+                        elemenSkor.innerHTML = skorSekarang + ' <span class="text-sm text-white/50">pts</span>';
+                        if(skorSekarang >= skorTarget) {
+                            clearInterval(interval);
+                            setTimeout(() => { elemenSkor.classList.remove('text-yellow-400', 'scale-125'); }, 500);
+                        }
+                    }, 50);
+                }
+
+                // Tutup borang & Restore Button
+                document.getElementById('ruang-kosong').classList.remove('hidden');
+                document.getElementById('ruang-penilaian').classList.add('hidden');
+                
+                btn.innerHTML = '<i class="fas fa-save mr-2"></i> Submit Evaluation to Matrix';
+                btn.disabled = false;
+                btn.classList.remove('opacity-75');
+
+                if(pendingCount === 0) {
+                    setTimeout(() => alert("Excellent! You have evaluated all risk projections. Phase 2 (Cognitive Extraction) is now fully complete for you. You may return to the SPAF Hub."), 500);
+                }
+ 
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pain Points Input - SME Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .ai-processing-bg { background: linear-gradient(270deg, #fff1f2, #ffe4e6, #fff1f2); background-size: 200% 200%; animation: AIProcessing 3s ease infinite; }
+        @keyframes AIProcessing { 0% {background-position: 0% 50%} 50% {background-position: 100% 50%} 100% {background-position: 0% 50%} }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col">
+
+    <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 shadow-lg relative z-20">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.2) 1px,transparent 1px);background-size:20px 20px;"></div>
+        <div class="max-w-[1200px] mx-auto px-6 py-4 relative flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="peserta_spaf.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to SPAF Hub">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="border-l border-white/20 pl-4 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white text-blue-900 flex items-center justify-center font-black text-lg shadow-md border-2 border-blue-300">AH</div>
+                    <div>
+                        <h1 class="text-lg font-black text-white tracking-wide">Dr. Alina Harun</h1>
+                        <p class="text-indigo-200 text-[10px] font-medium uppercase tracking-widest">Hospital Kuala Lumpur (KKM)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-right">
+                    <div class="text-[10px] text-emerald-300 font-bold uppercase tracking-widest mb-0.5">Contribution Score</div>
+                    <div class="text-2xl font-black text-emerald-400 leading-none transition-all duration-500" id="skor-peserta">135 <span class="text-sm text-white/50">pts</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 w-full max-w-[1200px] mx-auto p-6 flex flex-col gap-6">
+        
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-rose-500"></div>
+            
+            <div class="inline-flex items-center gap-1.5 bg-rose-50 border border-rose-200 text-rose-600 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4">
+                <i class="fas fa-exclamation-triangle"></i> Node 2: Analytical Framework
+            </div>
+            
+            <h2 class="text-xl md:text-2xl font-black text-slate-800 mb-2">Identify Your Core Pain Points</h2>
+            
+            <div class="bg-rose-50/50 border border-rose-100 rounded-xl p-5 mt-4 relative">
+                <div class="absolute -right-4 -bottom-4 opacity-10"><i class="fas fa-robot text-8xl text-rose-500"></i></div>
+                <h3 class="text-[10px] font-black text-rose-500 uppercase tracking-widest mb-2"><i class="fas fa-comment-dots mr-1"></i> AI Trigger Prompt</h3>
+                <p class="text-slate-700 font-medium italic relative z-10">"Based on your daily operational experience, what is the <span class="text-rose-600 font-bold underline decoration-rose-300">biggest frustration or bottleneck</span> that slows down your agency's workflow?"</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <div class="lg:col-span-5 bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <h3 class="font-bold text-sm text-slate-800 mb-4 border-b border-slate-100 pb-3 flex items-center"><i class="fas fa-pen text-indigo-500 mr-2"></i> Submit New Pain Point</h3>
+                
+                <form id="form-painpoint" onsubmit="hantarPainPoint(event)" class="space-y-5">
+                    
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1.5">Primary Domain <span class="text-rose-500">*</span></label>
+                        <select id="input-domain" required class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 text-slate-700">
+                            <option value="" disabled selected>Select a domain...</option>
+                            <option value="IT Integration / System Silos">IT Integration / System Silos</option>
+                            <option value="Legacy Infrastructure">Legacy Infrastructure (Hardware/Network)</option>
+                            <option value="Human Capital & Training">Human Capital & Training</option>
+                            <option value="Data Security & Privacy">Data Security & Privacy</option>
+                            <option value="Policy & Administration">Policy & Administration</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1.5">Impact Severity <span class="text-rose-500">*</span></label>
+                        <div class="flex gap-4">
+                            <label class="flex-1 cursor-pointer">
+                                <input type="radio" name="severity" value="Low" class="peer sr-only" required>
+                                <div class="text-center py-2 px-3 text-xs font-bold rounded-lg border border-slate-200 text-slate-400 peer-checked:bg-amber-50 peer-checked:border-amber-400 peer-checked:text-amber-700 transition">Moderate</div>
+                            </label>
+                            <label class="flex-1 cursor-pointer">
+                                <input type="radio" name="severity" value="High" class="peer sr-only">
+                                <div class="text-center py-2 px-3 text-xs font-bold rounded-lg border border-slate-200 text-slate-400 peer-checked:bg-orange-50 peer-checked:border-orange-400 peer-checked:text-orange-700 transition">High</div>
+                            </label>
+                            <label class="flex-1 cursor-pointer">
+                                <input type="radio" name="severity" value="Critical" class="peer sr-only">
+                                <div class="text-center py-2 px-3 text-xs font-bold rounded-lg border border-slate-200 text-slate-400 peer-checked:bg-rose-50 peer-checked:border-rose-400 peer-checked:text-rose-700 transition">Critical</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1.5">Describe the Issue <span class="text-rose-500">*</span></label>
+                        <textarea id="input-desc" required rows="4" placeholder="Example: I have to log in to 3 different systems just to discharge one patient..." class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 text-slate-700 resize-none"></textarea>
+                        <p class="text-[9px] text-slate-400 mt-1">Be as specific as possible. The AI will group similar complaints together.</p>
+                    </div>
+
+                    <button type="submit" id="btn-submit" class="w-full bg-rose-600 text-white text-sm font-bold py-3 rounded-xl shadow-sm hover:bg-rose-700 transition flex items-center justify-center">
+                        <i class="fas fa-paper-plane mr-2"></i> Submit to AI Engine
+                    </button>
+                </form>
+            </div>
+
+            <div class="lg:col-span-7 bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col h-full overflow-hidden">
+                <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                    <h3 class="font-bold text-sm text-slate-800 flex items-center"><i class="fas fa-list-ul text-rose-500 mr-2"></i> My Logged Pain Points</h3>
+                    <span class="text-[10px] bg-slate-200 text-slate-600 px-2 py-1 rounded font-bold uppercase tracking-wider"><span id="kiraan-aduan">2</span> Entries</span>
+                </div>
+                
+                <div class="flex-1 overflow-y-auto p-6 space-y-4" id="senarai-aduan">
+                    
+                    <div class="border border-slate-200 rounded-xl p-4 hover:border-slate-300 transition relative">
+                        <div class="absolute top-4 right-4 text-[9px] font-black uppercase px-2 py-0.5 rounded bg-rose-50 text-rose-600 border border-rose-100">Critical</div>
+                        <div class="flex gap-2 items-center mb-2">
+                            <span class="bg-indigo-100 text-indigo-700 text-[9px] font-bold px-2 py-0.5 rounded">IT Integration / System Silos</span>
+                        </div>
+                        <p class="text-sm text-slate-700 leading-relaxed">"Patient history from the outpatient clinic doesn't sync with the main hospital pharmacy. We have to print out physical slips."</p>
+                        
+                        <div class="mt-3 pt-3 border-t border-slate-100 flex items-center gap-2">
+                            <i class="fas fa-robot text-slate-400 text-xs"></i>
+                            <span class="text-[10px] text-slate-500 font-medium">AI Clustered into: <strong class="text-indigo-600">PS-01: Fragmented EMR Ecosystems</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl p-4 hover:border-slate-300 transition relative">
+                        <div class="absolute top-4 right-4 text-[9px] font-black uppercase px-2 py-0.5 rounded bg-orange-50 text-orange-600 border border-orange-100">High</div>
+                        <div class="flex gap-2 items-center mb-2">
+                            <span class="bg-blue-100 text-blue-700 text-[9px] font-bold px-2 py-0.5 rounded">Legacy Infrastructure</span>
+                        </div>
+                        <p class="text-sm text-slate-700 leading-relaxed">"The local server goes down every Friday afternoon during peak hours, causing massive queues at the registration counter."</p>
+                        
+                        <div class="mt-3 pt-3 border-t border-slate-100 flex items-center gap-2">
+                            <i class="fas fa-robot text-slate-400 text-xs"></i>
+                            <span class="text-[10px] text-slate-500 font-medium">AI Clustered into: <strong class="text-indigo-600">PS-02: Operational Latency</strong></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let aduanCount = 2;
+        let skorSekarang = 135;
+
+        function hantarPainPoint(event) {
+            event.preventDefault(); // Halang form dari reload page
+
+            const domain = document.getElementById('input-domain').value;
+            const severity = document.querySelector('input[name="severity"]:checked').value;
+            const desc = document.getElementById('input-desc').value;
+            const btn = document.getElementById('btn-submit');
+
+            // 1. Tunjuk State Processing (Simulasi Hantar ke Backend)
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Analyzing Semantics...';
+            btn.disabled = true;
+            btn.classList.replace('bg-rose-600', 'bg-slate-400');
+            btn.classList.replace('hover:bg-rose-700', 'hover:bg-slate-400');
+
+            setTimeout(() => {
+                aduanCount++;
+                
+                // Set warna badge severity
+                let sevWarna = '';
+                if(severity === 'Critical') sevWarna = 'bg-rose-50 text-rose-600 border-rose-100';
+                else if(severity === 'High') sevWarna = 'bg-orange-50 text-orange-600 border-orange-100';
+                else sevWarna = 'bg-amber-50 text-amber-600 border-amber-100';
+
+                // 2. Bina Kad Input Baharu (Tunjuk AI Processing)
+                const senarai = document.getElementById('senarai-aduan');
+                const kadBaru = document.createElement('div');
+                kadBaru.className = "border border-rose-200 rounded-xl p-4 relative ai-processing-bg transition-colors duration-1000";
+                
+                kadBaru.innerHTML = `
+                    <div class="absolute top-4 right-4 text-[9px] font-black uppercase px-2 py-0.5 rounded ${sevWarna}">${severity}</div>
+                    <div class="flex gap-2 items-center mb-2">
+                        <span class="bg-indigo-100 text-indigo-700 text-[9px] font-bold px-2 py-0.5 rounded">${domain}</span>
+                    </div>
+                    <p class="text-sm text-slate-700 leading-relaxed font-medium">"${desc}"</p>
+                    
+                    <div class="mt-3 pt-3 border-t border-slate-200 flex items-center gap-2" id="ai-status-${aduanCount}">
+                        <i class="fas fa-spinner fa-spin text-rose-500 text-xs"></i>
+                        <span class="text-[10px] text-rose-600 font-bold">AI is clustering this input...</span>
+                    </div>
+                `;
+                
+                senarai.insertBefore(kadBaru, senarai.firstChild);
+                
+                // Kemaskini Kiraan
+                document.getElementById('kiraan-aduan').innerText = aduanCount;
+
+                // Kosongkan form
+                document.getElementById('form-painpoint').reset();
+
+                // 3. Kembalikan Butang ke Asal
+                btn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Submit to AI Engine';
+                btn.disabled = false;
+                btn.classList.replace('bg-slate-400', 'bg-rose-600');
+                btn.classList.replace('hover:bg-slate-400', 'hover:bg-rose-700');
+
+                // 4. Simulasi Gamifikasi (Naik Skor)
+                const elemenSkor = document.getElementById('skor-peserta');
+                elemenSkor.classList.add('text-yellow-400', 'scale-125');
+                
+                let skorTarget = skorSekarang + 10;
+                let interval = setInterval(() => {
+                    skorSekarang++;
+                    elemenSkor.innerHTML = skorSekarang + ' <span class="text-sm text-white/50">pts</span>';
+                    if(skorSekarang >= skorTarget) {
+                        clearInterval(interval);
+                        setTimeout(() => { elemenSkor.classList.remove('text-yellow-400', 'scale-125'); }, 500);
+                    }
+                }, 50);
+
+                // 5. Simulasi AI Selesai Menganalisis
+                setTimeout(() => {
+                    kadBaru.classList.remove('ai-processing-bg', 'border-rose-200');
+                    kadBaru.classList.add('bg-white', 'border-slate-200', 'hover:border-slate-300');
+                    
+                    document.getElementById(`ai-status-${aduanCount}`).innerHTML = `
+                        <i class="fas fa-robot text-slate-400 text-xs"></i>
+                        <span class="text-[10px] text-slate-500 font-medium">AI Clustered into: <strong class="text-indigo-600">Pending Master Statement Formulation</strong></span>
+                    `;
+                }, 3500); // AI siap proses selepas 3.5 saat
+
+            }, 1200); // delay submit 1.2 saat
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Validation - SME Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .verified-card { border-color: #475569 !important; background-color: #f8fafc !important; }
+        .ai-processing-bg { background: linear-gradient(270deg, #f8fafc, #f1f5f9, #f8fafc); background-size: 200% 200%; animation: AIProcessing 2s ease infinite; }
+        @keyframes AIProcessing { 0% {background-position: 0% 50%} 50% {background-position: 100% 50%} 100% {background-position: 0% 50%} }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col">
+
+    <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 shadow-lg relative z-20">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.2) 1px,transparent 1px);background-size:20px 20px;"></div>
+        <div class="max-w-[1400px] mx-auto px-6 py-4 relative flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="peserta_overview.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to Journey Map">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="border-l border-white/20 pl-4 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white text-blue-900 flex items-center justify-center font-black text-lg shadow-md border-2 border-blue-300">AH</div>
+                    <div>
+                        <h1 class="text-lg font-black text-white tracking-wide">Dr. Alina Harun</h1>
+                        <p class="text-indigo-200 text-[10px] font-medium uppercase tracking-widest">Hospital Kuala Lumpur (KKM)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-right">
+                    <div class="text-[10px] text-emerald-300 font-bold uppercase tracking-widest mb-0.5">Contribution Score</div>
+                    <div class="text-2xl font-black text-emerald-400 leading-none transition-all duration-500" id="skor-peserta">245 <span class="text-sm text-white/50">pts</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 w-full max-w-[1400px] mx-auto p-6 flex flex-col gap-6">
+        
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-slate-600"></div>
+            <div class="absolute -right-10 -bottom-10 opacity-5"><i class="fas fa-wallet text-9xl text-slate-500"></i></div>
+            
+            <div class="inline-flex items-center gap-1.5 bg-slate-100 border border-slate-200 text-slate-700 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4 relative z-10">
+                <i class="fas fa-file-invoice-dollar"></i> Node 8: Resource Validation
+            </div>
+            
+            <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 relative z-10">
+                <div class="flex-1">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-800 mb-2">Final Phase 1 Budget Validation</h2>
+                    <p class="text-sm text-slate-500 leading-relaxed max-w-4xl">The AI has generated the immediate fund request (RM 350M) for Phase 1 based on the approved Action Plan. Please review the budget assigned to the tasks you pledged. You may accept the AI projection or request adjustments before the final Blueprint is compiled.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center min-w-[180px]">
+                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Pending Approval</div>
+                    <div class="text-3xl font-black text-slate-600"><span id="kiraan-bajet">2</span> <span class="text-lg text-slate-400">/ 2</span></div>
+                    <div class="text-[10px] text-slate-500 mt-1">Pledged Tasks</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start h-full">
+            
+            <div class="lg:col-span-7 space-y-6">
+                
+                <h3 class="font-black text-lg text-slate-800 flex items-center mb-2"><i class="fas fa-coins text-slate-500 mr-2"></i> Budget Allocation for Your Pledges</h3>
+                
+                <div class="bg-white rounded-xl shadow-sm border-2 border-slate-200 overflow-hidden transition-all duration-300" id="kad-bajet-1">
+                    <div class="bg-slate-50 px-5 py-3 border-b border-slate-200 flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-cyan-100 text-cyan-700 font-bold px-2 py-0.5 rounded text-[10px] uppercase">Task: Y1-T01</span>
+                        </div>
+                        <span class="text-[10px] text-slate-500 font-bold px-2 py-1 rounded bg-slate-200 uppercase tracking-wider">CAPEX</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="font-black text-base text-slate-800 mb-1">National Health API Gateway Integration</h4>
+                                <p class="text-xs text-slate-500 max-w-sm">Initial setup and integration across 10 pilot hospitals.</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-0.5">AI Projected Cost</div>
+                                <div class="text-2xl font-black text-slate-700">RM 180M</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl mt-4" id="form-bajet-container-1">
+                            <h5 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Validation Decision <span class="text-rose-500">*</span></h5>
+                            <form id="form-bajet-1" onsubmit="simpanBajet(event, 1)" class="space-y-4">
+                                
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="cursor-pointer group">
+                                        <input type="radio" name="keputusan_bajet_1" value="accept" class="peer sr-only" required onchange="tukarRuangUlasan(1, 'accept')">
+                                        <div class="text-center py-2 px-3 rounded-lg border border-slate-200 peer-checked:bg-emerald-50 peer-checked:border-emerald-500 transition-all hover:bg-slate-100">
+                                            <div class="text-xs font-bold text-slate-600 peer-checked:text-emerald-700"><i class="fas fa-check mr-1"></i> Accept AI Estimate</div>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer group">
+                                        <input type="radio" name="keputusan_bajet_1" value="adjust" class="peer sr-only" onchange="tukarRuangUlasan(1, 'adjust')">
+                                        <div class="text-center py-2 px-3 rounded-lg border border-slate-200 peer-checked:bg-amber-50 peer-checked:border-amber-500 transition-all hover:bg-slate-100">
+                                            <div class="text-xs font-bold text-slate-600 peer-checked:text-amber-700"><i class="fas fa-pen mr-1"></i> Request Adjustment</div>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div id="ruang-ulasan-1" class="hidden space-y-3 pt-2">
+                                    <div class="flex gap-2 items-center">
+                                        <label class="text-xs font-bold text-slate-600 w-24">Requested RM:</label>
+                                        <input type="number" id="req-amount-1" placeholder="e.g. 200" class="w-24 bg-white border border-slate-300 rounded px-2 py-1 text-xs focus:border-amber-500 focus:outline-none">
+                                        <span class="text-xs text-slate-500 font-bold">Million</span>
+                                    </div>
+                                    <textarea id="req-reason-1" rows="2" placeholder="State justification for budget adjustment..." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-amber-500 text-slate-700 resize-none"></textarea>
+                                </div>
+
+                                <button type="submit" id="btn-bajet-1" class="w-full bg-slate-800 text-white text-xs font-bold py-2.5 rounded-lg shadow-sm hover:bg-slate-900 transition">Save Validation</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border-2 border-slate-200 overflow-hidden transition-all duration-300" id="kad-bajet-2">
+                    <div class="bg-slate-50 px-5 py-3 border-b border-slate-200 flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-cyan-100 text-cyan-700 font-bold px-2 py-0.5 rounded text-[10px] uppercase">Task: Y1-T02</span>
+                        </div>
+                        <span class="text-[10px] text-slate-500 font-bold px-2 py-1 rounded bg-slate-200 uppercase tracking-wider">OPEX</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="font-black text-base text-slate-800 mb-1">Digital Literacy Audit & Training Rollout</h4>
+                                <p class="text-xs text-slate-500 max-w-sm">Change management implementation across 150k staff.</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-0.5">AI Projected Cost</div>
+                                <div class="text-2xl font-black text-slate-700">RM 50M</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl mt-4" id="form-bajet-container-2">
+                            <h5 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Validation Decision <span class="text-rose-500">*</span></h5>
+                            <form id="form-bajet-2" onsubmit="simpanBajet(event, 2)" class="space-y-4">
+                                
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="cursor-pointer group">
+                                        <input type="radio" name="keputusan_bajet_2" value="accept" class="peer sr-only" required onchange="tukarRuangUlasan(2, 'accept')">
+                                        <div class="text-center py-2 px-3 rounded-lg border border-slate-200 peer-checked:bg-emerald-50 peer-checked:border-emerald-500 transition-all hover:bg-slate-100">
+                                            <div class="text-xs font-bold text-slate-600 peer-checked:text-emerald-700"><i class="fas fa-check mr-1"></i> Accept AI Estimate</div>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer group">
+                                        <input type="radio" name="keputusan_bajet_2" value="adjust" class="peer sr-only" onchange="tukarRuangUlasan(2, 'adjust')">
+                                        <div class="text-center py-2 px-3 rounded-lg border border-slate-200 peer-checked:bg-amber-50 peer-checked:border-amber-500 transition-all hover:bg-slate-100">
+                                            <div class="text-xs font-bold text-slate-600 peer-checked:text-amber-700"><i class="fas fa-pen mr-1"></i> Request Adjustment</div>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div id="ruang-ulasan-2" class="hidden space-y-3 pt-2">
+                                    <div class="flex gap-2 items-center">
+                                        <label class="text-xs font-bold text-slate-600 w-24">Requested RM:</label>
+                                        <input type="number" id="req-amount-2" placeholder="e.g. 60" class="w-24 bg-white border border-slate-300 rounded px-2 py-1 text-xs focus:border-amber-500 focus:outline-none">
+                                        <span class="text-xs text-slate-500 font-bold">Million</span>
+                                    </div>
+                                    <textarea id="req-reason-2" rows="2" placeholder="State justification for budget adjustment..." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-amber-500 text-slate-700 resize-none"></textarea>
+                                </div>
+
+                                <button type="submit" id="btn-bajet-2" class="w-full bg-slate-800 text-white text-xs font-bold py-2.5 rounded-lg shadow-sm hover:bg-slate-900 transition">Save Validation</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-5 bg-slate-900 rounded-xl shadow-md border border-slate-700 p-8 text-white sticky top-6 flex flex-col items-center justify-center text-center min-h-[400px]">
+                
+                <div id="status-awal">
+                    <i class="fas fa-file-contract text-6xl text-slate-600 mb-6"></i>
+                    <h3 class="font-black text-xl mb-2">Final Blueprint Endorsement</h3>
+                    <p class="text-xs text-slate-400 mb-6 px-4 leading-relaxed">Once you have validated all resource requirements for your pledged tasks, you can finalize your participation in the National Digital Health Blueprint.</p>
+                    <button disabled class="w-full bg-slate-700 text-slate-500 font-bold py-3 rounded-xl cursor-not-allowed border border-slate-600">
+                        <i class="fas fa-lock mr-2"></i> Complete Validations First
+                    </button>
+                </div>
+
+                <div id="status-akhir" class="hidden w-full">
+                    <div class="w-20 h-20 bg-emerald-500/20 border-4 border-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-check text-3xl text-emerald-400"></i>
+                    </div>
+                    <h3 class="font-black text-2xl text-emerald-400 mb-2">All Tasks Verified!</h3>
+                    <p class="text-xs text-slate-300 mb-8 px-4 leading-relaxed">Your data has been successfully synchronized with the National AI Dashboard. The final Blueprint document is ready for compilation.</p>
+                    <button onclick="tamatProses()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-black py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all border border-emerald-400">
+                        <i class="fas fa-rocket mr-2"></i> Submit & Complete Journey
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let jumlahPending = 2;
+        let skorSekarang = 245;
+
+        function tukarRuangUlasan(id, pilihan) {
+            const ruang = document.getElementById(`ruang-ulasan-${id}`);
+            const inputRM = document.getElementById(`req-amount-${id}`);
+            const inputReason = document.getElementById(`req-reason-${id}`);
+
+            if(pilihan === 'adjust') {
+                ruang.classList.remove('hidden');
+                inputRM.required = true;
+                inputReason.required = true;
+            } else {
+                ruang.classList.add('hidden');
+                inputRM.required = false;
+                inputReason.required = false;
+            }
+        }
+
+        function simpanBajet(event, id) {
+            event.preventDefault();
+            
+            const form = document.getElementById(`form-bajet-${id}`);
+            const btn = document.getElementById(`btn-bajet-${id}`);
+            const kad = document.getElementById(`kad-bajet-${id}`);
+            const containerForm = document.getElementById(`form-bajet-container-${id}`);
+            
+            const keputusan = form.querySelector('input[name="keputusan_bajet_' + id + '"]:checked').value;
+
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Syncing...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                kad.classList.add('verified-card');
+                
+                if(keputusan === 'accept') {
+                    containerForm.innerHTML = `
+                        <div class="flex items-center gap-3 text-emerald-600 bg-emerald-50 border border-emerald-100 p-3 rounded-lg">
+                            <i class="fas fa-check-circle text-lg"></i>
+                            <div>
+                                <p class="text-[10px] font-bold uppercase tracking-widest">Status: Approved</p>
+                                <p class="text-xs font-semibold text-emerald-800">You accepted the AI budget estimation.</p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    const reqAmount = document.getElementById(`req-amount-${id}`).value;
+                    containerForm.innerHTML = `
+                        <div class="flex items-center gap-3 text-amber-600 bg-amber-50 border border-amber-100 p-3 rounded-lg">
+                            <i class="fas fa-exclamation-circle text-lg"></i>
+                            <div>
+                                <p class="text-[10px] font-bold uppercase tracking-widest">Status: Adjustment Requested</p>
+                                <p class="text-xs font-semibold text-amber-800">New Request: RM ${reqAmount} Million (Pending MoF Review)</p>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Kemaskini Kiraan & Gamifikasi
+                if(!kad.dataset.saved) {
+                    jumlahPending--;
+                    document.getElementById('kiraan-bajet').innerText = jumlahPending;
+                    kad.dataset.saved = "true";
+                    tambahSkor(10);
+                }
+
+                // Jika semua selesai, tukar panel kanan
+                if(jumlahPending === 0) {
+                    setTimeout(() => {
+                        document.getElementById('status-awal').classList.add('hidden');
+                        document.getElementById('status-akhir').classList.remove('hidden');
+                    }, 500);
+                }
+
+            }, 800);
+        }
+
+        function tamatProses() {
+            alert("CONGRATULATIONS! You have completed the entire End-to-End Blueprint Development Process. Your inputs, votes, and commitments have been officially recorded in the National Dashboard. You will now be redirected to the main overview.");
+            window.location.href = "peserta_overview.html";
+        }
+
+        function tambahSkor(mata) {
+            const elemenSkor = document.getElementById('skor-peserta');
+            elemenSkor.classList.add('text-yellow-400', 'scale-125');
+            
+            let skorTarget = skorSekarang + mata; 
+            let interval = setInterval(() => {
+                skorSekarang++;
+                elemenSkor.innerHTML = skorSekarang + ' <span class="text-sm text-white/50">pts</span>';
+                if(skorSekarang >= skorTarget) {
+                    clearInterval(interval);
+                    setTimeout(() => { elemenSkor.classList.remove('text-yellow-400', 'scale-125'); }, 500);
+                }
+            }, 50);
+        }
+    </script>
+</body>
+</html>

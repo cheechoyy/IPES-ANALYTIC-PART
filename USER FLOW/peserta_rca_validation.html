@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCA Validation - SME Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .verified-card { border-color: #10b981 !important; background-color: #ecfdf5 !important; }
+        .rejected-card { border-color: #f43f5e !important; background-color: #fff1f2 !important; }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col">
+
+    <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 shadow-lg relative z-20">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.2) 1px,transparent 1px);background-size:20px 20px;"></div>
+        <div class="max-w-[1200px] mx-auto px-6 py-4 relative flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="peserta_spaf.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to SPAF Hub">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="border-l border-white/20 pl-4 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white text-blue-900 flex items-center justify-center font-black text-lg shadow-md border-2 border-blue-300">AH</div>
+                    <div>
+                        <h1 class="text-lg font-black text-white tracking-wide">Dr. Alina Harun</h1>
+                        <p class="text-indigo-200 text-[10px] font-medium uppercase tracking-widest">Hospital Kuala Lumpur (KKM)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-right">
+                    <div class="text-[10px] text-emerald-300 font-bold uppercase tracking-widest mb-0.5">Contribution Score</div>
+                    <div class="text-2xl font-black text-emerald-400 leading-none transition-all duration-500" id="skor-peserta">145 <span class="text-sm text-white/50">pts</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 w-full max-w-[1200px] mx-auto p-6 flex flex-col gap-6">
+        
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
+            <div class="absolute -right-10 -bottom-10 opacity-5"><i class="fas fa-check-double text-9xl text-emerald-500"></i></div>
+            
+            <div class="inline-flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 text-emerald-600 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4 relative z-10">
+                <i class="fas fa-search-plus"></i> Node 5: AI Validation
+            </div>
+            
+            <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 relative z-10">
+                <div class="flex-1">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-800 mb-2">Verify AI Root Cause Findings</h2>
+                    <p class="text-sm text-slate-500 max-w-3xl leading-relaxed">The AI has scanned the 1.2M word Reference Corpus to validate the Root Causes submitted by all participants. Please review the AI's confidence levels and <strong>verify if these findings reflect the true situation at your specific agency.</strong></p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center min-w-[180px]">
+                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Pending Verification</div>
+                    <div class="text-3xl font-black text-emerald-600"><span id="kiraan-semakan">2</span></div>
+                    <div class="text-[10px] text-slate-500 mt-1">AI Findings Available</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <div class="lg:col-span-6 flex flex-col gap-4">
+                
+                <div class="bg-white rounded-xl shadow-sm border-2 border-slate-200 overflow-hidden transition-all duration-300 cursor-pointer hover:border-emerald-400" id="kad-finding-1" onclick="pilihFinding(1)">
+                    <div class="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-indigo-100 text-indigo-700 font-black px-2 py-0.5 rounded text-[10px]">PS-01</span>
+                            <span class="text-[11px] font-bold text-slate-600">Fragmented EMR Ecosystems</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-emerald-600 bg-emerald-50 px-2 py-1 rounded border border-emerald-100">
+                            <i class="fas fa-robot text-[10px]"></i> <span class="text-[10px] font-black">95% AI Confidence</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-black text-sm text-slate-800 mb-2">Target Root Cause: <span class="text-emerald-600">Absence of Interoperability Policy</span></h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">AI found 950 explicit mentions in the corpus confirming that hospitals procure HIS vendors independently without adhering to a national API data-sharing standard.</p>
+                        
+                        <div class="mt-4 flex items-center justify-between" id="status-bar-1">
+                            <span class="text-[10px] font-bold text-amber-500 uppercase tracking-widest animate-pulse"><i class="fas fa-exclamation-circle"></i> Requires Your Verification</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border-2 border-slate-200 overflow-hidden transition-all duration-300 cursor-pointer hover:border-emerald-400" id="kad-finding-2" onclick="pilihFinding(2)">
+                    <div class="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-blue-100 text-blue-700 font-black px-2 py-0.5 rounded text-[10px]">PS-02</span>
+                            <span class="text-[11px] font-bold text-slate-600">Inadequate Legacy Infra</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-emerald-600 bg-emerald-50 px-2 py-1 rounded border border-emerald-100">
+                            <i class="fas fa-robot text-[10px]"></i> <span class="text-[10px] font-black">98% AI Confidence</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-black text-sm text-slate-800 mb-2">Target Root Cause: <span class="text-emerald-600">Outdated Server Hardware</span></h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">AI matched 1,200 data points indicating that local clinic servers running on pre-2015 hardware lack the capacity to process modern 3D imaging data (DICOM).</p>
+                        
+                        <div class="mt-4 flex items-center justify-between" id="status-bar-2">
+                            <span class="text-[10px] font-bold text-amber-500 uppercase tracking-widest animate-pulse"><i class="fas fa-exclamation-circle"></i> Requires Your Verification</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-6">
+                
+                <div id="ruang-kosong" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-10 flex flex-col items-center justify-center text-center h-full min-h-[400px]">
+                    <i class="fas fa-mouse-pointer text-5xl text-slate-200 mb-4"></i>
+                    <h3 class="font-bold text-slate-400">Select an AI Finding</h3>
+                    <p class="text-xs text-slate-400 mt-2 max-w-xs">Click on any card on the left to review the detailed evidence and submit your verification.</p>
+                </div>
+
+                <div id="ruang-verifikasi" class="bg-white rounded-2xl shadow-sm border border-emerald-200 p-6 hidden flex flex-col h-full relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-50 rounded-bl-full z-0"></div>
+                    
+                    <h3 class="font-black text-lg text-slate-800 mb-1 relative z-10">Verification Panel</h3>
+                    <p class="text-xs text-slate-500 mb-6 border-b border-slate-100 pb-4 relative z-10">You are verifying Finding <span id="ver-id-label" class="font-bold text-emerald-600">#1</span></p>
+
+                    <form id="form-verify" onsubmit="hantarVerifikasi(event)" class="flex-1 flex flex-col relative z-10">
+                        <input type="hidden" id="current-finding-id" value="">
+
+                        <div class="mb-5">
+                            <label class="block text-sm font-bold text-slate-700 mb-3">Based on your experience at <span class="text-blue-600">Hospital Kuala Lumpur</span>, is this AI finding accurate?</label>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <label class="cursor-pointer group">
+                                    <input type="radio" name="keputusan_ver" value="yes" class="peer sr-only" required onchange="tukarTextarea('yes')">
+                                    <div class="text-center p-4 rounded-xl border-2 border-slate-200 peer-checked:bg-emerald-50 peer-checked:border-emerald-500 transition-all hover:bg-slate-50">
+                                        <i class="fas fa-check-circle text-2xl mb-2 text-slate-300 peer-checked:text-emerald-500"></i>
+                                        <div class="text-sm font-black text-slate-600 peer-checked:text-emerald-700">Yes, it's accurate</div>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer group">
+                                    <input type="radio" name="keputusan_ver" value="no" class="peer sr-only" onchange="tukarTextarea('no')">
+                                    <div class="text-center p-4 rounded-xl border-2 border-slate-200 peer-checked:bg-rose-50 peer-checked:border-rose-500 transition-all hover:bg-slate-50">
+                                        <i class="fas fa-times-circle text-2xl mb-2 text-slate-300 peer-checked:text-rose-500"></i>
+                                        <div class="text-sm font-black text-slate-600 peer-checked:text-rose-700">No, it's different</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mb-6 flex-1">
+                            <label id="label-komen" class="block text-xs font-bold text-slate-600 mb-1.5">Context / Evidence (Optional)</label>
+                            <textarea id="input-komen" rows="4" placeholder="Share specific examples or elaborate on your choice..." class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-slate-700 resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" id="btn-submit-ver" class="w-full bg-emerald-600 text-white text-sm font-bold py-3 rounded-xl shadow-sm hover:bg-emerald-700 transition flex items-center justify-center mt-auto">
+                            <i class="fas fa-stamp mr-2"></i> Submit Verification
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let skorSekarang = 145;
+        let pendingCount = 2;
+
+        function pilihFinding(id) {
+            // Highlight kad terpilih
+            document.querySelectorAll('[id^="kad-finding-"]').forEach(kad => {
+                // Hanya buang border biru jika ia belum disahkan (tiada kelas verified/rejected)
+                if(!kad.classList.contains('verified-card') && !kad.classList.contains('rejected-card')) {
+                    kad.classList.remove('border-emerald-500', 'shadow-md');
+                    kad.classList.add('border-slate-200');
+                }
+            });
+            
+            const kadPilih = document.getElementById(`kad-finding-${id}`);
+            if(!kadPilih.classList.contains('verified-card') && !kadPilih.classList.contains('rejected-card')) {
+                kadPilih.classList.remove('border-slate-200');
+                kadPilih.classList.add('border-emerald-500', 'shadow-md');
+            }
+
+            // Tunjuk panel borang
+            document.getElementById('ruang-kosong').classList.add('hidden');
+            document.getElementById('ruang-verifikasi').classList.remove('hidden');
+            
+            // Set ID dalam borang
+            document.getElementById('ver-id-label').innerText = `#${id}`;
+            document.getElementById('current-finding-id').value = id;
+
+            // Reset form
+            document.getElementById('form-verify').reset();
+            tukarTextarea('none');
+        }
+
+        function tukarTextarea(pilihan) {
+            const label = document.getElementById('label-komen');
+            const textarea = document.getElementById('input-komen');
+
+            if(pilihan === 'yes') {
+                label.innerHTML = 'Supporting Context (Optional)';
+                textarea.placeholder = "Example: Yes, in my ward, we experience this daily...";
+                textarea.required = false;
+                textarea.classList.replace('focus:border-rose-500', 'focus:border-emerald-500');
+                textarea.classList.replace('focus:ring-rose-500', 'focus:ring-emerald-500');
+            } else if (pilihan === 'no') {
+                label.innerHTML = 'Why is this inaccurate for your agency? <span class="text-rose-500">*</span>';
+                textarea.placeholder = "Example: Actually, our hospital recently upgraded the servers, the real issue is...";
+                textarea.required = true;
+                textarea.classList.replace('focus:border-emerald-500', 'focus:border-rose-500');
+                textarea.classList.replace('focus:ring-emerald-500', 'focus:ring-rose-500');
+            } else {
+                label.innerHTML = 'Context / Evidence (Optional)';
+                textarea.placeholder = "Share specific examples or elaborate on your choice...";
+                textarea.required = false;
+            }
+        }
+
+        function hantarVerifikasi(event) {
+            event.preventDefault();
+
+            const btn = document.getElementById('btn-submit-ver');
+            const findingId = document.getElementById('current-finding-id').value;
+            const keputusan = document.querySelector('input[name="keputusan_ver"]:checked').value;
+            
+            // Simulasi Processing
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Registering Verification...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75');
+
+            setTimeout(() => {
+                // Kemaskini Kad Finding di sebelah kiri
+                const kad = document.getElementById(`kad-finding-${findingId}`);
+                const statusBar = document.getElementById(`status-bar-${findingId}`);
+                
+                kad.classList.remove('border-emerald-500', 'border-slate-200', 'shadow-md', 'hover:border-emerald-400');
+                
+                if(keputusan === 'yes') {
+                    kad.classList.add('verified-card');
+                    statusBar.innerHTML = `
+                        <span class="text-[10px] font-bold text-emerald-600 uppercase tracking-widest"><i class="fas fa-check-double mr-1"></i> Verified Accurate</span>
+                        <button onclick="pilihFinding(${findingId})" class="text-[9px] text-slate-400 hover:text-emerald-600 underline">Edit</button>
+                    `;
+                } else {
+                    kad.classList.add('rejected-card');
+                    statusBar.innerHTML = `
+                        <span class="text-[10px] font-bold text-rose-600 uppercase tracking-widest"><i class="fas fa-times-circle mr-1"></i> Flagged Inaccurate</span>
+                        <button onclick="pilihFinding(${findingId})" class="text-[9px] text-slate-400 hover:text-rose-600 underline">Edit</button>
+                    `;
+                }
+
+                // Tolak kiraan pending (hanya jika belum pernah verify)
+                if(!kad.dataset.verified) {
+                    pendingCount--;
+                    document.getElementById('kiraan-semakan').innerText = pendingCount;
+                    kad.dataset.verified = "true";
+                    
+                    // Tambah Skor
+                    const elemenSkor = document.getElementById('skor-peserta');
+                    elemenSkor.classList.add('text-yellow-400', 'scale-125');
+                    
+                    let skorTarget = skorSekarang + 10; 
+                    let interval = setInterval(() => {
+                        skorSekarang++;
+                        elemenSkor.innerHTML = skorSekarang + ' <span class="text-sm text-white/50">pts</span>';
+                        if(skorSekarang >= skorTarget) {
+                            clearInterval(interval);
+                            setTimeout(() => { elemenSkor.classList.remove('text-yellow-400', 'scale-125'); }, 500);
+                        }
+                    }, 50);
+                }
+
+                // Tutup borang & Restore Button
+                document.getElementById('ruang-kosong').classList.remove('hidden');
+                document.getElementById('ruang-verifikasi').classList.add('hidden');
+                
+                btn.innerHTML = '<i class="fas fa-stamp mr-2"></i> Submit Verification';
+                btn.disabled = false;
+                btn.classList.remove('opacity-75');
+
+                if(pendingCount === 0) {
+                    setTimeout(() => alert("Thank you! You have verified all AI findings. You may return to the SPAF Hub."), 500);
+                }
+
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

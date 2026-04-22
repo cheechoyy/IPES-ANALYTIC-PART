@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategy Review - SME Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .timeline-container { position: relative; }
+        .timeline-container::before { content: ''; position: absolute; left: 1.25rem; top: 0; bottom: 0; width: 2px; background: #fcd34d; }
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col">
+
+    <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 shadow-lg relative z-20">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.2) 1px,transparent 1px);background-size:20px 20px;"></div>
+        <div class="max-w-[1400px] mx-auto px-6 py-4 relative flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="peserta_overview.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to Journey Map">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="border-l border-white/20 pl-4 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white text-blue-900 flex items-center justify-center font-black text-lg shadow-md border-2 border-blue-300">AH</div>
+                    <div>
+                        <h1 class="text-lg font-black text-white tracking-wide">Dr. Alina Harun</h1>
+                        <p class="text-indigo-200 text-[10px] font-medium uppercase tracking-widest">Hospital Kuala Lumpur (KKM)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-right">
+                    <div class="text-[10px] text-emerald-300 font-bold uppercase tracking-widest mb-0.5">Contribution Score</div>
+                    <div class="text-2xl font-black text-emerald-400 leading-none transition-all duration-500" id="skor-peserta">185 <span class="text-sm text-white/50">pts</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 w-full max-w-[1400px] mx-auto p-6 flex flex-col gap-6">
+        
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
+            <div class="absolute -right-10 -bottom-10 opacity-5"><i class="fas fa-chess-knight text-9xl text-amber-500"></i></div>
+            
+            <div class="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-600 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4 relative z-10">
+                <i class="fas fa-map-marked-alt"></i> Node 5: Strategy Review
+            </div>
+            
+            <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 relative z-10">
+                <div class="flex-1">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-800 mb-2">Review 30-Year National Roadmap</h2>
+                    <p class="text-sm text-slate-500 leading-relaxed max-w-4xl">The AI has mapped the endorsed Pillars and Initiatives across a 30-year timeline, divided into 6 strategic phases. Review the sequencing below and participate in the live forum to discuss its feasibility with other SMEs.</p>
+                </div>
+                <button onclick="sahkanRoadmap(this)" class="bg-amber-500 text-white font-bold py-3 px-6 rounded-xl shadow-sm hover:bg-amber-600 transition flex items-center justify-center min-w-[200px]">
+                    <i class="fas fa-check-double mr-2"></i> Approve Roadmap
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start h-full">
+            
+            <div class="lg:col-span-7 bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-200 h-full overflow-y-auto max-h-[800px]">
+                <h3 class="font-black text-xl text-slate-800 flex items-center mb-6 pb-4 border-b border-slate-100 sticky top-0 bg-white z-10">
+                    <i class="fas fa-calendar-alt text-amber-600 mr-3"></i> Phased Execution (2026 - 2055)
+                </h3>
+                
+                <div class="timeline-container ml-2 space-y-8">
+                    
+                    <div class="relative pl-10 fade-in" style="animation-delay: 0.1s; animation-fill-mode: both;">
+                        <div class="absolute left-0 top-1.5 w-6 h-6 bg-white border-4 border-amber-500 rounded-full z-10 flex items-center justify-center -ml-3"></div>
+                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 hover:shadow-md transition relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-amber-100 rounded-bl-full flex items-center justify-center opacity-50 z-0"><i class="fas fa-hammer text-2xl text-amber-500 mb-2 ml-2"></i></div>
+                            <div class="relative z-10">
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="bg-amber-500 text-white font-black px-2.5 py-1 rounded text-xs tracking-wider">PHASE 1 (2026-2030)</span>
+                                </div>
+                                <h4 class="font-bold text-slate-800 text-base mb-2">Foundation & Standardization</h4>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-3">Establishment of national data standards, core policies (PDPA updates), and initial infrastructure upgrades. Focus on intense change management training for healthcare staff.</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-[10px] font-bold bg-white border border-slate-200 text-slate-500 px-2 py-0.5 rounded shadow-sm">Pillar 1: Governance</span>
+                                    <span class="text-[10px] font-bold bg-white border border-slate-200 text-slate-500 px-2 py-0.5 rounded shadow-sm">Pillar 2: Human Capital</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-10 fade-in" style="animation-delay: 0.2s; animation-fill-mode: both;">
+                        <div class="absolute left-0 top-1.5 w-6 h-6 bg-white border-4 border-orange-500 rounded-full z-10 flex items-center justify-center -ml-3"></div>
+                        <div class="bg-orange-50 border border-orange-200 rounded-xl p-5 hover:shadow-md transition">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="bg-orange-500 text-white font-black px-2.5 py-1 rounded text-xs tracking-wider">PHASE 2 (2031-2035)</span>
+                            </div>
+                            <h4 class="font-bold text-slate-800 text-base mb-2">Integration & Interoperability</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-3">Deployment of the National Health API Gateway. Connecting siloed EMR systems across public hospitals and initiating secure data exchange protocols.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-10 fade-in" style="animation-delay: 0.3s; animation-fill-mode: both;">
+                        <div class="absolute left-0 top-1.5 w-6 h-6 bg-white border-4 border-rose-500 rounded-full z-10 flex items-center justify-center -ml-3"></div>
+                        <div class="bg-rose-50 border border-rose-200 rounded-xl p-5 hover:shadow-md transition">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="bg-rose-500 text-white font-black px-2.5 py-1 rounded text-xs tracking-wider">PHASE 3 (2036-2040)</span>
+                            </div>
+                            <h4 class="font-bold text-slate-800 text-base mb-2">Ecosystem Expansion</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-3">Extending the unified digital health network to include private clinics, pharmacies, and allied health services. Launch of nationwide patient-centric mobile health portals.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-10 fade-in" style="animation-delay: 0.4s; animation-fill-mode: both;">
+                        <div class="absolute left-0 top-1.5 w-6 h-6 bg-white border-4 border-indigo-500 rounded-full z-10 flex items-center justify-center -ml-3"></div>
+                        <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-5 hover:shadow-md transition opacity-80 hover:opacity-100">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="bg-indigo-500 text-white font-black px-2.5 py-1 rounded text-xs tracking-wider">PHASE 4 (2041-2045)</span>
+                            </div>
+                            <h4 class="font-bold text-slate-800 text-base mb-2">Advanced Analytics & Early AI</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">Implementation of Big Data analytics for population health management. Pilot programs for AI-assisted diagnostics.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative pl-10 fade-in" style="animation-delay: 0.5s; animation-fill-mode: both;">
+                        <div class="absolute left-0 top-1.5 w-4 h-4 bg-slate-300 rounded-full z-10 flex items-center justify-center -ml-2"></div>
+                        <div class="p-3 opacity-60">
+                            <h4 class="font-bold text-slate-500 text-sm">Phases 5 & 6 (2046 - 2055)</h4>
+                            <p class="text-[10px] text-slate-400 mt-1">Predictive Healthcare & Autonomous Systems (Long-term Vision)</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col h-[800px] overflow-hidden">
+                <div class="bg-slate-900 p-5 border-b border-slate-800 flex justify-between items-center text-white shrink-0">
+                    <div>
+                        <h3 class="font-black text-base flex items-center"><i class="fas fa-comments text-amber-400 mr-2"></i> SME Strategy Forum</h3>
+                        <p class="text-[10px] text-slate-400 mt-0.5">Discuss the roadmap sequencing here.</p>
+                    </div>
+                    <div class="flex items-center gap-1.5 bg-white/10 px-2 py-1 rounded-full border border-white/20">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span class="text-[9px] font-bold text-emerald-100">Live</span>
+                    </div>
+                </div>
+                
+                <div class="flex-1 overflow-y-auto p-5 space-y-5 bg-slate-50" id="ruang-sembang">
+                    
+                    <div class="flex gap-3">
+                        <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xs shrink-0">RY</div>
+                        <div>
+                            <div class="flex items-baseline gap-2 mb-1">
+                                <h4 class="font-bold text-xs text-slate-800">Ts. Rahman Yusof</h4>
+                                <span class="text-[9px] text-slate-400">MAMPU • 10:22 AM</span>
+                            </div>
+                            <div class="bg-white border border-slate-200 p-3 rounded-2xl rounded-tl-none text-xs text-slate-700 shadow-sm leading-relaxed">
+                                I agree with the AI putting Infrastructure upgrades in Phase 1. If we don't fix the server issues by 2030, the API Gateway in Phase 2 will collapse under the data load.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs shrink-0">FZ</div>
+                        <div>
+                            <div class="flex items-baseline gap-2 mb-1">
+                                <h4 class="font-bold text-xs text-slate-800">Dr. Faizah</h4>
+                                <span class="text-[9px] text-slate-400">KKM • 10:28 AM</span>
+                            </div>
+                            <div class="bg-white border border-slate-200 p-3 rounded-2xl rounded-tl-none text-xs text-slate-700 shadow-sm leading-relaxed">
+                                Should Private Clinics be integrated in Phase 3? Isn't that too late? Many patients hop between public hospitals and private GPs.
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="p-4 border-t border-slate-200 bg-white shrink-0">
+                    <form onsubmit="hantarMesej(event)" class="relative flex items-center">
+                        <input type="text" id="input-mesej" required placeholder="Share your thoughts on the roadmap..." class="w-full bg-slate-50 border border-slate-300 rounded-full pl-4 pr-12 py-3 text-xs focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition">
+                        <button type="submit" class="absolute right-2 w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center hover:bg-amber-600 transition shadow-sm">
+                            <i class="fas fa-paper-plane text-xs"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let skorSekarang = 185;
+
+        function sahkanRoadmap(btn) {
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Registering Approval...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Roadmap Approved';
+                btn.classList.replace('bg-amber-500', 'bg-emerald-500');
+                btn.classList.replace('hover:bg-amber-600', 'hover:bg-emerald-600');
+                
+                if(!btn.dataset.rewarded) {
+                    tambahSkor(20); // Markah besar sebab setuju strategi
+                    btn.dataset.rewarded = "true";
+                }
+                
+                setTimeout(() => {
+                    alert("Thank you! Your endorsement of the 30-Year Roadmap has been recorded. You can now proceed to draft the immediate Action Plans.");
+                }, 500);
+
+            }, 1000);
+        }
+
+        function hantarMesej(event) {
+            event.preventDefault();
+            const input = document.getElementById('input-mesej');
+            const teks = input.value.trim();
+            if(teks === '') return;
+
+            const ruangSembang = document.getElementById('ruang-sembang');
+            
+            // Format Mesej Baru (Sebagai Dr. Alina)
+            const mesejBaru = document.createElement('div');
+            mesejBaru.className = "flex gap-3 fade-in flex-row-reverse"; // Mesej sendiri di sebelah kanan
+            mesejBaru.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs shrink-0">AH</div>
+                <div class="text-right">
+                    <div class="flex items-baseline justify-end gap-2 mb-1">
+                        <span class="text-[9px] text-slate-400">Just Now</span>
+                        <h4 class="font-bold text-xs text-slate-800">Dr. Alina Harun</h4>
+                    </div>
+                    <div class="bg-amber-50 border border-amber-200 p-3 rounded-2xl rounded-tr-none text-xs text-slate-700 shadow-sm leading-relaxed text-left inline-block max-w-[90%]">
+                        ${teks}
+                    </div>
+                </div>
+            `;
+
+            ruangSembang.appendChild(mesejBaru);
+            input.value = ''; // Kosongkan input
+            
+            // Scroll ke bawah
+            ruangSembang.scrollTop = ruangSembang.scrollHeight;
+
+            tambahSkor(5); // Markah perbincangan forum
+        }
+
+        function tambahSkor(mata) {
+            const elemenSkor = document.getElementById('skor-peserta');
+            elemenSkor.classList.add('text-yellow-400', 'scale-125');
+            
+            let skorTarget = skorSekarang + mata; 
+            let interval = setInterval(() => {
+                skorSekarang++;
+                elemenSkor.innerHTML = skorSekarang + ' <span class="text-sm text-white/50">pts</span>';
+                if(skorSekarang >= skorTarget) {
+                    clearInterval(interval);
+                    setTimeout(() => { elemenSkor.classList.remove('text-yellow-400', 'scale-125'); }, 500);
+                }
+            }, 50);
+        }
+    </script>
+</body>
+</html>

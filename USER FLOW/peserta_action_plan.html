@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Action Plan Execution - SME Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .pledged-card { border-color: #06b6d4 !important; background-color: #ecfeff !important; }
+        .pledged-btn { background-color: #10b981 !important; color: white !important; }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col">
+
+    <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 shadow-lg relative z-20">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.2) 1px,transparent 1px);background-size:20px 20px;"></div>
+        <div class="max-w-[1400px] mx-auto px-6 py-4 relative flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="peserta_overview.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to Journey Map">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="border-l border-white/20 pl-4 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white text-blue-900 flex items-center justify-center font-black text-lg shadow-md border-2 border-blue-300">AH</div>
+                    <div>
+                        <h1 class="text-lg font-black text-white tracking-wide">Dr. Alina Harun</h1>
+                        <p class="text-indigo-200 text-[10px] font-medium uppercase tracking-widest">Hospital Kuala Lumpur (KKM)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-right">
+                    <div class="text-[10px] text-emerald-300 font-bold uppercase tracking-widest mb-0.5">Contribution Score</div>
+                    <div class="text-2xl font-black text-emerald-400 leading-none transition-all duration-500" id="skor-peserta">205 <span class="text-sm text-white/50">pts</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 w-full max-w-[1400px] mx-auto p-6 flex flex-col gap-6">
+        
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-cyan-500"></div>
+            <div class="absolute -right-10 -bottom-10 opacity-5"><i class="fas fa-clipboard-list text-9xl text-cyan-500"></i></div>
+            
+            <div class="inline-flex items-center gap-1.5 bg-cyan-50 border border-cyan-200 text-cyan-700 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4 relative z-10">
+                <i class="fas fa-tasks"></i> Node 6: Phase 1 Action Plan
+            </div>
+            
+            <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 relative z-10">
+                <div class="flex-1">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-800 mb-2">Phase 1 Operational Commitment (2026 - 2030)</h2>
+                    <p class="text-sm text-slate-500 leading-relaxed max-w-4xl">The AI has generated granular tasks for the first 5 years. Review the action items relevant to your expertise. If your agency can contribute to leading or executing a specific task, please <strong>Pledge Your Commitment</strong>.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center min-w-[180px]">
+                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Your Pledges</div>
+                    <div class="text-3xl font-black text-cyan-600"><span id="kiraan-pledge">0</span></div>
+                    <div class="text-[10px] text-slate-500 mt-1">Tasks Committed</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start h-full">
+            
+            <div class="lg:col-span-8 space-y-6">
+                
+                <h3 class="font-black text-lg text-slate-800 flex items-center mb-2"><i class="fas fa-calendar-day text-cyan-600 mr-2"></i> Year 1 Tasks (2026): Policy & Baseline Setup</h3>
+                
+                <div class="bg-white rounded-xl shadow-sm border-2 border-slate-200 overflow-hidden transition-all duration-300" id="kad-task-1">
+                    <div class="bg-slate-50 px-5 py-3 border-b border-slate-200 flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-indigo-100 text-indigo-700 font-bold px-2 py-0.5 rounded text-[10px] uppercase">Pillar 1</span>
+                            <span class="text-xs font-bold text-slate-600">Task ID: Y1-T01</span>
+                        </div>
+                        <div class="text-[10px] text-slate-400 font-bold"><i class="fas fa-users mr-1"></i> <span id="agensi-count-1">2</span> Agencies Pledged</div>
+                    </div>
+                    <div class="p-5 flex flex-col md:flex-row gap-6 items-center">
+                        <div class="flex-1">
+                            <h4 class="font-black text-base text-slate-800 mb-2">Draft National Health API Interoperability Standards</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-3">Establish the legal and technical baseline for all future EMR vendor procurements. This includes standardizing data formats (e.g., HL7 FHIR) across public and private hospitals.</p>
+                            <div class="flex gap-2">
+                                <span class="text-[9px] font-bold bg-slate-100 text-slate-500 px-2 py-1 rounded">Required Skill: Tech/IT</span>
+                                <span class="text-[9px] font-bold bg-slate-100 text-slate-500 px-2 py-1 rounded">Timeline: Q1-Q2 2026</span>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-48 shrink-0 flex flex-col gap-2">
+                            <button id="btn-pledge-1" onclick="buatPledge(1)" class="w-full bg-white border-2 border-cyan-500 text-cyan-600 font-bold py-2.5 rounded-xl hover:bg-cyan-50 transition flex items-center justify-center text-xs">
+                                <i class="fas fa-hand-paper mr-2"></i> Pledge Involvement
+                            </button>
+                            <button onclick="bukaNota(1)" class="w-full text-[10px] font-bold text-slate-400 hover:text-cyan-600 transition py-1">
+                                + Add Implementation Note
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="ruang-nota-1" class="hidden px-5 pb-5 pt-2 border-t border-slate-100">
+                        <textarea id="teks-nota-1" rows="2" placeholder="Specify how your agency will execute this..." class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-slate-700 resize-none mb-2"></textarea>
+                        <button onclick="hantarNota(1)" class="bg-slate-800 text-white text-[10px] font-bold px-4 py-2 rounded-lg shadow-sm hover:bg-slate-900 transition">Save Note</button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border-2 border-slate-200 overflow-hidden transition-all duration-300" id="kad-task-2">
+                    <div class="bg-slate-50 px-5 py-3 border-b border-slate-200 flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-blue-100 text-blue-700 font-bold px-2 py-0.5 rounded text-[10px] uppercase">Pillar 2</span>
+                            <span class="text-xs font-bold text-slate-600">Task ID: Y1-T02</span>
+                        </div>
+                        <div class="text-[10px] text-slate-400 font-bold"><i class="fas fa-users mr-1"></i> <span id="agensi-count-2">0</span> Agencies Pledged</div>
+                    </div>
+                    <div class="p-5 flex flex-col md:flex-row gap-6 items-center">
+                        <div class="flex-1">
+                            <h4 class="font-black text-base text-slate-800 mb-2">Conduct Nationwide Digital Literacy Audit</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed mb-3">Assess the current IT proficiency of 150,000 healthcare staff using an AI-driven online survey tool to tailor upcoming training programs.</p>
+                            <div class="flex gap-2">
+                                <span class="text-[9px] font-bold bg-slate-100 text-slate-500 px-2 py-1 rounded">Required Skill: Human Resources</span>
+                                <span class="text-[9px] font-bold bg-slate-100 text-slate-500 px-2 py-1 rounded">Timeline: Q3 2026</span>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-48 shrink-0 flex flex-col gap-2">
+                            <button id="btn-pledge-2" onclick="buatPledge(2)" class="w-full bg-white border-2 border-cyan-500 text-cyan-600 font-bold py-2.5 rounded-xl hover:bg-cyan-50 transition flex items-center justify-center text-xs">
+                                <i class="fas fa-hand-paper mr-2"></i> Pledge Involvement
+                            </button>
+                            <button onclick="bukaNota(2)" class="w-full text-[10px] font-bold text-slate-400 hover:text-cyan-600 transition py-1">
+                                + Add Implementation Note
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="ruang-nota-2" class="hidden px-5 pb-5 pt-2 border-t border-slate-100">
+                        <textarea id="teks-nota-2" rows="2" placeholder="Specify how your agency will execute this..." class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-slate-700 resize-none mb-2"></textarea>
+                        <button onclick="hantarNota(2)" class="bg-slate-800 text-white text-[10px] font-bold px-4 py-2 rounded-lg shadow-sm hover:bg-slate-900 transition">Save Note</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-4 bg-slate-900 rounded-xl shadow-md border border-slate-700 p-6 text-white sticky top-6">
+                <h3 class="font-black text-lg flex items-center mb-6"><i class="fas fa-users-cog text-cyan-400 mr-2"></i> National Commitment Board</h3>
+                
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between text-xs font-bold mb-2 text-slate-300">
+                            <span>Year 1 Task Coverage</span>
+                            <span class="text-cyan-400">8 / 12 Tasks</span>
+                        </div>
+                        <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
+                            <div class="bg-cyan-500 h-full rounded-full" style="width: 66%"></div>
+                        </div>
+                        <p class="text-[10px] text-slate-500 mt-2">66% of Year 1 tasks have at least one Lead Agency pledged.</p>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-700">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Live Pledges</h4>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <div class="w-2 h-2 rounded-full bg-emerald-500 mt-1"></div>
+                                <div>
+                                    <p class="text-[11px] font-bold text-slate-200">MAMPU <span class="font-normal text-slate-400">pledged for</span> Y1-T01</p>
+                                    <p class="text-[9px] text-slate-500">10 mins ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-2 h-2 rounded-full bg-emerald-500 mt-1"></div>
+                                <div>
+                                    <p class="text-[11px] font-bold text-slate-200">KPJ Healthcare <span class="font-normal text-slate-400">pledged for</span> Y1-T01</p>
+                                    <p class="text-[9px] text-slate-500">1 hour ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let jumlahPledge = 0;
+        let skorSekarang = 205;
+
+        function buatPledge(id) {
+            const btn = document.getElementById(`btn-pledge-${id}`);
+            const kad = document.getElementById(`kad-task-${id}`);
+            const countLabel = document.getElementById(`agensi-count-${id}`);
+            
+            // Logik Batal Pledge
+            if (btn.classList.contains('pledged-btn')) {
+                btn.classList.remove('pledged-btn');
+                btn.innerHTML = '<i class="fas fa-hand-paper mr-2"></i> Pledge Involvement';
+                kad.classList.remove('pledged-card');
+                
+                jumlahPledge--;
+                document.getElementById('kiraan-pledge').innerText = jumlahPledge;
+                
+                // Kurangkan jumlah count olok-olok
+                countLabel.innerText = parseInt(countLabel.innerText) - 1;
+                return;
+            }
+
+            // Logik Pledge (Daftar diri)
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Registering Agency...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                jumlahPledge++;
+                document.getElementById('kiraan-pledge').innerText = jumlahPledge;
+                
+                btn.classList.add('pledged-btn');
+                btn.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Agency Registered';
+                btn.disabled = false;
+                
+                kad.classList.add('pledged-card');
+
+                // Tambah jumlah count olok-olok
+                countLabel.innerText = parseInt(countLabel.innerText) + 1;
+
+                // Gamifikasi (Sekali sahaja)
+                if(!btn.dataset.rewarded) {
+                    tambahSkor(25); // Markah tinggi kerana ambil tanggungjawab eksekusi
+                    btn.dataset.rewarded = "true";
+                }
+
+            }, 800);
+        }
+
+        function bukaNota(id) {
+            const ruang = document.getElementById(`ruang-nota-${id}`);
+            if(ruang.classList.contains('hidden')) {
+                ruang.classList.remove('hidden');
+            } else {
+                ruang.classList.add('hidden');
+            }
+        }
+
+        function hantarNota(id) {
+            const teksArea = document.getElementById(`teks-nota-${id}`);
+            if(teksArea.value.trim() === '') {
+                alert('Please enter your implementation note.');
+                return;
+            }
+
+            const btn = event.target;
+            const asalTeks = btn.innerText;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-1"></i> Saving...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check text-emerald-400 mr-1"></i> Note Saved';
+                btn.classList.replace('bg-slate-800', 'bg-slate-900');
+                teksArea.disabled = true;
+                
+                tambahSkor(5);
+                
+                setTimeout(() => {
+                    document.getElementById(`ruang-nota-${id}`).classList.add('hidden');
+                    btn.innerText = asalTeks;
+                    btn.classList.replace('bg-slate-900', 'bg-slate-800');
+                    btn.disabled = false;
+                    teksArea.disabled = false;
+                    teksArea.value = '';
+                }, 1500);
+            }, 800);
+        }
+
+        function tambahSkor(mata) {
+            const elemenSkor = document.getElementById('skor-peserta');
+            elemenSkor.classList.add('text-yellow-400', 'scale-125');
+            
+            let skorTarget = skorSekarang + mata; 
+            let interval = setInterval(() => {
+                skorSekarang++;
+                elemenSkor.innerHTML = skorSekarang + ' <span class="text-sm text-white/50">pts</span>';
+                if(skorSekarang >= skorTarget) {
+                    clearInterval(interval);
+                    setTimeout(() => { elemenSkor.classList.remove('text-yellow-400', 'scale-125'); }, 500);
+                }
+            }, 50);
+        }
+    </script>
+</body>
+</html>

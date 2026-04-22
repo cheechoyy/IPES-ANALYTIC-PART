@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pillar Endorsement - SME Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .voted-card { border-color: #10b981 !important; background-color: #ecfdf5 !important; }
+        .voted-btn { background-color: #10b981 !important; color: white !important; }
+        .progress-bar-animated { transition: width 1.5s ease-in-out; }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col">
+
+    <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 shadow-lg relative z-20">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.2) 1px,transparent 1px);background-size:20px 20px;"></div>
+        <div class="max-w-[1200px] mx-auto px-6 py-4 relative flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="peserta_overview.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to Journey Map">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="border-l border-white/20 pl-4 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white text-blue-900 flex items-center justify-center font-black text-lg shadow-md border-2 border-blue-300">AH</div>
+                    <div>
+                        <h1 class="text-lg font-black text-white tracking-wide">Dr. Alina Harun</h1>
+                        <p class="text-indigo-200 text-[10px] font-medium uppercase tracking-widest">Hospital Kuala Lumpur (KKM)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-right">
+                    <div class="text-[10px] text-emerald-300 font-bold uppercase tracking-widest mb-0.5">Contribution Score</div>
+                    <div class="text-2xl font-black text-emerald-400 leading-none transition-all duration-500" id="skor-peserta">175 <span class="text-sm text-white/50">pts</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 w-full max-w-[1200px] mx-auto p-6 flex flex-col gap-6">
+        
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
+            <div class="absolute -right-10 -bottom-10 opacity-5"><i class="fas fa-columns text-9xl text-emerald-500"></i></div>
+            
+            <div class="inline-flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 text-emerald-600 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-4 relative z-10">
+                <i class="fas fa-check-double"></i> Node 4: Pillar Endorsement
+            </div>
+            
+            <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 relative z-10">
+                <div class="flex-1">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-800 mb-2">Endorse Master Strategy Pillars</h2>
+                    <p class="text-sm text-slate-500 leading-relaxed">The AI has consolidated the previously voted Themes into 2 overarching Master Pillars. Please review the scope of each pillar and cast your <strong>endorsement vote</strong>. These pillars will form the foundation of the 30-year roadmap.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center min-w-[180px]">
+                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Your Votes Remaining</div>
+                    <div class="text-3xl font-black text-emerald-600"><span id="kiraan-undi">1</span></div>
+                    <div class="text-[10px] text-slate-500 mt-1">Make your choice</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+
+            <div class="bg-white rounded-xl shadow-sm border-2 border-slate-200 p-6 flex flex-col transition-all duration-300 relative group" id="kad-pillar-1">
+                <div class="absolute top-0 left-0 w-full h-1.5 bg-emerald-500 rounded-t-xl hidden group-[.voted-card]:block"></div>
+                
+                <div class="flex justify-between items-center mb-4">
+                    <span class="bg-emerald-100 text-emerald-700 font-black px-2 py-0.5 rounded text-[10px]">PILLAR-01</span>
+                    <span class="text-[10px] font-bold text-slate-400"><i class="fas fa-users mr-1"></i> <span id="undi-1" class="text-slate-600">180</span> Votes Cast</span>
+                </div>
+                
+                <h3 class="font-black text-xl text-slate-800 mb-3">Technology, Data & Security Governance</h3>
+                <p class="text-sm text-slate-500 mb-4 flex-1">This pillar acts as the structural foundation, combining resilient digital infrastructure with uncompromising data privacy and cybersecurity measures. It aims to create a seamless, integrated national health data exchange.</p>
+                
+                <div class="mb-6 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-2">Encompasses AI Themes:</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded border border-blue-100">THEME-01: Infrastructure</span>
+                        <span class="bg-cyan-50 text-cyan-600 text-[10px] font-bold px-2 py-1 rounded border border-cyan-100">THEME-03: Security</span>
+                    </div>
+                </div>
+
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden mb-6 relative">
+                    <div id="bar-1" class="bg-emerald-500 h-full rounded-full progress-bar-animated" style="width: 58%"></div>
+                </div>
+
+                <div class="flex flex-col gap-3 mt-auto">
+                    <button id="btn-undi-1" onclick="hantarUndi(1)" class="w-full bg-slate-100 text-slate-600 font-bold py-3 rounded-xl border border-slate-200 hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-300 transition flex items-center justify-center">
+                        <i class="fas fa-thumbs-up mr-2"></i> Endorse Pillar
+                    </button>
+                    <button onclick="bukaIdea(1)" class="w-full text-xs font-bold text-slate-400 hover:text-emerald-600 transition py-1">
+                        + Add Scope Improvization
+                    </button>
+                </div>
+                
+                <div id="ruang-idea-1" class="hidden mt-4 pt-4 border-t border-slate-100">
+                    <textarea id="teks-idea-1" rows="2" placeholder="Suggest specific scopes or policies for this pillar..." class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-slate-700 resize-none mb-2"></textarea>
+                    <button onclick="hantarIdea(1)" class="w-full bg-slate-800 text-white text-[10px] font-bold py-2 rounded-lg shadow-sm hover:bg-slate-900 transition">Submit to AI Learning</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm border-2 border-slate-200 p-6 flex flex-col transition-all duration-300 relative group" id="kad-pillar-2">
+                <div class="absolute top-0 left-0 w-full h-1.5 bg-teal-500 rounded-t-xl hidden group-[.voted-card]:block"></div>
+                
+                <div class="flex justify-between items-center mb-4">
+                    <span class="bg-teal-100 text-teal-700 font-black px-2 py-0.5 rounded text-[10px]">PILLAR-02</span>
+                    <span class="text-[10px] font-bold text-slate-400"><i class="fas fa-users mr-1"></i> <span id="undi-2" class="text-slate-600">130</span> Votes Cast</span>
+                </div>
+                
+                <h3 class="font-black text-xl text-slate-800 mb-3">Human Capital Empowerment & Change Management</h3>
+                <p class="text-sm text-slate-500 mb-4 flex-1">Focuses on the people driving the system. This pillar ensures that the workforce is digitally literate, psychologically prepared for change, and continuously trained to adapt to evolving health technologies.</p>
+                
+                <div class="mb-6 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-2">Encompasses AI Themes:</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-indigo-50 text-indigo-600 text-[10px] font-bold px-2 py-1 rounded border border-indigo-100">THEME-02: Human Capital</span>
+                    </div>
+                </div>
+
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden mb-6 relative">
+                    <div id="bar-2" class="bg-teal-500 h-full rounded-full progress-bar-animated" style="width: 42%"></div>
+                </div>
+
+                <div class="flex flex-col gap-3 mt-auto">
+                    <button id="btn-undi-2" onclick="hantarUndi(2)" class="w-full bg-slate-100 text-slate-600 font-bold py-3 rounded-xl border border-slate-200 hover:bg-teal-50 hover:text-teal-600 hover:border-teal-300 transition flex items-center justify-center">
+                        <i class="fas fa-thumbs-up mr-2"></i> Endorse Pillar
+                    </button>
+                    <button onclick="bukaIdea(2)" class="w-full text-xs font-bold text-slate-400 hover:text-teal-600 transition py-1">
+                        + Add Scope Improvization
+                    </button>
+                </div>
+                
+                <div id="ruang-idea-2" class="hidden mt-4 pt-4 border-t border-slate-100">
+                    <textarea id="teks-idea-2" rows="2" placeholder="Suggest specific scopes or policies for this pillar..." class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 text-slate-700 resize-none mb-2"></textarea>
+                    <button onclick="hantarIdea(2)" class="w-full bg-slate-800 text-white text-[10px] font-bold py-2 rounded-lg shadow-sm hover:bg-slate-900 transition">Submit to AI Learning</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let bakiUndi = 1;
+        let idDiundi = null;
+        let skorSekarang = 175;
+        
+        // Data undian semasa (Mockup)
+        const undianSemasa = {
+            1: { count: 180, max: 310 },
+            2: { count: 130, max: 310 }
+        };
+
+        function hantarUndi(id) {
+            const btn = document.getElementById(`btn-undi-${id}`);
+            const kad = document.getElementById(`kad-pillar-${id}`);
+            
+            // Logik Batal Undi
+            if (idDiundi === id) {
+                idDiundi = null;
+                bakiUndi = 1;
+                document.getElementById('kiraan-undi').innerText = bakiUndi;
+                
+                btn.classList.remove('voted-btn');
+                btn.innerHTML = '<i class="fas fa-thumbs-up mr-2"></i> Endorse Pillar';
+                kad.classList.remove('voted-card', 'border-emerald-500', 'border-teal-500');
+                
+                undianSemasa[id].count--;
+                updateGraf(id);
+                return;
+            }
+
+            // Halang undi jika tiada baki
+            if (bakiUndi <= 0) {
+                alert("You have already cast your endorsement! Please un-endorse your previous selection if you wish to change it.");
+                return;
+            }
+
+            // Logik Mengundi
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Registering Endorsement...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                bakiUndi--;
+                idDiundi = id;
+                document.getElementById('kiraan-undi').innerText = bakiUndi;
+                
+                // Aktifkan State Voted
+                btn.classList.add('voted-btn');
+                btn.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Endorsed';
+                btn.disabled = false;
+                
+                kad.classList.add('voted-card');
+                if(id === 1) kad.classList.add('border-emerald-500');
+                if(id === 2) kad.classList.add('border-teal-500');
+
+                // Kemaskini Visual Graf & Teks
+                undianSemasa[id].count++;
+                updateGraf(id);
+
+                // Gamifikasi (Sekali sahaja)
+                if(!btn.dataset.rewarded) {
+                    tambahSkor(15);
+                    btn.dataset.rewarded = "true";
+                }
+
+                setTimeout(() => alert("Your endorsement has been securely registered to the National Strategy Dashboard!"), 500);
+
+            }, 800);
+        }
+
+        function updateGraf(id) {
+            const spanKiraan = document.getElementById(`undi-${id}`);
+            const bar = document.getElementById(`bar-${id}`);
+            
+            spanKiraan.innerText = undianSemasa[id].count;
+            // Pengiraan peratusan berdasarkan total vote (Mockup 310 total max limit for visual)
+            const peratus = (undianSemasa[id].count / undianSemasa[id].max) * 100;
+            bar.style.width = `${peratus}%`;
+        }
+
+        function bukaIdea(id) {
+            const ruang = document.getElementById(`ruang-idea-${id}`);
+            if(ruang.classList.contains('hidden')) {
+                ruang.classList.remove('hidden');
+            } else {
+                ruang.classList.add('hidden');
+            }
+        }
+
+        function hantarIdea(id) {
+            const teksArea = document.getElementById(`teks-idea-${id}`);
+            if(teksArea.value.trim() === '') {
+                alert('Please describe your scope improvization first.');
+                return;
+            }
+
+            const btn = event.target;
+            const asalTeks = btn.innerText;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-1"></i> Syncing with AI LKB...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check text-emerald-400 mr-1"></i> Scope Integrated';
+                btn.classList.replace('bg-slate-800', 'bg-slate-900');
+                teksArea.disabled = true;
+                
+                tambahSkor(5); // Gamifikasi untuk bagi idea
+                
+                setTimeout(() => {
+                    document.getElementById(`ruang-idea-${id}`).classList.add('hidden');
+                    btn.innerText = asalTeks;
+                    btn.classList.replace('bg-slate-900', 'bg-slate-800');
+                    btn.disabled = false;
+                    teksArea.disabled = false;
+                    teksArea.value = '';
+                }, 2000);
+            }, 1000);
+        }
+
+        function tambahSkor(mata) {
+            const elemenSkor = document.getElementById('skor-peserta');
+            elemenSkor.classList.add('text-yellow-400', 'scale-125');
+            
+            let skorTarget = skorSekarang + mata; 
+            let interval = setInterval(() => {
+                skorSekarang++;
+                elemenSkor.innerHTML = skorSekarang + ' <span class="text-sm text-white/50">pts</span>';
+                if(skorSekarang >= skorTarget) {
+                    clearInterval(interval);
+                    setTimeout(() => { elemenSkor.classList.remove('text-yellow-400', 'scale-125'); }, 500);
+                }
+            }, 50);
+        }
+    </script>
+</body>
+</html>

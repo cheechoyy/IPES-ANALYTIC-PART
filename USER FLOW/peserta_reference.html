@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Upload - SME Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .drag-active { border-color: #3b82f6 !important; background-color: #eff6ff !important; }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col">
+
+    <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 shadow-lg relative z-20">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(rgba(255,255,255,.2) 1px,transparent 1px);background-size:20px 20px;"></div>
+        <div class="max-w-[1200px] mx-auto px-6 py-4 relative flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="peserta_overview.html" class="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm border border-white/20 backdrop-blur-sm" title="Back to Journey Map">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="border-l border-white/20 pl-4 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white text-blue-900 flex items-center justify-center font-black text-lg shadow-md border-2 border-blue-300">AH</div>
+                    <div>
+                        <h1 class="text-lg font-black text-white tracking-wide">Dr. Alina Harun</h1>
+                        <p class="text-indigo-200 text-[10px] font-medium uppercase tracking-widest">Hospital Kuala Lumpur (KKM)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-right">
+                    <div class="text-[10px] text-emerald-300 font-bold uppercase tracking-widest mb-0.5">Contribution Score</div>
+                    <div class="text-2xl font-black text-emerald-400 leading-none transition-all duration-500" id="skor-peserta">120 <span class="text-sm text-white/50">pts</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 w-full max-w-[1200px] mx-auto p-6 flex flex-col gap-6">
+        
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-blue-500 rounded-full mix-blend-multiply filter blur-2xl opacity-10"></div>
+            <div>
+                <div class="inline-flex items-center gap-1.5 bg-blue-50 border border-blue-200 text-blue-600 text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full mb-3">
+                    <i class="fas fa-database"></i> Node 1: Reference Data
+                </div>
+                <h2 class="text-2xl font-black text-slate-800">Knowledge Upload Center</h2>
+                <p class="text-sm text-slate-500 mt-2 leading-relaxed max-w-3xl">To ensure the AI generates highly accurate policies, it needs to learn from your existing environment. Please upload relevant SOPs, previous blueprint drafts, guidelines, or operational manuals from your agency.</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center min-w-[150px]">
+                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Your Total Uploads</div>
+                <div class="text-3xl font-black text-blue-600" id="jumlah-fail">3</div>
+                <div class="text-[10px] text-slate-500 mt-1">Documents Indexed</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <div class="lg:col-span-5 flex flex-col gap-6">
+                
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                    <h3 class="font-bold text-sm text-slate-800 mb-4 flex items-center"><i class="fas fa-cloud-upload-alt text-blue-500 mr-2"></i> Upload Documents</h3>
+                    
+                    <div id="drop-zone" class="border-2 border-dashed border-slate-300 bg-slate-50 rounded-xl p-8 text-center transition hover:bg-slate-100 cursor-pointer flex flex-col items-center justify-center">
+                        <i class="fas fa-file-upload text-4xl text-slate-400 mb-3"></i>
+                        <p class="text-sm font-bold text-slate-700">Drag & drop files here</p>
+                        <p class="text-[10px] text-slate-500 mt-1 mb-4">Supported formats: PDF, DOCX, XLSX (Max 10MB)</p>
+                        <button class="bg-blue-600 text-white text-xs font-bold px-5 py-2.5 rounded-lg shadow-sm hover:bg-blue-700 transition">
+                            Browse Files
+                        </button>
+                    </div>
+
+                    <button onclick="simulasiMuatNaik()" id="btn-simulasi" class="w-full mt-4 bg-emerald-50 text-emerald-600 border border-emerald-200 text-[10px] font-bold py-2 rounded-lg hover:bg-emerald-100 transition flex items-center justify-center">
+                        <i class="fas fa-magic mr-2"></i> Klik sini untuk Demo Simulasi Muat Naik Fail Baru
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                    <h3 class="font-bold text-sm text-slate-800 mb-4 flex items-center"><i class="fas fa-link text-indigo-500 mr-2"></i> Add Web Reference</h3>
+                    <p class="text-[11px] text-slate-500 mb-3">Paste links to official online guidelines or circulars.</p>
+                    <div class="flex gap-2">
+                        <input type="url" placeholder="https://www.moh.gov.my/..." class="flex-1 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
+                        <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-indigo-700 transition"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-7 bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col h-full overflow-hidden">
+                <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                    <h3 class="font-bold text-sm text-slate-800 flex items-center"><i class="fas fa-history text-blue-500 mr-2"></i> My Upload History</h3>
+                    <span class="text-[10px] bg-slate-200 text-slate-600 px-2 py-1 rounded font-bold uppercase tracking-wider">AI LKB Sync Active</span>
+                </div>
+                
+                <div class="flex-1 overflow-x-auto p-6 pt-2">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="text-slate-400 text-[10px] uppercase tracking-widest border-b border-slate-200">
+                                <th class="pb-3 font-bold w-8">#</th>
+                                <th class="pb-3 font-bold">Document Name</th>
+                                <th class="pb-3 font-bold">Date Uploaded</th>
+                                <th class="pb-3 font-bold text-center">AI Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="senarai-fail" class="text-xs">
+                            <tr class="border-b border-slate-100 hover:bg-slate-50 transition">
+                                <td class="py-4 text-slate-400">1</td>
+                                <td class="py-4 font-bold text-slate-700 flex items-center gap-3">
+                                    <i class="fas fa-file-pdf text-rose-500 text-lg"></i>
+                                    <div>
+                                        Clinical_Guidelines_2025.pdf
+                                        <div class="text-[9px] text-slate-400 font-normal mt-0.5">2.4 MB • 1,200 words</div>
+                                    </div>
+                                </td>
+                                <td class="py-4 text-slate-500">14 Apr 2026</td>
+                                <td class="py-4 text-center">
+                                    <span class="bg-emerald-50 text-emerald-600 border border-emerald-100 px-2 py-1 rounded-md text-[9px] font-bold"><i class="fas fa-check-circle mr-1"></i> Indexed</span>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-slate-100 hover:bg-slate-50 transition">
+                                <td class="py-4 text-slate-400">2</td>
+                                <td class="py-4 font-bold text-slate-700 flex items-center gap-3">
+                                    <i class="fas fa-file-word text-blue-500 text-lg"></i>
+                                    <div>
+                                        EMR_Integration_Strategy.docx
+                                        <div class="text-[9px] text-slate-400 font-normal mt-0.5">1.1 MB • 850 words</div>
+                                    </div>
+                                </td>
+                                <td class="py-4 text-slate-500">14 Apr 2026</td>
+                                <td class="py-4 text-center">
+                                    <span class="bg-emerald-50 text-emerald-600 border border-emerald-100 px-2 py-1 rounded-md text-[9px] font-bold"><i class="fas fa-check-circle mr-1"></i> Indexed</span>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-slate-100 hover:bg-slate-50 transition">
+                                <td class="py-4 text-slate-400">3</td>
+                                <td class="py-4 font-bold text-slate-700 flex items-center gap-3">
+                                    <i class="fas fa-link text-indigo-500 text-lg"></i>
+                                    <div>
+                                        MOH Official Data Act (URL)
+                                        <div class="text-[9px] text-indigo-400 font-normal mt-0.5 underline">www.moh.gov.my/data-act</div>
+                                    </div>
+                                </td>
+                                <td class="py-4 text-slate-500">15 Apr 2026</td>
+                                <td class="py-4 text-center">
+                                    <span class="bg-emerald-50 text-emerald-600 border border-emerald-100 px-2 py-1 rounded-md text-[9px] font-bold"><i class="fas fa-check-circle mr-1"></i> Indexed</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Logik Animasi Drag & Drop
+        const dropZone = document.getElementById('drop-zone');
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => dropZone.classList.add('drag-active'), false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => dropZone.classList.remove('drag-active'), false);
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            // Jika dalam persekitaran sebenar, di sinilah fail ditarik dan fungsi muat naik dicetuskan
+            simulasiMuatNaik(); 
+        });
+
+        // FUNGSI DEMO (SIMULASI GAMIFIKASI & MUAT NAIK)
+        let failCount = 3;
+        let skorSekarang = 120;
+
+        function simulasiMuatNaik() {
+            const btn = document.getElementById('btn-simulasi');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Uploading and AI Processing...';
+            btn.disabled = true;
+            btn.classList.replace('bg-emerald-50', 'bg-slate-100');
+            btn.classList.replace('text-emerald-600', 'text-slate-500');
+
+            setTimeout(() => {
+                failCount++;
+                
+                // Tambah fail baru ke dalam senarai
+                const senarai = document.getElementById('senarai-fail');
+                const rowBaru = document.createElement('tr');
+                rowBaru.className = "border-b border-slate-100 bg-blue-50/30 transition animate-pulse";
+                rowBaru.innerHTML = `
+                    <td class="py-4 text-slate-400 font-bold">${failCount}</td>
+                    <td class="py-4 font-bold text-slate-700 flex items-center gap-3">
+                        <i class="fas fa-file-excel text-emerald-500 text-lg"></i>
+                        <div>
+                            Vendor_API_Guidelines_2026.xlsx
+                            <div class="text-[9px] text-slate-400 font-normal mt-0.5">3.2 MB • 4,100 words</div>
+                        </div>
+                    </td>
+                    <td class="py-4 text-slate-500">Just Now</td>
+                    <td class="py-4 text-center">
+                        <span class="bg-amber-50 text-amber-600 border border-amber-200 px-2 py-1 rounded-md text-[9px] font-bold"><i class="fas fa-cogs mr-1 fa-spin"></i> Parsing NLP</span>
+                    </td>
+                `;
+                
+                senarai.insertBefore(rowBaru, senarai.firstChild);
+                
+                // Kemaskini Jumlah Fail
+                document.getElementById('jumlah-fail').innerText = failCount;
+
+                // Animasi Tambah Skor (Gamifikasi)
+                const elemenSkor = document.getElementById('skor-peserta');
+                elemenSkor.classList.add('text-yellow-400', 'scale-125');
+                
+                let skorTarget = skorSekarang + 15; // Tambah 15 mata
+                let interval = setInterval(() => {
+                    skorSekarang++;
+                    elemenSkor.innerHTML = skorSekarang + ' <span class="text-sm text-white/50">pts</span>';
+                    if(skorSekarang >= skorTarget) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            elemenSkor.classList.remove('text-yellow-400', 'scale-125');
+                        }, 500);
+                    }
+                }, 50);
+
+                // Kembalikan butang ke asal selepas 2 saat
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-magic mr-2"></i> Klik sini untuk Demo Simulasi Muat Naik Fail Baru';
+                    btn.disabled = false;
+                    btn.classList.replace('bg-slate-100', 'bg-emerald-50');
+                    btn.classList.replace('text-slate-500', 'text-emerald-600');
+                    
+                    // Tukar status AI kepada Indexed
+                    rowBaru.classList.remove('animate-pulse', 'bg-blue-50/30');
+                    rowBaru.classList.add('hover:bg-slate-50');
+                    rowBaru.cells[3].innerHTML = '<span class="bg-emerald-50 text-emerald-600 border border-emerald-100 px-2 py-1 rounded-md text-[9px] font-bold"><i class="fas fa-check-circle mr-1"></i> Indexed</span>';
+                }, 3000);
+
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
